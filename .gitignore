@@ -1,0 +1,4 @@
+protected/config.local.inc.php
+protected/data/smarty_compile/*
+nbproject/*
+.idea/*
