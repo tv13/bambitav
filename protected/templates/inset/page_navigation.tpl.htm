@@ -1,0 +1,11 @@
+&nbsp;{if !empty($NavyPages.first.url)}<a href="{$NavyPages.first.url}">&lt;&lt;</a>{else}<span>&lt;&lt;</span>{/if}&nbsp;
+{if !empty($NavyPages.prev)}<a href="{$NavyPages.prev.url}">&lt;&nbsp;</a>{else}<span>&lt;&nbsp;</span>{/if}&nbsp;
+предприятия
+<select class="pages"  onchange="window.location.href='{$NavyPages.url_format}'.replace(/%d/, this.value);">
+{foreach from=$NavyPages.links item=link name=fe_links}
+<option value="{$link.page_num|escape:html}" {if $link.is_current}selected="selected"{/if}>{$link.text|escape:html}</option>
+{/foreach}
+</select>
+из {$NavyPages.total|default:0}
+{if !empty($NavyPages.next)}<a href="{$NavyPages.next.url}">&nbsp;&gt;</a>{else}<span>&nbsp;&gt;</span>{/if}&nbsp;
+{if !empty($NavyPages.last.url)}<a href="{$NavyPages.last.url}">&gt;&gt;</a>{else}<span>&gt;&gt;</span>{/if}&nbsp;
