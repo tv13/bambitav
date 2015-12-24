@@ -30,7 +30,7 @@ ob_start();
 define('DEV_MODE', false);
 
 date_default_timezone_set('Europe/Kiev');
-define('DOMAIN_ROOT', 'gpay.pb.ua');
+define('DOMAIN_ROOT', 'localhost/bambitav');
 define('SESSION_NAME', 'gpay_rand');
 
 define('ABS_PATH', rtrim(str_replace('\\', '/',dirname(__FILE__))),  '/');
@@ -46,10 +46,10 @@ define('HTTP_STATIC_PATH', HTTP_ABS_PATH.'/static');
 
 ////////////////////////////////////////////////////////////////////////////
 
-$Config['db_name'] = 'gpay';
-$Config['db_host'] = '10.1.109.97';
-$Config['db_user'] = 'gpay';
-$Config['db_pass'] = 'xd2Rn:10';
+$Config['db_name'] = 'bambitab_db';
+$Config['db_host'] = 'localhost';
+$Config['db_user'] = 'root';
+$Config['db_pass'] = '';
 
 $Config['db_persistent'] = false;
 $Config['db_debug_mode'] = false;
