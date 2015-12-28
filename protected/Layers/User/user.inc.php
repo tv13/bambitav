@@ -1,200 +1,126 @@
 <?php
-/**************************************************************
-* Project  : Movable-Ink Gen
-* Name     : User
-* Date     : 2012.02.08
-* Modified : $Id$
-* Author   : forjest@gmail.com
-***************************************************************
-*
-*/
-require_once LAYERS_DIR.'/Entity/entity_with_db.inc.php';
+
+require_once LAYERS_DIR . '/Entity/entity_with_db.inc.php';
 
 class User extends EntityWithDB
 {
-/////////////////////////////////////////////////////////////////////////////
-
-function &get_all_fields_instances()
-{
-     $result['id']             = new FieldInt();
-     $result['dt_created']     = new FieldDateTime();
-     $result['email']          = new FieldString();
-     $result['email']-> set_max_length(50);
-
-     $result['password_hash']  = new FieldUniquePassword();
-     $result['company']        = new FieldString();
-     $result['company']-> set_max_length(150);
-	$result['first_name']	 = new FieldString();
-	$result['first_name']-> set_max_length(50);
-
-	$result['fb_access_token'] = new FieldString();
-	$result['fb_access_token']-> set_max_length(255);
-
-	$result['fb_profile_link'] = new FieldString();
-	$result['fb_profile_link']-> set_max_length(255);
-
-	$result['tw_oauth_token'] = new FieldString();
-	$result['tw_oauth_token']-> set_max_length(255);
-
-	$result['tw_oauth_token_secret'] = new FieldString();
-	$result['tw_oauth_token_secret']-> set_max_length(255);
-
-	$result['tw_user_id'] = new FieldInt();
-
-	$result['tw_screen_name'] = new FieldString();
-	$result['tw_screen_name']-> set_max_length(255);
-
-//	$result['is_admin']		 = new FieldYNBool();
-
-     return $result;
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function &get_all_fields_instances()
+    {
+        $result['id']           = new FieldInt();
+        $result['email']        = new FieldString();
+        $result['password']     = new FieldString();
+        $result['status']       = new FieldInt();
+        $result['balance']      = new FieldInt();
+        $result['name']         = new FieldString();
+        $result['sex']          = new FieldString();
+        $result['birthdate']    = new FieldDate();
+        $result['services']     = new FieldInt();
+        $result['city']         = new FieldString();
+        $result['size']         = new FieldInt();
+        $result['height']       = new FieldInt();
+        $result['weight']       = new FieldInt();
+        $result['rating']       = new FieldInt();
+        $result['dt_create']    = new FieldDateTime();
+        
+        $result['email']->set_max_length(100);
+        $result['password']->set_max_length(20);
+        $result['name']->set_max_length(50);
+        $result['sex']->set_max_length(1);
+        $result['city']->set_max_length(100);
+        
+        return $result;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function create_child_objects()
+    {
+        $this->create_standart_db_handler('tm_users');
+        $this->create_tuple();
+        $this->DBHandler-> set_primary_key('id');
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _is_valid_email($email)
+    {
+        if (!preg_match("/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/", $email))
+        {
+            return false;
+        }
+        return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_nick_for_create()
+    {
+        if ('' != $this->_get_user_account_by_nick($this->_get_data_field('nick')))
+        {
+            //throw new ExceptionProcessing(4);
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_nick_general()
+    {
+        if (!preg_match("/^[A-Za-z0-9_\.-]+$/", $this->_get_data_field('nick')))
+        {
+            //throw new ExceptionProcessing(5);
+        }
+        if (!preg_match("/^.{4,20}$/", $this->_get_data_field('nick')))
+        {
+            //throw new ExceptionProcessing(6);
+        }
+        return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    protected function _validate_age($age)
+    {
+        if (!is_numeric($age) || ((int)$age < 14 || (int)$age > 99))
+        {
+            throw new ExceptionProcessing(7);
+        }
+        return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    protected function _validate_sex($sex)
+    {
+        if ($sex == 'm' || $sex == 'f')
+        {
+            return true;
+        }
+        throw new ExceptionProcessing(8);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _set_user_by_id($user_id)
+    {
+        $this->Fields['user_id']->set($user_id);
+        $this->load_by_field('user_id');
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_photo_path($user_id)
+    {
+        return "static/img/$user_id.jpg";
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_existing_photo_path($user_id)
+    {
+        if (file_exists($this->_get_photo_path($user_id)))
+        {
+            return $this->_get_photo_path($user_id);
+        }
+        return "";
+    }
+    /////////////////////////////////////////////////////////////////////////////
 }
-/////////////////////////////////////////////////////////////////////////////
-
-function create_child_objects()
-{
-     $this-> create_standart_db_handler('dc_user');
-     $this-> create_tuple();
-}
-/////////////////////////////////////////////////////////////////////////////
-
-function add()
-{
-     $this-> Fields['dt_created']-> now();
-     $this-> DBHandler-> insert();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function is_admin()
-{
-	return $this-> Fields['is_admin']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_email($email)
-{
-	$this-> Fields['email']-> set($email);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_email()
-{
-	return $this-> Fields['email']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_password_hash($passwordHash)
-{
-	$this-> Fields['password_hash']-> set($passwordHash);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_company($company)
-{
-	$this-> Fields['company']-> set($company);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_company_value()
-{
-	return $this-> Fields['company']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_password_hash()
-{
-	return $this-> Fields['password_hash']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_first_name($firstName)
-{
-	$this-> Fields['first_name']-> set($firstName);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_first_name_value()
-{
-	return $this-> Fields['first_name']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function load_by_email()
-{
-	$this-> load_by_field('email');
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_fb_access_token($access_token)
-{
-	$this-> Fields['fb_access_token']-> set($access_token);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_fb_access_token_value()
-{
-	return $this-> Fields['fb_access_token']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_fb_profile_link($link)
-{
-	$this-> Fields['fb_profile_link']-> set($link);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_fb_profile_link_value()
-{
-	return $this-> Fields['fb_profile_link']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_tw_oauth_token($accessToken)
-{
-	$this-> Fields['tw_oauth_token']-> set($accessToken);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_tw_oauth_token_value()
-{
-	return $this-> Fields['tw_oauth_token']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_tw_oauth_token_secret($accessTokenSecret)
-{
-	$this-> Fields['tw_oauth_token_secret']-> set($accessTokenSecret);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_tw_oauth_token_secret_value()
-{
-	return $this-> Fields['tw_oauth_token_secret']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_tw_screen_name($screenName)
-{
-	$this-> Fields['tw_screen_name']-> set($screenName);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_tw_screen_name_value()
-{
-	return $this-> Fields['tw_screen_name']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-function set_tw_user_id($userId)
-{
-	$this-> Fields['tw_user_id']-> set($userId);
-}
-///////////////////////////////////////////////////////////////////////////
-
-function get_tw_user_id_value()
-{
-	return $this-> Fields['tw_user_id']-> get();
-}
-///////////////////////////////////////////////////////////////////////////
-
-}//class ends here
-?>
