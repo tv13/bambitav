@@ -13,6 +13,8 @@ class MainIndexModel extends MainModel
     {
         parent::__construct();
         $this->_legalBranchList = new LegalBranchList();
+                $this->_DBHandler = produce_db();
+
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -62,6 +64,13 @@ class MainIndexModel extends MainModel
     
     public function action_default()
     {
+    }
+    
+    public function action_content_data()
+    {
+        $this->is_ajax = true;
+        $this->_DBHandler->exec_query("SELECT name, birthday, city, sex, phone_number, description FROM  user_info ;");
+        $this->Result = $this->_DBHandler->get_all_data();    
     }
     
     

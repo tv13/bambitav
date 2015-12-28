@@ -61,19 +61,19 @@
     <div class="item active">
       <img src="http://placehold.it/600x600" alt="">
       <div class="carousel-caption">
-        ...
+        Photo1
       </div>
     </div>
     <div class="item">
       <img src="http://placehold.it/600x600" alt="">
       <div class="carousel-caption">
-        ...
+        Photo2
       </div>
     </div>
     <div class="item">
       <img src="http://placehold.it/600x600" alt="">
       <div class="carousel-caption">
-        ...
+        Photo3
       </div>
     </div>
   </div>
@@ -100,6 +100,11 @@
                             <input type="text" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
+                            <label for="city">Город</label>
+                            <input type="text" id="city" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
                             <label for="birsday">Дата рождения</label>
                             <input type="date" id="birsday" class="form-control" required>
                         </div>
@@ -121,11 +126,6 @@
                             <textarea class="form-control" id="description" rows="3"></textarea>
                         </div>
                         
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Can't check this
-                            </label>
-                        </div>
                         <button type="submit" class="btn btn-primary">Сохранить</button>
                     </fieldset>
                 </form>  

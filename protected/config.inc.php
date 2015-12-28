@@ -46,7 +46,7 @@ define('HTTP_STATIC_PATH', HTTP_ABS_PATH.'/static');
 
 ////////////////////////////////////////////////////////////////////////////
 
-$Config['db_name'] = 'bambitav_db';
+$Config['db_name'] = 'bambitab_db';
 $Config['db_host'] = 'localhost';
 $Config['db_user'] = 'root';
 $Config['db_pass'] = '';

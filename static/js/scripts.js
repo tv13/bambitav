@@ -1,1 +1,6 @@
-// Empty JS for your own code to be here
+$(document).ready(function(){
+    $.get( "index.php", { go: "content_data"} )
+  .done(function( data ) {
+    alert( "Data Loaded: " + data );
+  });
+});

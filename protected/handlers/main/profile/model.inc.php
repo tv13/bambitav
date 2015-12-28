@@ -11,27 +11,31 @@ class MainProfileModel extends MainModel
     {
         parent::__construct();
         $this->_profileLayer = new Profile();
+        $this->_DBHandler = produce_db();
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function action_get_profile_info()
+    public function action_content_data()
     {
-        return $this->_profileLayer->get_info();
+        $this->is_ajax = true;
+        $this->_DBHandler->exec_query("SELECT name, birthday, city, sex, phone_number, description FROM  user_info ;");
+        $this->Result = true;//$this->_DBHandler->get_all_data();    
     }
     /////////////////////////////////////////////////////////////////////////////
     
     public function action_update_profile_info()
     {
-        
-        $_profile_info = array();
-        $_profile_info = [
-            "name" => (string)@$_POST["name"],
-            "birthday" => (string)@$_POST["birthday"],
-            "sex" => (string)@$_POST["sex"],
-            "phoneNumber" => (string)@$_POST["phoneNumber"],
-            "description" => (string)@$_POST["description"]
-            ];
-       return $this->_profileLayer->update_info();
+        $this->is_ajax = true;
+            $_name = (string)@$_POST["name"];
+            $_birthday = (string)@$_POST["birthday"];
+            $_sex = (string)@$_POST["sex"];
+            $_phoneNumber = (string)@$_POST["phoneNumber"];
+            $_description = (string)@$_POST["description"];
+            $_city = (string)@$_POST["city"];
+            $this->_DBHandler->exec_query("INSERT INTO user_info "
+             . "(name, birthday, city, sex, phone_number, description) "
+             . "VALUES ('$_name', '$_birthday', '$_city', '$_sex', '$_phoneNumber', '$_description');");
+       $this->Result = true;
     }
     /////////////////////////////////////////////////////////////////////////////
          
