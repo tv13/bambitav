@@ -1,65 +1,40 @@
 <?php
 
-require_once LAYERS_DIR . '/LegalEntity/legal_entity_list.inc.php';
-require_once LAYERS_DIR . '/LegalBranch/legal_branch_list.inc.php';
-require_once LAYERS_DIR . '/LegalEntity/legal_entity_all_list.inc.php';
+require_once LAYERS_DIR . '/Profile/profile.inc.php';
 
 class MainProfileModel extends MainModel
 {
-    private $_legalBranchList;
+    private $_profileLayer;
     /////////////////////////////////////////////////////////////////////////////
     
     public function __construct()
     {
         parent::__construct();
-        $this->_legalBranchList = new LegalBranchList();
+        $this->_profileLayer = new Profile();
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function get_category_id()
+    public function action_get_profile_info()
     {
-        return (int)@$_GET['category'];
-    }
-    /////////////////////////////////////////////////////////////////////////////
-
-    public function get_search_string()
-    {
-	return preg_replace('/\s\s+/', ' ', (string)@$_GET['q']);
-    }
-    /////////////////////////////////////////////////////////////////////////////
-
-    public function get_lister_instance()
-    {
-        return new LegalEntityList(
-		$this->get_category_id(),
-		$this->get_search_string()
-	);
+        return $this->_profileLayer->get_info();
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function get_count_all_legal_entity()
+    public function action_update_profile_info()
     {
-        $LegalEntityAllList = new LegalEntityAllList();
-        return $LegalEntityAllList->get_results_count();
+        
+        $_profile_info = array();
+        $_profile_info = [
+            "name" => (string)@$_POST["name"],
+            "birthday" => (string)@$_POST["birthday"],
+            "sex" => (string)@$_POST["sex"],
+            "phoneNumber" => (string)@$_POST["phoneNumber"],
+            "description" => (string)@$_POST["description"]
+            ];
+       return $this->_profileLayer->update_info();
     }
     /////////////////////////////////////////////////////////////////////////////
-    
-    public function get_count_legal_entity()
-    {
-        if (!$this->get_category_id())
-        {
-            return strval($this->get_count_all_legal_entity());
-        }
-        return '';
-    }
-    /////////////////////////////////////////////////////////////////////////////
-    
-    public function get_branches_list()
-    {
-        return $this->_legalBranchList->get_list();
-    }
-    /////////////////////////////////////////////////////////////////////////////
-    
+         
     public function action_default()
     {
     }

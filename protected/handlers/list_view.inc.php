@@ -16,18 +16,11 @@ class ListView extends ViewTemplated
 {
 ////////////////////////////////////////////////////////////////////////////
 
-function fill_list_variables()
-{
-     $this-> assign('List', $this-> Model-> get_list()); 
-     $this-> assign('NavyPages', $this-> Model-> get_navy_pages());
-     $this-> assign('PerPageData', $this-> Model-> get_per_page_data());
-}
 ///////////////////////////////////////////////////////////////////////////
 
 function fill()
 {
      parent::fill();
-     $this-> fill_list_variables();
 }
 /////////////////////////////////////////////////////////////////////////////
 }//class ends here

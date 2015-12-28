@@ -10,10 +10,10 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
-    <link href="{$HTTP_STATIC_PATH}/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   </head>
   <body>
+  {include file='./inset/header.tpl'}
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -43,13 +43,6 @@
       
       <div class="jumbotron">
     <div class="container">
-
-        
-        
-        
-        
-        
-        
         <div class="row">
 		<div class="col-md-6">
 			<div class="row">
@@ -95,14 +88,12 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-                                    
-                                 
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6">                  
                 <h2>Heading</h2>
-                <form>
+                <form onsubmit="return false">
                     <fieldset enable>
                         <div class="form-group">
                             <label for="name">Имя</label>
@@ -140,52 +131,7 @@
                 </form>  
 		</div>
 	</div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    </div>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+    </div>    
       <hr>
       <footer>
         <p>&copy; 2015 Company, Inc.</p>
@@ -194,6 +140,6 @@
 
     <script src="{$HTTP_STATIC_PATH}/js/jquery.min.js"></script>
     <script src="{$HTTP_STATIC_PATH}/libs/bootstrap/js/bootstrap.min.js"></script>
-    <script src="{$HTTP_STATIC_PATH}/js/scripts.js"></script>
+    <script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
   </body>
 </html>
