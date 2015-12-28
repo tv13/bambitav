@@ -63,6 +63,15 @@ class MainIndexModel extends MainModel
     public function action_default()
     {
     }
+    
+    
+    public function action_list()
+    {
+        $array = array();
+        $array[] = $this->_legalBranchList->get_list();
+        return json_encode($array);
+    }
+    
     /////////////////////////////////////////////////////////////////////////////
     
     public function run()

@@ -10,14 +10,13 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
-    <link href="{$HTTP_STATIC_PATH}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{$HTTP_STATIC_PATH}/css/style.css" rel="stylesheet">
+    <link href="{$HTTP_STATIC_PATH}/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   </head>
   <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -36,7 +35,7 @@
               <input type="password" placeholder="Password" class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Sign in</button>
-            <a href="profile.php" class="btn btn-primary" role="button">Primary link</a>
+            <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
@@ -56,54 +55,87 @@
 			<div class="row">
 				<div class="col-md-12">
                                     <h2>Heading</h2>
-                                    <a href="#">
-                                        <img class="img-responsive" src="http://placehold.it/500x500" alt="">
-                                    </a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-                                                        <a href="#">
-                        <img class="img-rounded" src="http://placehold.it/100x200" alt="">
-                    </a>
-				</div>
-				<div class="col-md-3">
-                                                        <a href="#">
-                        <img class="img-rounded" src="http://placehold.it/100x200" alt="">
-                    </a>
-				</div>
-				<div class="col-md-3">
-                                                        <a href="#">
-                        <img class="img-rounded" src="http://placehold.it/100x200" alt="">
-                    </a>
-				</div>
-				<div class="col-md-3">
-                                                        <a href="#">
-                        <img class="img-rounded" src="http://placehold.it/100x200" alt="">
-                    </a>
+                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="http://placehold.it/600x600" alt="">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="http://placehold.it/600x600" alt="">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="http://placehold.it/600x600" alt="">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+                                    
+                                 
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6">                  
                 <h2>Heading</h2>
                 <form>
-                    <fieldset disabled>
+                    <fieldset enable>
                         <div class="form-group">
-                            <label for="disabledTextInput">Disabled input</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="disabledSelect">Disabled select menu</label>
-                            <select id="disabledSelect" class="form-control">
-                                <option>Disabled select</option>
+                            <label for="birsday">Дата рождения</label>
+                            <input type="date" id="birsday" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">Пол</label>
+                            <select id="sex" class="form-control" required>
+				<option value="">Не указан</option>
+				<option value="m">Мужской</option>
+                                <option value="f">Женский</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Номер телефона</label>
+                            <input type="text" id="phoneNumber" class="form-control" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Текст объявления</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
+                        </div>
+                        
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Can't check this
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
                     </fieldset>
                 </form>  
 		</div>
@@ -161,7 +193,7 @@
     </div> <!-- /container -->
 
     <script src="{$HTTP_STATIC_PATH}/js/jquery.min.js"></script>
-    <script src="{$HTTP_STATIC_PATH}/js/bootstrap.min.js"></script>
+    <script src="{$HTTP_STATIC_PATH}/libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/scripts.js"></script>
   </body>
 </html>

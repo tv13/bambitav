@@ -14,10 +14,9 @@ class LegalBranchList extends PagedLister
 
     public function get_list()
     {
-        $this-> db-> exec_query("
+             $this-> db-> exec_query("
             SELECT * 
-            FROM `gp_legal_branch`
-        ".$this-> get_where_part() . ' ORDER BY `name`' . $this-> get_limit_part());
+            FROM users_bt");
         return $this-> db-> get_all_data();
     }
     ////////////////////////////////////////////////////////////////////////////

@@ -10,14 +10,12 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
-    <link href="{$HTTP_STATIC_PATH}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{$HTTP_STATIC_PATH}/css/style.css" rel="stylesheet">
-
+    <link href="{$HTTP_STATIC_PATH}/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -36,7 +34,7 @@
               <input type="password" placeholder="Password" class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Sign in</button>
-            <a href="profile.php" class="btn btn-primary" role="button">Primary link</a>
+            <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
@@ -181,7 +179,7 @@
     <!-- /.container -->
 
     <script src="{$HTTP_STATIC_PATH}/js/jquery.min.js"></script>
-    <script src="{$HTTP_STATIC_PATH}/js/bootstrap.min.js"></script>
+    <script src="{$HTTP_STATIC_PATH}/libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/scripts.js"></script>
   </body>
 </html>
