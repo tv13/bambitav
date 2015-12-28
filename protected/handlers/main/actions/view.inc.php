@@ -1,15 +1,14 @@
 <?php
 
-class MainProfileView extends ListView
+class ActionsView extends ViewAjax
 {
     public function __construct()
     {
         parent::__construct();
     }
-
+    
     public function fill()
     {
         parent::fill();
-        $this->set_template('profile/profile.tpl');
     }
-};
+}
