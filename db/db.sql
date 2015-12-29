@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 29, 2015 at 03:45 PM
+-- Generation Time: Dec 29, 2015 at 04:22 PM
 -- Server version: 5.5.29-0ubuntu0.12.04.2
 -- PHP Version: 5.5.27-1+deb.sury.org~precise+1
 
@@ -33,17 +33,18 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
   `status` tinyint(1) unsigned zerofill NOT NULL DEFAULT '0',
   `balance` int(10) NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL,
+  `phone` char(13) NOT NULL,
   `sex` char(1) NOT NULL,
   `birthdate` date NOT NULL,
   `services` tinyint(1) unsigned NOT NULL,
   `city` varchar(100) NOT NULL,
-  `text` varchar(500) NOT NULL,
+  `text` text NOT NULL,
   `size` tinyint(1) unsigned NOT NULL,
   `height` tinyint(1) unsigned NOT NULL,
   `weight` tinyint(1) unsigned NOT NULL,
   ` rating` tinyint(1) NOT NULL,
   `dt_create` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Indexes for dumped tables
