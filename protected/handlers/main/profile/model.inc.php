@@ -15,7 +15,7 @@ class MainProfileModel extends MainModel
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function action_content_data()
+    public function get_content_data()
     {
         $this->is_ajax = true;
         $this->_DBHandler->exec_query("SELECT name, birthday, city, sex, phone_number, description FROM  user_info ;");

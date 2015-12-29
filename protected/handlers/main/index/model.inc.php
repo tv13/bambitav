@@ -70,7 +70,7 @@ class MainIndexModel extends MainModel
     {
         $this->is_ajax = true;
         $this->_DBHandler->exec_query("SELECT name, birthday, city, sex, phone_number, description FROM  user_info ;");
-        $this->Result = $this->_DBHandler->get_all_data();    
+        $this->Result = array("data" => $this->_DBHandler->get_all_data());    
     }
     
     
