@@ -10,9 +10,9 @@
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
-    <link href="{$HTTP_STATIC_PATH}/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
+  {include file='./inset/header.tpl'}
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -51,15 +51,17 @@
 
     <!-- Page Content -->
     <div class="container">
-        <div id="itemContainer">
-        <!-- Page Header -->
-        <div class="row">
+                <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Page Heading
                     <small>Secondary Text</small>
                 </h1>
             </div>
         </div>
+        
+        <div id="itemContainer">
+        <!-- Page Header -->
+
         <!-- /.row -->
 
 
@@ -67,7 +69,8 @@
         <!-- /.row -->
         </div>
         <hr>
-
+<div id="holder">
+    </div>
         <!-- Footer -->
         <footer>
             <div class="row">
@@ -81,8 +84,6 @@
     </div>
     <!-- /.container -->
 
-    <script src="{$HTTP_STATIC_PATH}/js/jquery.min.js"></script>
-    <script src="{$HTTP_STATIC_PATH}/libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/scripts.js"></script>
   </body>
 </html>

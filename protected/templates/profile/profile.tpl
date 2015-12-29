@@ -138,8 +138,6 @@
       </footer>
     </div> <!-- /container -->
 
-    <script src="{$HTTP_STATIC_PATH}/js/jquery.min.js"></script>
-    <script src="{$HTTP_STATIC_PATH}/libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
   </body>
 </html>

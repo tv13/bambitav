@@ -18,7 +18,7 @@ class MainProfileModel extends MainModel
     public function get_content_data()
     {
         $this->is_ajax = true;
-        $this->_DBHandler->exec_query("SELECT name, birthday, city, sex, phone_number, description FROM  user_info ;");
+        $this->_DBHandler->exec_query("SELECT name, birthday, city, sex, phone_number, description FROM  tm_users ;");
         $this->Result = true;//$this->_DBHandler->get_all_data();    
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -32,8 +32,8 @@ class MainProfileModel extends MainModel
             $_phoneNumber = (string)@$_POST["phoneNumber"];
             $_description = (string)@$_POST["description"];
             $_city = (string)@$_POST["city"];
-            $this->_DBHandler->exec_query("INSERT INTO user_info "
-             . "(name, birthday, city, sex, phone_number, description) "
+            $this->_DBHandler->exec_query("INSERT INTO tm_users "
+             . "(name, birthdate, city, sex, phone, text) "
              . "VALUES ('$_name', '$_birthday', '$_city', '$_sex', '$_phoneNumber', '$_description');");
        $this->Result = true;
     }
