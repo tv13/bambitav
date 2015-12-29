@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 28, 2015 at 06:52 PM
+-- Generation Time: Dec 29, 2015 at 03:45 PM
 -- Server version: 5.5.29-0ubuntu0.12.04.2
 -- PHP Version: 5.5.27-1+deb.sury.org~precise+1
 
@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
   `birthdate` date NOT NULL,
   `services` tinyint(1) unsigned NOT NULL,
   `city` varchar(100) NOT NULL,
+  `text` varchar(500) NOT NULL,
   `size` tinyint(1) unsigned NOT NULL,
   `height` tinyint(1) unsigned NOT NULL,
   `weight` tinyint(1) unsigned NOT NULL,
