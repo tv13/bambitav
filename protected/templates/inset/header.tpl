@@ -50,7 +50,8 @@
               <input type="password" placeholder="Password" class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Sign in</button>
-            <a href="profile.php" class="btn btn-primary" role="button">Primary link</a>
+            <a href="#" class="btn btn-primary" role="button">Registration</a>
+            <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
           </form>
             </div>
             <!-- /.navbar-collapse -->
