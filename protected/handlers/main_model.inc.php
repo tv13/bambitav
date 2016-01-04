@@ -41,13 +41,6 @@ function redirect_to_main()
 }
 ////////////////////////////////////////////////////////////////////////////
 
-function redirect_to_admin()
-{
-     $this-> redirect_url  = HTTP_ABS_PATH . '/admin.php';
-     $this-> need_redirect = true;
-}
-////////////////////////////////////////////////////////////////////////////
-
 function redirect_to_login()
 {
      $this-> redirect_url  = HTTP_ABS_PATH . '/login.php';
@@ -59,13 +52,6 @@ function redirect_to_login()
 function redirect_self()
 {
      $this-> redirect_url  = $_SERVER['REQUEST_URI'];
-     $this-> need_redirect = true;
-}
-////////////////////////////////////////////////////////////////////////////
-
-function redirect_to_sended_verification_email()
-{
-     $this-> redirect_url  = HTTP_ABS_PATH . '/email_verify.php';
      $this-> need_redirect = true;
 }
 ////////////////////////////////////////////////////////////////////////////
@@ -188,6 +174,18 @@ function get_contents($url)
           return '';
      }
 	return $this-> Browser-> get_page();
+}
+////////////////////////////////////////////////////////////////////////////
+
+public function is_customer_logged()
+{
+    return $this->CustomerAuth->is_logged();
+}
+////////////////////////////////////////////////////////////////////////////
+
+public function get_customer_name()
+{
+    return $this->Customer->get_name_value();
 }
 ///////////////////////////////////////////////////////////////////////////
 

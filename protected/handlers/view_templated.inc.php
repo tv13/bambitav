@@ -73,7 +73,11 @@ function assign($var_name, $value)
 
 function fill()
 {
-     //must be implemented;
+    //must be implemented;
+    $this->assign('is_logged', $this->Model->is_customer_logged());
+    if ($this->Model->is_customer_logged()) {
+        $this->assign('customer_name', $this->Model->get_customer_name());
+    }
 }
 ////////////////////////////////////////////////////////////////////////////
 

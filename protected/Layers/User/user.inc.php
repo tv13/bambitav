@@ -106,7 +106,7 @@ class User extends EntityWithDB
                       </p>
                       <p>
                               Ваш логин: ' . $this->_get_email_by_user_id($user_id) . '<br />
-                              Ваш пароль: ' . $this->_get_password_by_user_id($user_id) . '
+                              Ваш пароль: ' . $this->get_password_by_user_id($user_id) . '
                       </p>
                   </div>
                 </body>
@@ -116,7 +116,15 @@ class User extends EntityWithDB
     
     private function _get_email_verify_code($user_id)
     {
-        return base64_encode($user_id . '_' /*. $this->_get_email_by_id($user_id)*/);
+        return base64_encode($user_id . '#' . $this->_get_email_by_user_id($user_id));
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function get_user_id_by_email($email)
+    {
+        $this->Fields['email']->set($email);
+        $this->load_by_field('email');
+        return @$this->Fields['id']->get();
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -127,10 +135,32 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    private function _get_password_by_user_id($user_id)
+    public function get_password_by_user_id($user_id)
     {
         $this->_set_user_by_id($user_id);
         return @$this->Fields['password']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function get_name_by_user_id($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        return @$this->Fields['name']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function check_email_code($code)
+    {
+        $decode = base64_decode($code);
+        $user_id = substr($decode, 0, strpos($decode, '#'));
+        return $decode == $user_id . '#' . $this->_get_email_by_user_id($user_id);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function set_status($status)
+    {
+        $this->Fields['status']->set($status);
+        $this->DBHandler->update();
     }
     /*/////////////////////////////////////////////////////////////////////////////
     

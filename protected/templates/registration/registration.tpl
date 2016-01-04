@@ -15,40 +15,48 @@
   </head>
   <body>
 
-    {include file='inset/header_body.tpl'}
-      
     <div class="jumbotron">
         <div class="container-fluid">
-                <div class="row">
-                        <div class="col-md-12">
-                                <h3>
-                                    Регистрация
-                                </h3>
-                                <form role="form" method="post">
-                                        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    {if !$email_was_sended}
+                        <h3>
+                            Регистрация
+                        </h3>
+                        <form role="form" method="post">
+                            <div class="form-group">
 
-                                                <label for="exampleInputEmail1">
-                                                        Email
-                                                </label>
-                                                <input name="email" class="form-control" id="exampleInputEmail1" type="email" required />
-                                        </div>
-                                        <div class="form-group">
+                                <label for="exampleInputEmail1">
+                                        Email
+                                </label>
+                                <input name="email" class="form-control" id="exampleInputEmail1" type="email" required />
+                            </div>
+                            <div class="form-group">
 
-                                                <label for="exampleInputPassword1">
-                                                        Пароль
-                                                </label>
-                                                <input name="password" class="form-control" id="exampleInputPassword1" type="password" required />
-                                        </div>
-                                        <div class="form-group">
+                                <label for="exampleInputPassword1">
+                                        Пароль
+                                </label>
+                                <input name="password" class="form-control" id="exampleInputPassword1" type="password" required />
+                            </div>
+                            <div class="form-group">
 
-                                                <input id="exampleInputCaptcha" type="hidden" />
-                                        </div>
-                                        <button type="submit" class="btn btn-default">
-                                                Зарегистрироваться
-                                        </button>
-                                </form>
-                        </div>
+                                <input id="exampleInputCaptcha" type="hidden" />
+                            </div>
+                            <button type="submit" class="btn btn-default">
+                                Зарегистрироваться
+                            </button>
+                        </form>
+                    {else}
+                        <h3>
+                                Ваш аккаунт успешно создан!
+                        </h3>
+                        <p>
+                                На Ваш email было отправлено письмо для подтвержания вашего акаунта.
+                                Для подтверждения перейдите по ссылке, указанной в письме.
+                        </p>
+                    {/if}
                 </div>
+            </div>
         </div>
         
         {include file='inset/header.tpl'}

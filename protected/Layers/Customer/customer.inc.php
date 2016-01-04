@@ -9,8 +9,8 @@ class GPayCustomer extends EntityWithDB
 
     public function &get_all_fields_instances() 
     {
-        $result['ldap']                             = new FieldString();
-        $result['ldap']->set_max_length(12);
+        $result['name']                             = new FieldString();
+        $result['name']->set_max_length(12);
     
         $result['session_hash']                     = new FieldString();
         $result['session_hash']->set_max_length(20);
@@ -19,15 +19,15 @@ class GPayCustomer extends EntityWithDB
     } 
     ///////////////////////////////////////////////////////////////////////////// 
     
-    public function set_ldap($ldap)
+    public function set_name($name)
     {
-        $this->Fields['ldap']->set($ldap);
+        $this->Fields['name']->set($name);
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function get_ldap_value()
+    public function get_name_value()
     {
-        return $this->Fields['ldap']->get();
+        return $this->Fields['name']->get();
     }
     /////////////////////////////////////////////////////////////////////////////
     

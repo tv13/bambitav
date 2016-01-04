@@ -9,13 +9,8 @@ class MemberAreaEmailView extends ViewAjax
     
     public function fill()
     {
-        if ($_GET['action'] != 'verify')
-        {
-            $this->set_template('registration/email.tpl');
-        }
-        else
-        {
-            $this->set_template('registration/email_ok.tpl');
-        }
+        parent::fill();
+        $this->set_template('registration/email.tpl');
+        $this->assign('is_ok', $this->Model->is_code_ok());
     }
 }

@@ -42,17 +42,24 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-            <a href="#" class="btn btn-primary" role="button">Registration</a>
-            <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
-          </form>
+                {if !$is_logged}
+                    <form class="navbar-form navbar-right" method="post" action="login.php">
+                        <div class="form-group">
+                          <input type="text" name="email" placeholder="Email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <input type="password" name="password" placeholder="Password" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">Sign in</button>
+                        <a href="registration.php" class="btn btn-primary" role="button">Registration</a>
+                        <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
+                    </form>
+                {else}
+                    <div class="navbar-right">
+                        <div class="navbar-brand">Hello, {$customer_name}</div>
+                        <a class="navbar-brand" href="logout.php">Logout</a>
+                    </div>
+                {/if}
             </div>
             <!-- /.navbar-collapse -->
         </div>

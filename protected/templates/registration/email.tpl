@@ -15,24 +15,33 @@
   </head>
   <body>
 
-    {include file='inset/header_body.tpl'}
-      
     <div class="jumbotron">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>
-                            Ваш аккаунт успешно создан!
-                    </h3>
-                    <p>
-                            На Ваш email было отправлено письмо для подтвержания вашего акаунта.
-                            Для подтверждения перейдите по ссылке, указанной в письме.
-                    </p>
+                    {if $is_ok}
+                        <h3>
+                                Поздравляем! Вы успешно зарегистрировались.
+                        </h3>
+                        <p>
+                                Для дальнейшей работы авторизируйтесь в системе.
+                        </p>
+                        <!--<button type="button" onclick="window.location.href='{$HTTP_ABS_PATH}/login.php'" class="btn btn-primary">
+                                Авторизация
+                        </button>-->
+                    {else}
+                        <h3>
+                                Произошла ошибка
+                        </h3>
+                        <p>
+                                Повторите попытку позже!
+                        </p>
+                    {/if}
                 </div>
             </div>
         </div>
     
-    {include file='inset/header.tpl'}
+    {include file='inset/footer.tpl'}
 
     </div>
 

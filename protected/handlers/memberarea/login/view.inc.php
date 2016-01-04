@@ -9,6 +9,6 @@ class MemberAreaLoginView extends ViewTemplated
     
     public function fill()
     {
-        $this->set_template('admin/login.tpl');
+        parent::fill();
     }
 }
