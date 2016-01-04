@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/app.css"/>
 <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap-theme.min.css"/>
 <script type="text/javascript">
     var ABS_PATH = '{$ABS_PATH}';
 </script>
