@@ -27,36 +27,6 @@
 <body>
   {include file='./inset/header.tpl'}
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-            <a href="profile.php" class="btn btn-primary" role="button">Primary link</a>
-          </form>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
@@ -77,90 +47,16 @@
             </div>
         </div>
         <!-- /.row -->
+        <div id="itemContainer">
 
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-6 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project One</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-6 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Two</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-6 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Three</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-6 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Four</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-6 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Five</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-6 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Six</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
         </div>
         <!-- /.row -->
 
         <hr>
         <!-- /.row -->
 
-        <hr>
+  {include file='./inset/bottom.tpl'}
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
 
     </div>
     <!-- /.container -->
