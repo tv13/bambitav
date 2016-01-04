@@ -1,46 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
 
-    <title>Bootstrap 3, from LayoutIt!</title>
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
-
-
-  </head>
-  <body>
-  {include file='./inset/header.tpl'}
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-            <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
-      
+{include file='./inset/header.tpl'}      
       <div class="jumbotron">
     <div class="container">
         <div class="row">
@@ -133,9 +93,8 @@
 	</div>
     </div>    
       <hr>
-      <footer>
-        <p>&copy; 2015 Company, Inc.</p>
-      </footer>
+  {include file='./inset/bottom.tpl'}
+
     </div> <!-- /container -->
 
     <script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
