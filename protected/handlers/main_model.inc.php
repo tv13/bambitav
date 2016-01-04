@@ -63,6 +63,13 @@ function redirect_self()
 }
 ////////////////////////////////////////////////////////////////////////////
 
+function redirect_to_sended_verification_email()
+{
+     $this-> redirect_url  = HTTP_ABS_PATH . '/email_verify.php';
+     $this-> need_redirect = true;
+}
+////////////////////////////////////////////////////////////////////////////
+
 function get_heap_data()
 {
      $result = parent:: get_heap_data();

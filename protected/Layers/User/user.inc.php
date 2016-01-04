@@ -1,9 +1,11 @@
 <?php
 
 require_once LAYERS_DIR . '/Entity/entity_with_db.inc.php';
+require_once LAYERS_DIR . '/HTTP/browser.inc.php';
 
 class User extends EntityWithDB
 {
+    private $_Data = null;
     /////////////////////////////////////////////////////////////////////////////
     
     public function __construct()
@@ -20,10 +22,12 @@ class User extends EntityWithDB
         $result['status']       = new FieldInt();
         $result['balance']      = new FieldInt();
         $result['name']         = new FieldString();
+        $result['phone']        = new FieldString();
         $result['sex']          = new FieldString();
         $result['birthdate']    = new FieldDate();
         $result['services']     = new FieldInt();
         $result['city']         = new FieldString();
+        $result['text']         = new FieldString();
         $result['size']         = new FieldInt();
         $result['height']       = new FieldInt();
         $result['weight']       = new FieldInt();
@@ -33,6 +37,7 @@ class User extends EntityWithDB
         $result['email']->set_max_length(100);
         $result['password']->set_max_length(20);
         $result['name']->set_max_length(50);
+        $result['phone']->set_max_length(13);
         $result['sex']->set_max_length(1);
         $result['city']->set_max_length(100);
         
@@ -48,13 +53,128 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    private function _is_valid_email($email)
+    public function set_data($Data)
+    {
+        $this->_Data = $Data;
+        return $this;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_data_field($field)
+    {
+        if (isset($this->_Data[$field]))
+        {
+            return trim(html_entity_decode((string)$this->_Data[$field]));
+        }
+        return '';
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function create()
+    {
+        $this->_validate_registration_data();
+        $this->_add();
+        return (int)@$this->Fields['id']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function send_validate_email($user_id)
+    {
+        $to      = $this->_get_email_by_user_id($user_id);
+        $subject = 'Регистрация';
+        $message = $this->_get_email_verify_body($user_id);
+        $headers  = "From: webmaster@example.com\r\n" .
+                    // 'Reply-To: webmaster@example.com' . "\r\n" .
+                    "Content-type: text/html";
+                    //'X-Mailer: PHP/' . phpversion();
+        return mail($to, $subject, $message, $headers);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_email_verify_body($user_id)
+    {
+        return '<html lang="en">
+                <body>
+                  <div>
+                      <h3>
+                              Ваш аккаунт успешно создан!
+                      </h3>
+                      <p>
+                              Для подтверждения перейдите по
+                              <a href="' . HTTP_ABS_PATH . 'email_verify.php?action=verify&code='
+                              . $this->_get_email_verify_code($user_id) . '">этой ссылке</a>.
+                      </p>
+                      <p>
+                              Ваш логин: ' . $this->_get_email_by_user_id($user_id) . '<br />
+                              Ваш пароль: ' . $this->_get_password_by_user_id($user_id) . '
+                      </p>
+                  </div>
+                </body>
+              </html>';
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_email_verify_code($user_id)
+    {
+        return base64_encode($user_id . '_' /*. $this->_get_email_by_id($user_id)*/);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_email_by_user_id($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        return @$this->Fields['email']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_password_by_user_id($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        return @$this->Fields['password']->get();
+    }
+    /*/////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_dt_create_by_id($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        return @$this->Fields['dt_create']->get();
+    }*/
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_registration_data()
+    {
+        $this->_validate_email($this->_get_data_field('email'));
+        $this->_validate_password($this->_get_data_field('password'));
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_email($email)
     {
         if (!preg_match("/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/", $email))
         {
-            return false;
+            //throw new ExceptionProcessing(4);
         }
         return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_password($password)
+    {
+        if (!preg_match("/^([a-z0-9_\.-]{6,20})$/", $password))
+        {
+            //throw new ExceptionProcessing(4);
+        }
+        return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _add()
+    {
+        $this->Fields['email']->set($this->_get_data_field('email'));
+        $this->Fields['password']->set($this->_get_data_field('password'));
+        $this->Fields['status']->set(-1);
+        $this->Fields['dt_create']->now();
+        $this->DBHandler->insert();
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -103,8 +223,8 @@ class User extends EntityWithDB
     
     private function _set_user_by_id($user_id)
     {
-        $this->Fields['user_id']->set($user_id);
-        $this->load_by_field('user_id');
+        $this->Fields['id']->set($user_id);
+        $this->load_by_field('id');
     }
     /////////////////////////////////////////////////////////////////////////////
     

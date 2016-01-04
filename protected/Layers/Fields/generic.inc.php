@@ -141,7 +141,7 @@ function get_mysql_string_context($str)
           print_r(debug_backtrace());
           die('Error in params');
      }*/
-     return "'".mysql_escape_string($str)."'";
+     return "'".mysql_real_escape_string($str)."'";
 }
 ///////////////////////////////////////////////////////////////////////////
 
