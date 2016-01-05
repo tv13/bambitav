@@ -100,7 +100,7 @@ function &get_fields()
 
 function get_escaped($name)
 {
-     if (!empty($this-> Fields[$name]->value))
+     if (is_string($this-> Fields[$name]->value))
      {
           return $this-> Fields[$name]-> get_db_context();
      }
