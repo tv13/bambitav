@@ -51,7 +51,9 @@
                           <input type="password" name="password" placeholder="Password" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-success">Sign in</button>
-                        <a href="registration.php" class="btn btn-primary" role="button">Registration</a>
+                        
+ <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Registration</button>
+
                         <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
                     </form>
                 {else}
@@ -65,5 +67,43 @@
         </div>
         <!-- /.container -->
     </nav>
+            
+            
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+                            <form role="form" method="post">
+                            <div class="form-group">
+
+                                <label for="exampleInputEmail1">
+                                        Email
+                                </label>
+                                <input name="email" class="form-control" id="exampleInputEmail1" type="email" required />
+                            </div>
+                            <div class="form-group">
+
+                                <label for="exampleInputPassword1">
+                                        Пароль
+                                </label>
+                                <input name="password" class="form-control" id="exampleInputPassword1" type="password" required />
+                            </div>
+                            <div class="form-group">
+                                <input id="exampleInputCaptcha" type="hidden" />
+                            </div>
+                        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     
 
