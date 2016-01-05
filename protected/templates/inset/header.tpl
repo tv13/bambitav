@@ -42,26 +42,20 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {if !$is_logged}
-                    <form class="navbar-form navbar-right" method="post" action="login.php">
+                    <form id="login_form" class="navbar-form navbar-right">
                         <div class="form-group">
-                          <input type="text" name="email" placeholder="Email" class="form-control">
+                          <input type="text" id="emailLogin" name="email" placeholder="Email" class="form-control">
                         </div>
                         <div class="form-group">
-                          <input type="password" name="password" placeholder="Password" class="form-control">
+                          <input type="password" name="password" id="passwordLogin" placeholder="Password" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-success">Sign in</button>
                         
- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Registration</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Registration</button>
 
                         <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
                     </form>
-                {else}
-                    <div class="navbar-right">
-                        <div class="navbar-brand">Hello, {$customer_name}</div>
-                        <a class="navbar-brand" href="logout.php">Logout</a>
-                    </div>
-                {/if}
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -84,14 +78,14 @@
                                 <label for="exampleInputEmail1">
                                         Email
                                 </label>
-                                <input name="email" class="form-control" id="exampleInputEmail1" type="email" required />
+                                <input name="email" class="form-control" id="inputEmail1" type="email" required />
                             </div>
                             <div class="form-group">
 
                                 <label for="exampleInputPassword1">
                                         Пароль
                                 </label>
-                                <input name="password" class="form-control" id="exampleInputPassword1" type="password" required />
+                                <input name="password" class="form-control" id="inputPassword" type="password" required />
                             </div>
                             <div class="form-group">
                                 <input id="exampleInputCaptcha" type="hidden" />

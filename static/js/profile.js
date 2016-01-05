@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
 	
-$('form').submit(login_click_handler);
+$('form').submit(profile_click_handler);
 });
 
-function login_click_handler()
+function profile_click_handler()
 {
     $.post('profile.php',
     {

@@ -7,10 +7,6 @@
             </div>
             <!-- /.row -->
         </footer>
-        
-            <script type="text/javascript">
-    var ABS_PATH = '{$ABS_PATH}';
-</script>
-<script src="{$HTTP_STATIC_PATH}/js/app.js" type="text/javascript"></script>
 <script src="{$HTTP_STATIC_PATH}/js/jquery.js" type="text/javascript"></script>
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="{$HTTP_STATIC_PATH}/js/app.js" type="text/javascript"></script>

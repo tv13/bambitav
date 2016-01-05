@@ -1,9 +1,13 @@
 $(document).ready(function(){
-    
+    $.ajax({
+        url:"index.php",
+        type:"GET",
+        data:{ action: "content_data"
+        },
+        beforeSend: function () {
 
-    
-    $.get( "index.php", { action: "content_data"} )
-  .done(function( data ) {
+        },
+        success: function(data){
       var dataJson = $.parseJSON(data);
       var maxLenth = 10;
       for ( var i = 0, l = dataJson.data.length; i < l; i++ ) {
@@ -23,7 +27,8 @@ $(document).ready(function(){
           }
            $("#itemContainer").append(string5);
         }
-  });
+        }
+    });
 });
 
 
