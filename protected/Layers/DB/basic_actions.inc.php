@@ -104,7 +104,7 @@ function get_escaped($name)
      {
           return $this-> Fields[$name]-> get_db_context();
      }
-     return $this-> Fields[$name]->get_default_value();
+     return $this-> Fields[$name]->value;
      //return '';
 }
 /////////////////////////////////////////////////////////////////////////////
