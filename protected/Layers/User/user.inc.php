@@ -2,6 +2,7 @@
 
 require_once LAYERS_DIR . '/Entity/entity_with_db.inc.php';
 require_once LAYERS_DIR . '/HTTP/browser.inc.php';
+//require_once LIB_DIR . '/Mailer/sendmail.php';
 
 class User extends EntityWithDB
 {
@@ -70,7 +71,17 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function create()
+    public function registration()
+    {
+        $user_id = $this->_create();
+        if ($this->_send_validate_email($user_id))
+        {
+            throw new ExceptionProcessing(4);
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _create()
     {
         $this->_validate_registration_data();
         $this->_add();
@@ -78,7 +89,23 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function send_validate_email($user_id)
+    public function login($email, $password)
+    {
+        if (empty($email) || empty($password))
+        {
+            throw new ExceptionProcessing(11);
+        }
+        
+        $user_id = $this->get_user_id_by_email($email);
+        if ($password == $this->get_password_by_user_id($user_id))
+        {
+            return $user_id;
+        }
+        throw new ExceptionProcessing(12);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _send_validate_email($user_id)
     {
         $to      = $this->_get_email_by_user_id($user_id);
         $subject = 'Регистрация';
@@ -182,7 +209,7 @@ class User extends EntityWithDB
     {
         if (!preg_match("/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/", $email))
         {
-            //throw new ExceptionProcessing(4);
+            throw new ExceptionProcessing(2);
         }
         return true;
     }
@@ -192,7 +219,7 @@ class User extends EntityWithDB
     {
         if (!preg_match("/^([a-z0-9_\.-]{6,20})$/", $password))
         {
-            //throw new ExceptionProcessing(4);
+            throw new ExceptionProcessing(3);
         }
         return true;
     }
@@ -253,8 +280,8 @@ class User extends EntityWithDB
     
     private function _set_user_by_id($user_id)
     {
-        $this->Fields['id']->set($user_id);
-        $this->load_by_field('id');
+        $this->set_id_value($user_id);
+        $this->load();
     }
     /////////////////////////////////////////////////////////////////////////////
     

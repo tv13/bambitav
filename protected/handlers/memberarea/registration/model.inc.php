@@ -16,19 +16,11 @@ class MemberAreaRegistrationModel extends MainModel
     {
         if ($this->CustomerAuth->is_logged())
         {
-            $this->redirect_to_main();
+            throw new ExceptionProcessing(10, 1);
         }
-    }
-    
-    public function was_email_sended()
-    {
-        if (isset($_POST['email'])) {
-            $this->_User->set_data($_POST);
-            $user_id = $this->_User->create();
-            $this->_User->send_validate_email($user_id);
-            return true;
-        }
-        return false;
+        $this->_User->set_data($_POST);
+        $this->_User->registration();
+        throw new ExceptionProcessing(5, 1);
     }
     
     public function run()

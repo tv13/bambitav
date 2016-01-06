@@ -115,7 +115,29 @@ function run()
      }
      catch(Exception $e)
      {
-        var_dump($e->getMessage(), $e->getCode());
+        header('Content-Type: application/json; charset=utf-8;');
+        $ModelResult = array();
+        if (is_object(@$this-> Model))
+        {
+            $ModelResult = $this-> Model-> get_result();
+            unset($ModelResult['status']);
+        };
+
+        if (strpos($e->getMessage(), PROJECT_NAME) === 0)
+        {
+            $Response = array(
+                'status'        => $e->getCode(),
+                'statusMessage' => substr($e->getMessage(), strlen(PROJECT_NAME))
+            );
+        }
+        else
+        {
+            $Response = array(
+                'status'        => 2,
+                'statusMessage' => 'Ошибка соединения с сервером. Повторите попытку позже.'
+            );
+        }
+        echo json_encode($Response);
         die();
      }
 }

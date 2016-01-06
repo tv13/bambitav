@@ -22,6 +22,6 @@ class MemberAreaLogoutModel extends MainModel
         #$this->close_promin_session();
         parent::run();
         $this->CustomerAuth->logout();
-        $this->redirect_to_main();
+        throw new ExceptionProcessing(13, 1);
     }
 }

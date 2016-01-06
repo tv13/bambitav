@@ -78,14 +78,14 @@
                                 <label for="exampleInputEmail1">
                                         Email
                                 </label>
-                                <input name="email" class="form-control" id="inputEmail1" type="email" required />
+                                <input name="email" class="form-control" id="registerEmail" type="email" required />
                             </div>
                             <div class="form-group">
 
                                 <label for="exampleInputPassword1">
                                         Пароль
                                 </label>
-                                <input name="password" class="form-control" id="inputPassword" type="password" required />
+                                <input name="password" class="form-control" id="registerPassword" type="password" required />
                             </div>
                             <div class="form-group">
                                 <input id="exampleInputCaptcha" type="hidden" />
