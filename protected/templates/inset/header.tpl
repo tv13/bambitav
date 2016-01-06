@@ -55,7 +55,21 @@
 
                         <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
                     </form>
+<<<<<<< HEAD
 
+=======
+                {else}
+                    <div class="navbar-right">
+                        <div class="navbar-brand">
+                            {if $customer_name != ''}
+                                Hello, {$customer_name}
+                            {else}
+                                Hello
+                            {/if}</div>
+                        <a class="navbar-brand" href="logout.php">Logout</a>
+                    </div>
+                {/if}
+>>>>>>> 41120e1f94d127fc4309e86ef0facc3421bb6ed0
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -71,10 +85,12 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="exampleModalLabel">New message</h4>
       </div>
-      <div class="modal-body">
-                            <form role="form" method="post">
-                            <div class="form-group">
+    {if !$email_was_sended}
+    <form role="form" method="post" action="registration.php">
+        <div class="modal-body">
+            <div class="form-group">
 
+<<<<<<< HEAD
                                 <label for="exampleInputEmail1">
                                         Email
                                 </label>
@@ -96,6 +112,30 @@
         <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
+=======
+                <label for="exampleInputEmail1">
+                        Email
+                </label>
+                <input name="email" class="form-control" id="exampleInputEmail1" type="email" required />
+            </div>
+            <div class="form-group">
+
+                <label for="exampleInputPassword1">
+                        Пароль
+                </label>
+                <input name="password" class="form-control" id="exampleInputPassword1" type="password" required />
+            </div>
+            <div class="form-group">
+                <input id="exampleInputCaptcha" type="hidden" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+    {/if}
+>>>>>>> 41120e1f94d127fc4309e86ef0facc3421bb6ed0
     </div>
   </div>
 </div>
