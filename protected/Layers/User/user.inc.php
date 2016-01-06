@@ -73,17 +73,21 @@ class User extends EntityWithDB
     
     public function registration()
     {
+        $this->_validate_registration_data();
         $user_id = $this->_create();
         if ($this->_send_validate_email($user_id))
         {
-            throw new ExceptionProcessing(4);
+            throw new ExceptionProcessing(5);
         }
     }
     /////////////////////////////////////////////////////////////////////////////
     
     private function _create()
     {
-        $this->_validate_registration_data();
+        if ($this->_is_email_exist())
+        {
+            throw new ExceptionProcessing(4);
+        }
         $this->_add();
         return (int)@$this->Fields['id']->get();
     }
@@ -96,7 +100,7 @@ class User extends EntityWithDB
             throw new ExceptionProcessing(11);
         }
         
-        $user_id = $this->get_user_id_by_email($email);
+        $user_id = $this->_get_user_id_by_email($email);
         if ($password == $this->get_password_by_user_id($user_id))
         {
             return $user_id;
@@ -147,7 +151,7 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function get_user_id_by_email($email)
+    private function _get_user_id_by_email($email)
     {
         $this->Fields['email']->set($email);
         $this->load_by_field('email');
@@ -222,6 +226,12 @@ class User extends EntityWithDB
             throw new ExceptionProcessing(3);
         }
         return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _is_email_exist()
+    {
+        return 0 != $this->_get_user_id_by_email($this->_get_data_field('email'));
     }
     /////////////////////////////////////////////////////////////////////////////
     
