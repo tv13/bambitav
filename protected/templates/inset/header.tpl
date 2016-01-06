@@ -69,10 +69,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+        <h4 class="modal-title" id="exampleModalLabel">Registration</h4>
       </div>
-    <form role="form" method="post" action="registration.php">
         <div class="modal-body">
+                            <form role="form" id="register_form">
             <div class="form-group">
 
                                 <label for="exampleInputEmail1">
@@ -90,11 +90,11 @@
                             <div class="form-group">
                                 <input id="exampleInputCaptcha" type="hidden" />
                             </div>
-                        </form>
-      </div>
-      <div class="modal-footer">
+                                      <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+                        </form>
       </div>
 
     </div>

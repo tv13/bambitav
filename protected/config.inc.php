@@ -30,8 +30,8 @@ ob_start();
 define('DEV_MODE', false);
 
 date_default_timezone_set('Europe/Kiev');
-define('DOMAIN_ROOT', 'env-8112542.unicloud.pl/new/');
-define('SESSION_NAME', 'bambitav_rand');
+define('DOMAIN_ROOT', 'localhost/bambitav');
+define('SESSION_NAME', 'gpay_rand');
 
 define('ABS_PATH', rtrim(str_replace('\\', '/',dirname(__FILE__))),  '/');
 define('ABS_STATIC_PATH', rtrim(realpath(ABS_PATH.'/../static/'), '/'));
@@ -46,10 +46,10 @@ define('HTTP_STATIC_PATH', HTTP_ABS_PATH.'/static');
 
 ////////////////////////////////////////////////////////////////////////////
 
-$Config['db_name'] = 'tm';
-$Config['db_host'] = 'node26063-env-8112542.unicloud.pl';
+$Config['db_name'] = 'bambitav_db';
+$Config['db_host'] = 'localhost';
 $Config['db_user'] = 'root';
-$Config['db_pass'] = 'AMPoyv98957';
+$Config['db_pass'] = '';
 
 $Config['db_persistent'] = false;
 $Config['db_debug_mode'] = false;
