@@ -6,7 +6,7 @@ class MainProfileModel extends MainModel
 {
     private $_profileLayer;
     /////////////////////////////////////////////////////////////////////////////
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -22,7 +22,7 @@ class MainProfileModel extends MainModel
         $this->Result = true;//$this->_DBHandler->get_all_data();    
     }
     /////////////////////////////////////////////////////////////////////////////
-    
+
     public function action_update_profile_info()
     {
         $this->is_ajax = true;
@@ -38,12 +38,23 @@ class MainProfileModel extends MainModel
        $this->Result = true;
     }
     /////////////////////////////////////////////////////////////////////////////
-         
+
     public function action_default()
     {
+
     }
     /////////////////////////////////////////////////////////////////////////////
-    
+
+    public function action_file_upload()
+    {
+        var_dump(@$_FILES['files']);
+        var_dump(@$_SERVER['HTTP_CONTENT_DISPOSITION']);
+        $upload = @$_FILES['files'];
+        $file_name = 'img_' . uniqid();
+
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
     public function run()
     {
         parent::run();
