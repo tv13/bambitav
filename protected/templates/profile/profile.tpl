@@ -3,9 +3,9 @@
 {include file='./inset/header.tpl'}
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <!-- Generic page styles -->
-<link rel="stylesheet" href="/static/uploader/css/style.css">
+<link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/style.css">
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-<link rel="stylesheet" href="/static/uploader/css/jquery.fileupload.css">
+<link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/jquery.fileupload.css">
 <div class="jumbotron">
     <div class="container">
         <div class="row">
@@ -96,7 +96,7 @@
                         <div class="container">
                         <span class="btn btn-success fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
-                            <span>Add files...</span>
+                            <span>Добавить изображения...</span>
                             <!-- The file input field used as target for the file upload widget -->
                             <input id="fileupload" type="file" name="files[]" multiple>
                         </span>
@@ -113,13 +113,12 @@
                             <br>
                         </div>
                         <hr>
-                        {include file='./inset/bottom.tpl'}
 
             </div> <!-- /container -->
 
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
             <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-            <script src="/static/uploader/js/vendor/jquery.ui.widget.js"></script>
+            <script src="{$HTTP_STATIC_PATH}/uploader/js/vendor/jquery.ui.widget.js"></script>
             <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
             <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
             <!-- The Canvas to Blob plugin is included for image resizing functionality -->
@@ -127,15 +126,15 @@
             <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
             <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
             <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-            <script src="/static/uploader/js/jquery.iframe-transport.js"></script>
+            <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.iframe-transport.js"></script>
             <!-- The basic File Upload plugin -->
-            <script src="/static/uploader/js/jquery.fileupload.js"></script>
+            <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload.js"></script>
             <!-- The File Upload processing plugin -->
-            <script src="/static/uploader/js/jquery.fileupload-process.js"></script>
+            <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-process.js"></script>
             <!-- The File Upload image preview & resize plugin -->
-            <script src="/static/uploader/js/jquery.fileupload-image.js"></script>
+            <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-image.js"></script>
             <!-- The File Upload validation plugin -->
-            <script src="/static/uploader/js/jquery.fileupload-validate.js"></script>
+            <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-validate.js"></script>
             <script>
                 /*jslint unparam: true, regexp: true */
                 /*global window, $ */
@@ -218,7 +217,7 @@
                         }
                         if (index + 1 === data.files.length) {
                             data.context.find('button')
-                                    .text('Upload')
+                                    .text('Загрузить')
                                     .prop('disabled', !!data.files.error);
                         }
                     }).on('fileuploadprogressall', function (e, data) {
@@ -244,7 +243,7 @@
                         });
                     }).on('fileuploadfail', function (e, data) {
                         $.each(data.files, function (index) {
-                            var error = $('<span class="text-danger"/>').text('File upload failed.');
+                            var error = $('<span class="text-danger"/>').text('Загрузка файла не удалась.');
                             $(data.context.children()[index])
                                     .append('<br>')
                                     .append(error);
@@ -253,3 +252,11 @@
                             .parent().addClass($.support.fileInput ? undefined : 'disabled');
                 });
             </script>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+{include file='./inset/bottom.tpl'}
