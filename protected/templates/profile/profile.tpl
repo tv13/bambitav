@@ -93,6 +93,21 @@
                             <label for="description">Текст объявления</label>
                             <textarea class="form-control" id="description" rows="3"></textarea>
                         </div>
+                        <div class="form-group not_visible">
+                            <label for="country">Страна</label>
+                            <select id="country" class="form-control" required>
+                            </select>
+                        </div>
+                        <div class="form-group not_visible">
+                            <label for="region">Область</label>
+                            <select id="region" class="form-control" required>
+                            </select>
+                        </div>
+                        <div class="form-group not_visible">
+                            <label for="city">Город</label>
+                            <select id="city" class="form-control" required>
+                            </select>
+                        </div>
                         <div class="container">
                         <span class="btn btn-success fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
