@@ -24,7 +24,10 @@
     <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/app.css"/>
 <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap-theme.min.css"/>
-<script src="{$HTTP_STATIC_PATH}/js/common.js" type="text/javascript"></script>
+    <script src="{$HTTP_STATIC_PATH}/js/jquery.js" type="text/javascript"></script>
+    <script src="{$HTTP_STATIC_PATH}/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="{$HTTP_STATIC_PATH}/js/app.js" type="text/javascript"></script>
+    <script src="{$HTTP_STATIC_PATH}/js/common.js" type="text/javascript"></script>
 
 </head>
 
