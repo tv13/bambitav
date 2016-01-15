@@ -25,7 +25,7 @@ function set_sql_pager(&$SQLPager)
 function get_info()
 {
 //     $this-> db-> exec_query("
-//     SELECT * 
+//     SELECT *
 //       FROM dc_user
 //     ".$this-> get_where_part().$this-> get_limit_part());
 //     return $this-> db-> get_all_data();

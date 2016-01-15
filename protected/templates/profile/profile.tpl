@@ -2,24 +2,6 @@
 
 {include file='./inset/header.tpl'}
 
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<script src="{$HTTP_STATIC_PATH}/uploader/js/vendor/jquery.ui.widget.js"></script>
-<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-<!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.iframe-transport.js"></script>
-<!-- The basic File Upload plugin -->
-<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload.js"></script>
-<!-- The File Upload processing plugin -->
-<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-process.js"></script>
-<!-- The File Upload image preview & resize plugin -->
-<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-image.js"></script>
-<!-- The File Upload validation plugin -->
-<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-validate.js"></script>
-<script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
-
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <!-- Generic page styles -->
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/style.css">
@@ -159,3 +141,21 @@
 </div>
 <hr>
 {include file='./inset/bottom.tpl'}
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="{$HTTP_STATIC_PATH}/uploader/js/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-validate.js"></script>
+<script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
