@@ -5,6 +5,9 @@ $(document).ready(function(){
     $('form').submit(profile_click_handler);
     $('#country').change(load_regions);
     $('#region').change(load_cities);
+    $('#btnPublishingCost').click(count_publishing_cost);
+    $('#editPublishDays').click(show_btn_publishing_cost);
+    $('#editPublishDays').change(count_publishing_cost);
 
     var url = window.location.hostname === 'blueimp.github.io' ?
             '//jquery-file-upload.appspot.com/' : 'profile.php?action=file_upload',
@@ -147,7 +150,7 @@ function set_option_for_select(response, id_select)
         $.each(response, function(i, val) {
             $(id_select).append('<option value="'+val.id+'">' + val.title + '</option>');
         });
-        $(id_select + '_div').removeClass('not_visible');
+        $(id_select + '_div').removeClass('hide');
     }
     else {
         load_cities();
@@ -156,9 +159,9 @@ function set_option_for_select(response, id_select)
 
 function load_regions()
 {
-    $('#region_div').addClass('not_visible');
+    $('#region_div').addClass('hide');
     $('#region').empty();
-    $('#city_div').addClass('not_visible');
+    $('#city_div').addClass('hide');
     $('#city').empty();
     if ($('#country').val() >= 0)
     {
@@ -180,21 +183,59 @@ function regions_process(result)
     set_option_for_select(result.response.items, '#region');
 }
 
-
 function load_cities()
 {
-    $('#city_div').addClass('not_visible');
+    $('#city_div').addClass('hide');
     $('#city').empty();
-    if (!$('#region_div').hasClass('not_visible') ? $('#region').val() >= 0 : $('#country').val() >= 0)
+    if (!$('#region_div').hasClass('hide') ? $('#region').val() >= 0 : $('#country').val() >= 0)
     {
         addScript('http://api.vk.com/method/database.getCities?v=' + vk_version
                     + '&offset=0&need_all=1&count=1000&callback=cities_process'
                     + '&country_id=' + $('#country').val()
-                    + (!$('#region_div').hasClass('not_visible') ? '&region_id=' + $('#region').val() : ''));
+                    + (!$('#region_div').hasClass('hide') ? '&region_id=' + $('#region').val() : ''));
     }
 }
 
 function cities_process(result)
 {
     set_option_for_select(result.response.items, '#city');
+}
+
+function count_publishing_cost()
+{
+    var $form_publish = $('#publishQuestionnaire');
+    var publish_days = $form_publish.find('#editPublishDays').val();
+    var cost_publish = publish_days * 1;
+    var balance = $form_publish.find('#balanceValue').text();
+    if (!isInt(publish_days) || parseInt(publish_days) <= 0) {
+        alert("Количество дней должно быть целое и положительное!");
+        return;
+    }
+    $form_publish.find('#costBlock').removeClass('hide');
+    $form_publish.find('#costValue').text(cost_publish);
+    $form_publish.find('#btnPublishingCost').addClass('hide');
+    if (cost_publish - balance > 0)
+    {
+        $form_publish.find('#needPayBlock').removeClass('hide');
+        $form_publish.find('#txtPublishDays').text(publish_days);
+        $form_publish.find('#needPayValue').text(cost_publish - balance);
+        $form_publish.find('#btnRefillBalance').removeClass('hide');
+        $form_publish.find('#btnPublish').addClass('hide');
+    }
+    else
+    {
+        $form_publish.find('#needPayBlock').addClass('hide');
+        $form_publish.find('#btnPublish').removeClass('hide');
+        $form_publish.find('#btnRefillBalance').addClass('hide');
+    }
+}
+
+function show_btn_publishing_cost()
+{
+    var $form_publish = $('#publishQuestionnaire');
+    $form_publish.find('#btnPublishingCost').removeClass('hide');
+    $form_publish.find('#btnPublish').addClass('hide');
+    $form_publish.find('#btnRefillBalance').addClass('hide');
+    $form_publish.find('#costBlock').addClass('hide');
+    $form_publish.find('#needPayBlock').addClass('hide');
 }

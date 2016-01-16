@@ -3,12 +3,15 @@
 require_once LAYERS_DIR.'/Walkers/set_input_data.inc.php';
 require_once LAYERS_DIR.'/Entity/entity_with_db.inc.php'; 
 
-class GPayCustomer extends EntityWithDB 
+class Customer extends EntityWithDB 
 { 
     ///////////////////////////////////////////////////////////////////////////// 
 
     public function &get_all_fields_instances() 
     {
+        $result['id']                               = new FieldString();
+        $result['id']->set_max_length(30);
+        
         $result['name']                             = new FieldString();
         $result['name']->set_max_length(12);
     
@@ -17,6 +20,18 @@ class GPayCustomer extends EntityWithDB
     
         return $result;
     } 
+    ///////////////////////////////////////////////////////////////////////////// 
+    
+    public function set_id($id)
+    {
+        $this->Fields['id']->set($id);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function get_id_value()
+    {
+        return $this->Fields['id']->get();
+    }
     ///////////////////////////////////////////////////////////////////////////// 
     
     public function set_name($name)

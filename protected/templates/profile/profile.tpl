@@ -90,17 +90,17 @@
                             <label for="description">Текст объявления</label>
                             <textarea class="form-control" id="description" rows="3"></textarea>
                         </div>
-                        <div class="form-group not_visible" id="country_div">
+                        <div class="form-group hide" id="country_div">
                             <label for="country">Страна</label>
                             <select id="country" class="form-control" required>
                             </select>
                         </div>
-                        <div class="form-group not_visible" id="region_div">
+                        <div class="form-group hide" id="region_div">
                             <label for="region">Область</label>
                             <select id="region" class="form-control" required>
                             </select>
                         </div>
-                        <div class="form-group not_visible" id="city_div">
+                        <div class="form-group hide" id="city_div">
                             <label for="city">Город</label>
                             <select id="city" class="form-control" required>
                             </select>
@@ -126,10 +126,46 @@
                         </div>
                         <hr>
                         <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#publishQuestionnaire">Разместить анкету</button>
                     </fieldset>
                 </form>
 
             </div> <!-- /container -->
+            
+            <!-- publish questionnaire -->
+            <div class="modal fade" id="publishQuestionnaire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Размещение анкеты</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h4>
+                                Ваш баланс составляет <span id="balanceValue">{$balance_value}</span> <span id="balanceCurrency"></span>
+                            </h4>
+                            <!--<form role="form" id="publish_form">-->
+                                <div class="form-group">
+                                    <label for="publishDays">
+                                        Укажите количество дней, на которое Вы хотите разместить анкету
+                                    </label>
+                                    <input name="namePublishDays" class="form-control" id="editPublishDays" type="text" required />
+                                    <p id="costBlock" class="modal-title hide">Стоимость: <span id="costValue"></span> <span id="costCurrency"></span></p>
+                                    <p id="needPayBlock" class="modal-title hide">Для размещения анкеты на <span id="txtPublishDays"></span> дня(ей) Вы должны пополнить свой баланс на <span id="needPayValue"></span> <span id="needPayCurrency"></span></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="btnPublishingCost" type="button" class="btn btn-primary">Расчитать</button>
+                                    <button id="btnPublish" type="button" class="btn btn-primary hide">Разместить</button>
+                                    <button id="btnRefillBalance" type="button" class="btn btn-primary hide">Пополнить</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            <!--</form>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /publish questionnaire -->
+            
             <script>
             </script>
         </div>

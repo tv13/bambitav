@@ -310,4 +310,11 @@ class User extends EntityWithDB
         return "";
     }
     /////////////////////////////////////////////////////////////////////////////
+    
+    public function get_balance_by_user_id($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        return @$this->Fields['balance']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
 }

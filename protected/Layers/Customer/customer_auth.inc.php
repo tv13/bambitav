@@ -13,7 +13,7 @@ class CustomerAuth extends UserSessionAuth
 
     public function get_entity_instance()
     {
-        return new GPayCustomer();
+        return new Customer();
     }
     ////////////////////////////////////////////////////////////////////////////
 }

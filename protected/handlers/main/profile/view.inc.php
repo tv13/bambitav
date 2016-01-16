@@ -11,5 +11,6 @@ class MainProfileView extends ListView
     {
         parent::fill();
         $this->set_template('profile/profile.tpl');
+        $this->assign('balance_value', $this->Model->get_balance());
     }
 };

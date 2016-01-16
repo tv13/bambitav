@@ -184,6 +184,12 @@ public function is_customer_logged()
 }
 ////////////////////////////////////////////////////////////////////////////
 
+public function get_customer_id()
+{
+    return $this->Customer->get_id_value();
+}
+////////////////////////////////////////////////////////////////////////////
+
 public function get_customer_name()
 {
     return $this->Customer->get_name_value();
