@@ -140,10 +140,10 @@ function profile_click_handler()
 
 function countries_process(result)
 {
-    set_option_for_select(result.response.items, '#country');
+    set_option_for_select(result.response.items, '#country', false);
 }
 
-function set_option_for_select(response, id_select)
+function set_option_for_select(response, id_select, is_region)
 {
     if (response.length) {
         $(id_select).append('<option value="-1">Выберите...</option>');
@@ -152,7 +152,7 @@ function set_option_for_select(response, id_select)
         });
         $(id_select + '_div').removeClass('hide');
     }
-    else {
+    else if (is_region)  {
         load_cities();
     }
 }
@@ -180,7 +180,7 @@ function addScript(src)
 
 function regions_process(result)
 {
-    set_option_for_select(result.response.items, '#region');
+    set_option_for_select(result.response.items, '#region', true);
 }
 
 function load_cities()
@@ -198,7 +198,7 @@ function load_cities()
 
 function cities_process(result)
 {
-    set_option_for_select(result.response.items, '#city');
+    set_option_for_select(result.response.items, '#city', false);
 }
 
 function count_publishing_cost()

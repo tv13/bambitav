@@ -21,7 +21,7 @@ class User extends EntityWithDB
         $result['email']        = new FieldString();
         $result['password']     = new FieldString();
         $result['status']       = new FieldInt();
-        $result['balance']      = new FieldInt();
+        $result['balance']      = new FieldAmount();
         $result['name']         = new FieldString();
         $result['phone']        = new FieldString();
         $result['sex']          = new FieldString();
@@ -34,6 +34,7 @@ class User extends EntityWithDB
         $result['weight']       = new FieldInt();
         $result['rating']       = new FieldInt();
         $result['dt_create']    = new FieldDateTime();
+        $result['dt_publish']   = new FieldDateTime();
         
         $result['email']->set_max_length(100);
         $result['password']->set_max_length(20);
@@ -77,7 +78,7 @@ class User extends EntityWithDB
         $user_id = $this->_create();
         if ($this->_send_validate_email($user_id))
         {
-            throw new ExceptionProcessing(5);
+            throw new ExceptionProcessing(9);
         }
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -86,7 +87,7 @@ class User extends EntityWithDB
     {
         if ($this->_is_email_exist())
         {
-            throw new ExceptionProcessing(4);
+            throw new ExceptionProcessing(8);
         }
         $this->_add();
         return (int)@$this->Fields['id']->get();
@@ -97,7 +98,7 @@ class User extends EntityWithDB
     {
         if (empty($email) || empty($password))
         {
-            throw new ExceptionProcessing(11);
+            throw new ExceptionProcessing(21);
         }
         
         $user_id = $this->_get_user_id_by_email($email);
@@ -105,7 +106,7 @@ class User extends EntityWithDB
         {
             return $user_id;
         }
-        throw new ExceptionProcessing(12);
+        throw new ExceptionProcessing(22);
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -213,7 +214,7 @@ class User extends EntityWithDB
     {
         if (!preg_match("/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/", $email))
         {
-            throw new ExceptionProcessing(2);
+            throw new ExceptionProcessing(6);
         }
         return true;
     }
@@ -223,7 +224,7 @@ class User extends EntityWithDB
     {
         if (!preg_match("/^([a-z0-9_\.-]{6,20})$/", $password))
         {
-            throw new ExceptionProcessing(3);
+            throw new ExceptionProcessing(7);
         }
         return true;
     }
@@ -311,10 +312,41 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
+    public function set_balance_by_user_id($user_id, $balance)
+    {
+        $this->_set_user_by_id($user_id);
+        $this->Fields['balance']->set($balance);
+        $this->update();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
     public function get_balance_by_user_id($user_id)
     {
         $this->_set_user_by_id($user_id);
         return @$this->Fields['balance']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function set_dt_publish($user_id, $need_set_now = true)
+    {
+        if ($need_set_now)
+        {
+            $dt_publish = strftime('%Y-%m-%d %H:%M:%S');
+        }
+        else
+        {
+            $dt_publish = 0;
+        }
+        $this->_set_user_by_id($user_id);
+        $this->Fields['dt_publish']->set($dt_publish);
+        $this->update();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function get_dt_publish($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        return @$this->Fields['dt_publish']->get();
     }
     /////////////////////////////////////////////////////////////////////////////
 }

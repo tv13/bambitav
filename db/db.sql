@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 05, 2016 at 01:36 PM
+-- Generation Time: Jan 16, 2016 at 07:22 PM
 -- Server version: 5.5.29-0ubuntu0.12.04.2
 -- PHP Version: 5.5.27-1+deb.sury.org~precise+1
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(20) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '-1',
-  `balance` int(10) NOT NULL DEFAULT '0',
+  `balance` decimal(6,2) NOT NULL DEFAULT '0.00',
   `name` varchar(50) NOT NULL,
   `phone` char(13) NOT NULL,
   `sex` char(1) NOT NULL,
@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
   `height` tinyint(1) unsigned NOT NULL,
   `weight` tinyint(1) unsigned NOT NULL,
   `rating` tinyint(1) NOT NULL,
-  `dt_create` datetime NOT NULL
+  `dt_create` datetime NOT NULL,
+  `dt_publish` datetime DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --

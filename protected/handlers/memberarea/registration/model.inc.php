@@ -16,11 +16,11 @@ class MemberAreaRegistrationModel extends MainModel
     {
         if ($this->CustomerAuth->is_logged())
         {
-            throw new ExceptionProcessing(10, 1);
+            throw new ExceptionProcessing(20, 1);
         }
         $this->_User->set_data($_POST);
         $this->_User->registration();
-        throw new ExceptionProcessing(6, 1);
+        throw new ExceptionProcessing(10, 1);
     }
     
     public function run()
