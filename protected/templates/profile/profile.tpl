@@ -68,10 +68,6 @@
                             <label for="name">Имя</label>
                             <input type="text" id="name" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label for="city">Город</label>
-                            <input type="text" id="city" class="form-control" required>
-                        </div>
 
                         <div class="form-group">
                             <label for="birsday">Дата рождения</label>
@@ -94,17 +90,17 @@
                             <label for="description">Текст объявления</label>
                             <textarea class="form-control" id="description" rows="3"></textarea>
                         </div>
-                        <div class="form-group not_visible">
+                        <div class="form-group not_visible" id="country_div">
                             <label for="country">Страна</label>
                             <select id="country" class="form-control" required>
                             </select>
                         </div>
-                        <div class="form-group not_visible">
+                        <div class="form-group not_visible" id="region_div">
                             <label for="region">Область</label>
                             <select id="region" class="form-control" required>
                             </select>
                         </div>
-                        <div class="form-group not_visible">
+                        <div class="form-group not_visible" id="city_div">
                             <label for="city">Город</label>
                             <select id="city" class="form-control" required>
                             </select>
@@ -159,3 +155,4 @@
 <!-- The File Upload validation plugin -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-validate.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
+<script src="http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=1000&callback=countries_process"></script>

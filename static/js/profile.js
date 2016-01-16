@@ -1,7 +1,10 @@
+var vk_version = '5.5';
+    
 $(document).ready(function(){
 
-    load_countries();
     $('form').submit(profile_click_handler);
+    $('#country').change(load_regions);
+    $('#region').change(load_cities);
 
     var url = window.location.hostname === 'blueimp.github.io' ?
             '//jquery-file-upload.appspot.com/' : 'profile.php?action=file_upload',
@@ -132,13 +135,66 @@ function profile_click_handler()
     return false;
 }
 
-function load_countries()
+function countries_process(result)
 {
-    $.get('vk.php?action=get_countries'
-        , handle_response).error(ajax_error_handler).handler = load_countries_ajax_handler;
+    set_option_for_select(result.response.items, '#country');
 }
 
-function load_countries_ajax_handler(response)
+function set_option_for_select(response, id_select)
 {
-    console.log(response);
+    if (response.length) {
+        $(id_select).append('<option value="-1">Выберите...</option>');
+        $.each(response, function(i, val) {
+            $(id_select).append('<option value="'+val.id+'">' + val.title + '</option>');
+        });
+        $(id_select + '_div').removeClass('not_visible');
+    }
+    else {
+        load_cities();
+    }
+}
+
+function load_regions()
+{
+    $('#region_div').addClass('not_visible');
+    $('#region').empty();
+    $('#city_div').addClass('not_visible');
+    $('#city').empty();
+    if ($('#country').val() >= 0)
+    {
+        addScript('http://api.vk.com/method/database.getRegions?v=' + vk_version
+                    + '&need_all=1&offset=0&count=1000&callback=regions_process'
+                    + '&country_id=' + $('#country').val());
+    }
+}
+
+function addScript(src)
+{
+    var elem = document.createElement("script");
+    elem.src = src;
+    document.head.appendChild(elem);
+}
+
+function regions_process(result)
+{
+    set_option_for_select(result.response.items, '#region');
+}
+
+
+function load_cities()
+{
+    $('#city_div').addClass('not_visible');
+    $('#city').empty();
+    if (!$('#region_div').hasClass('not_visible') ? $('#region').val() >= 0 : $('#country').val() >= 0)
+    {
+        addScript('http://api.vk.com/method/database.getCities?v=' + vk_version
+                    + '&offset=0&need_all=1&count=1000&callback=cities_process'
+                    + '&country_id=' + $('#country').val()
+                    + (!$('#region_div').hasClass('not_visible') ? '&region_id=' + $('#region').val() : ''));
+    }
+}
+
+function cities_process(result)
+{
+    set_option_for_select(result.response.items, '#city');
 }
