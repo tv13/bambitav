@@ -29,16 +29,25 @@ class MainProfileModel extends MainModel
     public function action_update_profile_info()
     {
         $this->is_ajax = true;
-            $_name = (string)@$_POST["name"];
-            $_birthday = (string)@$_POST["birthday"];
-            $_sex = (string)@$_POST["sex"];
-            $_phoneNumber = (string)@$_POST["phoneNumber"];
-            $_description = (string)@$_POST["description"];
-            $_city = (string)@$_POST["city"];
-            $this->_DBHandler->exec_query("INSERT INTO tm_users "
+        if ($this->is_customer_logged()) {
+            $this->_User->set_data($_POST);
+            $this->_User->update_profile_info($this->get_customer_id());
+            /*$this->_DBHandler->exec_query("INSERT INTO tm_users "
              . "(name, birthdate, city, sex, phone, text) "
              . "VALUES ('$_name', '$_birthday', '$_city', '$_sex', '$_phoneNumber', '$_description');");
-       $this->Result = true;
+            */
+        }
+        $this->Result = true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    public function action_load_profile_info()
+    {
+        $this->is_ajax = true;
+        if (!$this->is_customer_logged()) {
+            throw new ExceptionProcessing(24);
+        }
+        $this->Result = $this->_User->load_profile_info($this->get_customer_id());
     }
     /////////////////////////////////////////////////////////////////////////////
 

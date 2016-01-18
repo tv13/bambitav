@@ -4,7 +4,7 @@ function handle_response(data, status, jqXHR)
 {
     try
     {
-        eval("var response ="+data);
+        var response = eval(data);
 
         if (!dispatch_session_expiration(response) && !dispatch_exception(response))
         {
@@ -25,4 +25,20 @@ function ajax_error_handler(jqXHR, textStatus, errorThrown)
 ///////////////////////////////////////////////////////////////////////////
 
 var isInt = function(n) { return /^-?[0-9]+$/.test(n) };
+////////////////////////////////////////////////////////////////////////////
+
+function dispatch_session_expiration(response)
+{
+    if (response.status == -1)
+    {
+        //window.location.href = '';
+        return true;
+    }
+    return false;
+}
+////////////////////////////////////////////////////////////////////////////
+
+function dispatch_exception(response)
+{
+}
 ////////////////////////////////////////////////////////////////////////////

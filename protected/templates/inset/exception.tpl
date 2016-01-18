@@ -11,5 +11,6 @@
 21  : email or password is empty
 22  : wrong email or password
 23  : user is logged out
+24  : user is not logged
 
 30  : Невозможно приостановить показ анкеты, т.к. она не показывается сейчас

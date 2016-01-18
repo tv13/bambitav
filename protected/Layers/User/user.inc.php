@@ -27,7 +27,9 @@ class User extends EntityWithDB
         $result['sex']          = new FieldString();
         $result['birthdate']    = new FieldDate();
         $result['services']     = new FieldInt();
-        $result['city']         = new FieldString();
+        $result['country']      = new FieldInt();
+        $result['region']       = new FieldInt();
+        $result['city']         = new FieldInt();
         $result['text']         = new FieldString();
         $result['size']         = new FieldInt();
         $result['height']       = new FieldInt();
@@ -41,7 +43,6 @@ class User extends EntityWithDB
         $result['name']->set_max_length(50);
         $result['phone']->set_max_length(13);
         $result['sex']->set_max_length(1);
-        $result['city']->set_max_length(100);
         
         return $result;
     }
@@ -243,6 +244,43 @@ class User extends EntityWithDB
         $this->Fields['status']->set(-1);
         $this->Fields['dt_create']->now();
         $this->DBHandler->insert();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function update_profile_info($user_id)
+    {
+        $this->_update_profile($user_id);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _update_profile($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        $this->Fields['name']->set($this->_get_data_field('name'));
+        $this->Fields['country']->set($this->_get_data_field('country'));
+        $this->Fields['region']->set($this->_get_data_field('region'));
+        $this->Fields['city']->set($this->_get_data_field('city'));
+        //$this->Fields['birthday']->set($this->_get_data_field('birthday'));
+        $this->Fields['sex']->set($this->_get_data_field('sex'));
+        $this->Fields['phone']->set($this->_get_data_field('phone'));
+        //$this->Fields['description']->set($this->_get_data_field('description'));
+        $this->DBHandler->update();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function load_profile_info($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        return array(
+            'name'      => $this->Fields['name']->get(),
+            'country'   => $this->Fields['country']->get(),
+            'region'    => $this->Fields['region']->get(),
+            'city'      => $this->Fields['city']->get(),
+            //'birthday'  => $this->Fields['birthday']->get(),
+            'sex'       => $this->Fields['sex']->get(),
+            'phone'     => $this->Fields['phone']->get(),
+            //'description'=> $this->Fields['description']->get()
+        );
     }
     /////////////////////////////////////////////////////////////////////////////
     

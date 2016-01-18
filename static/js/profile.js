@@ -2,7 +2,8 @@ var vk_version = '5.5';
     
 $(document).ready(function(){
 
-    $('form').submit(profile_click_handler);
+    load_profile_data();
+    $('form#formProfile').submit(profile_submit);
     $('#country').change(load_regions);
     $('#region').change(load_cities);
     $('#btnPublishingCost').click(count_publishing_cost);
@@ -122,20 +123,50 @@ $(document).ready(function(){
 });
 
 
-function profile_click_handler()
+function load_profile_data()
+{
+    $.get('profile.php',
+    {
+        'action': 'load_profile_info'
+    }, handle_response).error(ajax_error_handler).handler = load_profile_ajax_handler;
+}
+
+function load_profile_ajax_handler(response)
+{
+    if (response.status == 1) {
+        var data = response.data;
+        $('#name').val(data.name);
+        $('#birsday').val(data.birsday);
+        $('#sex').val(data.sex);
+        $('#phoneNumber').val(data.phone);
+        //$('#description').val();
+        $('#country').val(data.country).change();
+        $('#region').val();
+        $('#city').val();
+    }
+}
+
+function profile_submit()
 {
     $.post('profile.php',
-        {
-            'name': $('#name').val(),
-            'birthday': $('#birsday').val(),
-            'sex': $('#sex').val(),
-            'phoneNumber': $('#phoneNumber').val(),
-            'description': $('#description').val(),
-            'city': $('#city').val(),
-            'go': 'update_profile_info'
-        }, handle_response).error(ajax_error_handler).handler = login_ajax_handler;
+    {
+        'name': $('#name').val(),
+        'birthday': $('#birsday').val(),
+        'sex': $('#sex').val(),
+        'phone': $('#phoneNumber').val(),
+        'description': $('#description').val(),
+        'country': $('#country').val(),
+        'region': $('#region').val(),
+        'city': $('#city').val(),
+        'action': 'update_profile_info'
+    }, handle_response).error(ajax_error_handler).handler = profile_submit_ajax_handler;
 
     return false;
+}
+
+function profile_submit_ajax_handler()
+{
+    console.log('Jrssssssssss');
 }
 
 function countries_process(result)

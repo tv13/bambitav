@@ -62,11 +62,26 @@
             </div>
             <div class="col-md-6">
                 <h2>Heading</h2>
-                <form onsubmit="return false">
+                <form id="formProfile">
                     <fieldset enable>
                         <div class="form-group">
                             <label for="name">Имя</label>
                             <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group hide" id="country_div">
+                            <label for="country">Страна</label>
+                            <select id="country" class="form-control" required>
+                            </select>
+                        </div>
+                        <div class="form-group hide" id="region_div">
+                            <label for="region">Область</label>
+                            <select id="region" class="form-control" required>
+                            </select>
+                        </div>
+                        <div class="form-group hide" id="city_div">
+                            <label for="city">Город</label>
+                            <select id="city" class="form-control" required>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -89,21 +104,6 @@
                         <div class="form-group">
                             <label for="description">Текст объявления</label>
                             <textarea class="form-control" id="description" rows="3"></textarea>
-                        </div>
-                        <div class="form-group hide" id="country_div">
-                            <label for="country">Страна</label>
-                            <select id="country" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group hide" id="region_div">
-                            <label for="region">Область</label>
-                            <select id="region" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group hide" id="city_div">
-                            <label for="city">Город</label>
-                            <select id="city" class="form-control" required>
-                            </select>
                         </div>
                         <div class="container">
                         <span class="btn btn-success fileinput-button">
