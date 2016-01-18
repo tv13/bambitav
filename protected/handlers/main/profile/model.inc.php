@@ -59,10 +59,13 @@ class MainProfileModel extends MainModel
 
     public function action_file_upload()
     {
-        var_dump(@$_FILES['files']);
-        var_dump(@$_SERVER['HTTP_CONTENT_DISPOSITION']);
-        $upload = @$_FILES['files'];
-        $file_name = 'img_' . uniqid();
+
+        $this->get_customer_id();
+        $query = 'INSERT INTO tm_user_pictures (id, url, userId, key_code, useLocal) VALUES ((select UUID()), \''
+            . $_POST['full_size'] . '\', '
+            .  '1'//$this->get_customer_id()
+            . ', \'' . $_POST['key'] . '\', false);';
+        $this->_DBHandler->exec_query($query);
 
     }
     /////////////////////////////////////////////////////////////////////////////

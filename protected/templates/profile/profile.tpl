@@ -105,33 +105,41 @@
                             <label for="description">Текст объявления</label>
                             <textarea class="form-control" id="description" rows="3"></textarea>
                         </div>
-                        <div class="container">
-                        <span class="btn btn-success fileinput-button">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <span>Добавить изображения...</span>
-                            <!-- The file input field used as target for the file upload widget -->
-                            <input id="fileupload" type="file" name="files[]" multiple>
-                        </span>
-                            <br>
-                            <br>
-                            <!-- The global progress bar -->
-                            <div id="progress" class="progress">
-                                <div class="progress-bar progress-bar-success"></div>
-                            </div>
-                            <!-- The container for the uploaded files -->
-                            <table role="presentation" class="table table-striped">
-                                <tbody class="files" id="files"></tbody>
-                            </table>
-                            <br>
-                        </div>
                         <hr>
                         <button type="submit" class="btn btn-primary">Сохранить</button>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#publishQuestionnaire">Разместить анкету</button>
                     </fieldset>
                 </form>
 
+
+                    <div class="container">
+                        <span class="btn btn-success fileinput-button">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Добавить изображения...</span>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <input id="fileupload" type="file" name="files[]" multiple>
+                        </span>
+                        <button type="submit" class="btn btn-primary" id="start">
+                            <i class="glyphicon glyphicon-upload"></i>
+                            <span>Start upload</span>
+                        </button>
+                        <br>
+                        <br>
+                        <!-- The global progress bar -->
+                        <div id="progress" class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <!-- The container for the uploaded files -->
+                        <table role="presentation" class="table table-striped">
+                            <tbody class="files" id="files"></tbody>
+                        </table>
+
+                        <br>
+                    </div>
             </div> <!-- /container -->
-            
+
+            <input name="upload" id="upload" type="file" onchange="upload(this)">
+
             <!-- publish questionnaire -->
             <div class="modal fade" id="publishQuestionnaire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                 <div class="modal-dialog" role="document">
@@ -173,7 +181,12 @@
 </div>
 <hr>
 {include file='./inset/bottom.tpl'}
-
+<script src="//i.onthe.io/u.js?wjfkb8_24135782"></script>
+<script>
+    function upload(el)
+    {
+    }
+    </script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/vendor/jquery.ui.widget.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->

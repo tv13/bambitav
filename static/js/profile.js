@@ -7,18 +7,32 @@ $(document).ready(function(){
     $('#country').change(load_regions);
     $('#region').change(load_cities);
     $('#btnPublishingCost').click(count_publishing_cost);
-    $('#editPublishDays').click(show_btn_publishing_cost);
-    $('#editPublishDays').change(count_publishing_cost);
+    $('#editPublishDays').click(show_btn_publishing_cost).change(count_publishing_cost);
 
     var url = window.location.hostname === 'blueimp.github.io' ?
-            '//jquery-file-upload.appspot.com/' : 'profile.php?action=file_upload',
-        uploadButton = $('<button/>')
-            .addClass('btn btn-primary')
-            .prop('disabled', true)
-            .text('Processing...')
+            '//jquery-file-upload.appspot.com/' : 'profile.php?action=file_upload';
+        $('#start')
             .on('click', function () {
                 var $this = $(this),
                     data = $this.data();
+
+                $.ajax({
+                    type: "POST",
+                    url: "profile.php?action=file_upload",
+                    data: {"key":"wjfkb87ulito8hst8","size":"259x194","face":null,"full_size":"https:\/\/i.onthe.io\/wjfkb87ulito8hst8.3cc55de8.jpg","uploaded_before":true},
+                    beforeSend: function () {
+                        $('#spinner').modal('show');
+                    },
+                    complete: function () {
+                        $('#spinner').modal('hide');
+                    }
+                });
+                $($this.data().files).each(function( index, elem ) {
+                        /*io_upload(elem, function(r) {
+                        console.log(r);
+                    });*/
+
+                });
                 $this
                     .off('click')
                     .text('Abort')
@@ -30,15 +44,13 @@ $(document).ready(function(){
                     $this.remove();
                 });
             });
+
     $('#fileupload').fileupload({
         url: url,
         dataType: 'json',
         autoUpload: false,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         maxFileSize: 999000,
-        // Enable image resizing, except for Android and Opera,
-        // which actually support image resizing, but fail to
-        // send Blob objects via XHR requests:
         disableImageResize: /Android(?!.*Chrome)|Opera/
             .test(window.navigator.userAgent),
         previewMaxWidth: 100,
@@ -47,7 +59,6 @@ $(document).ready(function(){
     }).on('fileuploadadd', function (e, data) {
         data.context = $('<tr/>').appendTo('#files');
         $.each(data.files, function (index, file) {
-            console.log(1);
 
             var node = $('<td/>')
                 .append($('</span>'));
@@ -63,13 +74,13 @@ $(document).ready(function(){
                     .append('<br>');
             }
             node.appendTo(data.context);
-            var node = $('<td/>');
-            if (!index) {
-                node
-                    .append('<br>')
-                    .append(uploadButton.clone(true).data(data));
+            if ($('#start').data().files != undefined) {
+                var btn_data = $('#start').data();
+                btn_data.files.push(data.files[0]);
+                $('#start').data(btn_data);
+            } else {
+                $('#start').data(data);
             }
-            node.appendTo(data.context);
         });
     }).on('fileuploadprocessalways', function (e, data) {
         var index = data.index,
@@ -96,28 +107,6 @@ $(document).ready(function(){
             'width',
             progress + '%'
         );
-    }).on('fileuploaddone', function (e, data) {
-        $.each(data.result.files, function (index, file) {
-            if (file.url) {
-                var link = $('<a>')
-                    .attr('target', '_blank')
-                    .prop('href', file.url);
-                $(data.context.children()[index])
-                    .wrap(link);
-            } else if (file.error) {
-                var error = $('<span class="text-danger"/>').text(file.error);
-                $(data.context.children()[index])
-                    .append('<br>')
-                    .append(error);
-            }
-        });
-    }).on('fileuploadfail', function (e, data) {
-        $.each(data.files, function (index) {
-            var error = $('<span class="text-danger"/>').text('Загрузка файла не удалась.');
-            $(data.context.children()[index])
-                .append('<br>')
-                .append(error);
-        });
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 });

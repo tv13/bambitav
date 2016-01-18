@@ -69,3 +69,14 @@ MODIFY `id` bigint(30) unsigned NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE TABLE IF NOT EXISTS `tm_user_pictures` (
+  `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+  `userId` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `key_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `useLocal` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
