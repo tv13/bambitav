@@ -16,21 +16,20 @@ $(document).ready(function(){
                 var $this = $(this),
                     data = $this.data();
 
-                $.ajax({
-                    type: "POST",
-                    url: "profile.php?action=file_upload",
-                    data: {"key":"wjfkb87ulito8hst8","size":"259x194","face":null,"full_size":"https:\/\/i.onthe.io\/wjfkb87ulito8hst8.3cc55de8.jpg","uploaded_before":true},
-                    beforeSend: function () {
-                        $('#spinner').modal('show');
-                    },
-                    complete: function () {
-                        $('#spinner').modal('hide');
-                    }
-                });
                 $($this.data().files).each(function( index, elem ) {
-                        /*io_upload(elem, function(r) {
-                        console.log(r);
-                    });*/
+                    io_upload(elem, function(response) {
+                        $.ajax({
+                            type: "POST",
+                            url: "profile.php?action=file_upload",
+                            data: response,
+                            beforeSend: function () {
+                                $('#spinner').modal('show');
+                            },
+                            complete: function () {
+                                $('#spinner').modal('hide');
+                            }
+                        });
+                    });
 
                 });
                 $this
