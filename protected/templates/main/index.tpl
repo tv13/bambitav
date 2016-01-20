@@ -49,7 +49,9 @@
         <!-- /.row -->
         <div id="itemContainer">
 
+            
         </div>
+                    <button type="button" class="btn btn-primary hide" id="showMore">Show More</button>
         <!-- /.row -->
 
         <hr>
