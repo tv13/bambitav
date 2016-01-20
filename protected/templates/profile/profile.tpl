@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/style.css">
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/jquery.fileupload.css">
+<style>
+    .carousel-inner>.item {
+        height:500px;
+    }
+</style>
 <div class="jumbotron">
     <div class="container">
         <div class="row">
@@ -17,32 +22,22 @@
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
                              data-interval="false">
                             <!-- Indicators -->
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators" id="car_id">
                                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for slides -->
-                            <div class="carousel-inner" role="listbox">
-                                <div class="item active">
-                                    <img src="http://placehold.it/600x600" alt="">
-                                    <div class="carousel-caption">
-                                        Photo1
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <img src="http://placehold.it/600x600" alt="">
-                                    <div class="carousel-caption">
-                                        Photo2
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <img src="http://placehold.it/600x600" alt="">
-                                    <div class="carousel-caption">
+                            <div class="carousel-inner" role="listbox" id="car_inner">
+                                {foreach $images as $key =>$image}
+                                <div class="item {if $key==0}active{/if}">
+                                    <img src="{$image}" alt="image">
+                                    <div class="carousel-caption active">
                                         Photo3
                                     </div>
                                 </div>
+                                {/foreach}
                             </div>
 
                             <!-- Controls -->
@@ -138,8 +133,6 @@
                     </div>
             </div> <!-- /container -->
 
-            <input name="upload" id="upload" type="file" onchange="upload(this)">
-
             <!-- publish questionnaire -->
             <div class="modal fade" id="publishQuestionnaire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                 <div class="modal-dialog" role="document">
@@ -182,11 +175,6 @@
 <hr>
 {include file='./inset/bottom.tpl'}
 <script src="//i.onthe.io/u.js?wjfkb8_24135782"></script>
-<script>
-    function upload(el)
-    {
-    }
-    </script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/vendor/jquery.ui.widget.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->

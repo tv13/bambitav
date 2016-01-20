@@ -16,34 +16,46 @@ $(document).ready(function(){
                 var $this = $(this),
                     data = $this.data();
 
+                var files_upload = [];
                 $($this.data().files).each(function( index, elem ) {
                     io_upload(elem, function(response) {
-                        $.ajax({
-                            type: "POST",
-                            url: "profile.php?action=file_upload",
-                            data: response,
-                            beforeSend: function () {
-                                $('#spinner').modal('show');
-                            },
-                            complete: function () {
-                                $('#spinner').modal('hide');
-                            }
-                        });
+                        files_upload.push(response);
                     });
 
                 });
-                $this
-                    .off('click')
-                    .text('Abort')
-                    .on('click', function () {
-                        $this.remove();
-                        data.abort();
-                    });
-                data.submit().always(function () {
-                    $this.remove();
+
+                $.ajax({
+                    type: "POST",
+                    url: "profile.php?action=file_upload",
+                    data: files_upload,
+                    beforeSend: function () {
+                        $('#spinner').modal('show');
+                    },
+                    success: function (data) {
+
+                        $("#carousel-example-generic").carousel("pause").removeData();
+                        var content_indi = "";
+                        var content_inner = "";
+                        $.each(data.data, function (i, obj) {
+                            content_indi += '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
+                            content_inner += '<div class="item">'
+                                + '<img src="' + obj + '" alt="image">'
+                                + '<div class="carousel-caption active">'
+                                + 'Photo' + i
+                                + '</div>'
+                                + '</div>';
+                        });
+                        $('#car_id').html(content_indi);
+                        $('#car_inner').html(content_inner);
+                        $('#car_inner .item').first().addClass('active');
+                        $('#car_indi > li').first().addClass('active');
+                        $('#carousel-example-generic').carousel();
+                    },
+                    complete: function () {
+                        $('#spinner').modal('hide');
+                    }
                 });
             });
-
     $('#fileupload').fileupload({
         url: url,
         dataType: 'json',
@@ -265,3 +277,6 @@ function show_btn_publishing_cost()
     $form_publish.find('#costBlock').addClass('hide');
     $form_publish.find('#needPayBlock').addClass('hide');
 }
+$('.carousel').carousel({
+    interval: 3000
+});

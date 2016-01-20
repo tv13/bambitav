@@ -67,6 +67,21 @@ class MainProfileModel extends MainModel
             . ', \'' . $_POST['key'] . '\', false);';
         $this->_DBHandler->exec_query($query);
 
+        $this->is_ajax = true;
+        $this->Result = array(
+            'https://i.onthe.io/wjfkb82tfgre6ich7.91d8cbb5.jpg',
+            'https://i.onthe.io/wjfkb87ulito8hst8.3cc55de8.jpg',
+            'https://i.onthe.io/wjfkb82fec37td9ig.8f936576.jpg',
+            'https://i.onthe.io/wjfkb869jrof1ffbc.7f6402f7.jpg',
+            'https://i.onthe.io/wjfkb815e4759l2ql8.587d0d28.jpg'
+        );
+
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    public function action_get_images_test()
+    {
+
     }
     /////////////////////////////////////////////////////////////////////////////
 
