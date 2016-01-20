@@ -77,10 +77,10 @@ class User extends EntityWithDB
     {
         $this->_validate_registration_data();
         $user_id = $this->_create();
-        if ($this->_send_validate_email($user_id))
+        /*if ($this->_send_validate_email($user_id))
         {
             throw new ExceptionProcessing(9);
-        }
+        }*/
     }
     /////////////////////////////////////////////////////////////////////////////
     

@@ -6,6 +6,7 @@
 8   : Пользователь с таким email уже зарегистрирован в системе!
 9   : Произошла ошибка при отправке письма
 10  : Письмо с подтвержением было отправлено на Ваш email
+11  : registration successfull!
 
 20  : user is logged
 21  : email or password is empty

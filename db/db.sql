@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 16, 2016 at 07:22 PM
+-- Generation Time: Jan 19, 2016 at 11:05 AM
 -- Server version: 5.5.29-0ubuntu0.12.04.2
 -- PHP Version: 5.5.27-1+deb.sury.org~precise+1
 
@@ -37,7 +37,9 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
   `sex` char(1) NOT NULL,
   `birthdate` date NOT NULL,
   `services` tinyint(1) unsigned NOT NULL,
-  `city` varchar(100) NOT NULL,
+  `country` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `region` int(10) unsigned NOT NULL DEFAULT '0',
+  `city` int(10) unsigned NOT NULL DEFAULT '0',
   `text` text NOT NULL,
   `size` tinyint(1) unsigned NOT NULL,
   `height` tinyint(1) unsigned NOT NULL,
@@ -46,6 +48,20 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
   `dt_create` datetime NOT NULL,
   `dt_publish` datetime DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tm_user_pictures`
+--
+
+CREATE TABLE IF NOT EXISTS `tm_user_pictures` (
+  `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+  `userId` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `key_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `useLocal` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -56,6 +72,12 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
 --
 ALTER TABLE `tm_users`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `tm_user_pictures`
+--
+ALTER TABLE `tm_user_pictures`
+ ADD PRIMARY KEY (`id`), ADD KEY `userId` (`userId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -69,14 +91,3 @@ MODIFY `id` bigint(30) unsigned NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-CREATE TABLE IF NOT EXISTS `tm_user_pictures` (
-  `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `url` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
-  `userId` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `key_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `useLocal` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  KEY `userId` (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

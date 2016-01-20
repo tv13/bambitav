@@ -20,7 +20,7 @@ class MemberAreaRegistrationModel extends MainModel
         }
         $this->_User->set_data($_POST);
         $this->_User->registration();
-        throw new ExceptionProcessing(10, 1);
+        throw new ExceptionProcessing(11, 1);
     }
     
     public function run()

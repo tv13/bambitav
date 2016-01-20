@@ -128,9 +128,12 @@ function load_profile_ajax_handler(response)
         $('#sex').val(data.sex);
         $('#phoneNumber').val(data.phone);
         //$('#description').val();
-        $('#country').val(data.country).change();
-        $('#region').val();
-        $('#city').val();
+        if (data.country > 0)
+        {
+            $('#country').val(data.country).change();
+        }
+        $('#region').attr("val", data.region);
+        $('#city').attr("val", data.city);
     }
 }
 
@@ -165,11 +168,15 @@ function countries_process(result)
 function set_option_for_select(response, id_select, is_region)
 {
     if (response.length) {
-        $(id_select).append('<option value="-1">Выберите...</option>');
+        $(id_select).append('<option value="0">Выберите...</option>');
         $.each(response, function(i, val) {
             $(id_select).append('<option value="'+val.id+'">' + val.title + '</option>');
         });
         $(id_select + '_div').removeClass('hide');
+        if ($(id_select).attr('val') > 0)
+        {
+            $(id_select).val($(id_select).attr('val')).change();
+        }
     }
     else if (is_region)  {
         load_cities();

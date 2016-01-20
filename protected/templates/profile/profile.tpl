@@ -75,12 +75,12 @@
                         </div>
                         <div class="form-group hide" id="region_div">
                             <label for="region">Область</label>
-                            <select id="region" class="form-control" required>
+                            <select id="region" class="form-control">
                             </select>
                         </div>
                         <div class="form-group hide" id="city_div">
                             <label for="city">Город</label>
-                            <select id="city" class="form-control" required>
+                            <select id="city" class="form-control">
                             </select>
                         </div>
 
