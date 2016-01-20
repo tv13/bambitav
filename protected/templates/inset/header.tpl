@@ -32,40 +32,58 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            
+           
+
+           
+                    <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="./">Bambi site</a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <form id="login_form" class="navbar-form navbar-right">
-                        <div class="form-group">
-                          <input type="text" id="emailLogin" name="email" placeholder="Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                          <input type="password" name="password" id="passwordLogin" placeholder="Password" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Sign in</button>
+                
+
+                
+    <ul class="nav navbar-nav navbar-right">
+        <li><button type="button" id="sign_in" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" data-whatever="@mdo" style="display:none">Sign in</button></li>
+        <li><button type="button" id="log_out" class="btn btn-primary" style="display:none">Log out</button></li>
+        <li><button type="button" id="registration_btn" class="btn btn-primary" data-toggle="modal" data-target="#registrationModal" data-whatever="@mdo" style="display:none">Registration</button></li>
+        <li><button type="button" id="profile_btn" class="btn btn-primary" style="display:none">Profile</button></li>
+        <li><button type="button" id="filter" class="btn btn-primary">Filter</button></li>
+
+        
+      </ul>
+                
+                
+                                        
+
+                    
+
                         
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Registration</button>
-
-                        <a href="profile.php" class="btn btn-primary" role="button">Profile</a>
-                    </form>
-
             </div>
+           
+            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
             
             
+    
+    
+    
+    
+    
+    
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -93,6 +111,47 @@
                             </div>
                                       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </form>
+  </div>
+
+    </div>
+  </div>
+</div>
+    
+    
+    
+    
+    
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Login</h4>
+      </div>
+        <div class="modal-body">
+                            <form role="form" id="login_form">
+            <div class="form-group">
+
+                                <label for="exampleInputEmail1">
+                                        Email
+                                </label>
+                                <input name="email" class="form-control" id="emailLogin" type="email" required />
+                            </div>
+                            <div class="form-group">
+
+                                <label for="exampleInputPassword1">
+                                        Пароль
+                                </label>
+                                <input name="password" class="form-control" id="passwordLogin" type="password" required />
+                            </div>
+                            <div class="form-group">
+                                <input id="exampleInputCaptcha" type="hidden" />
+                            </div>
+                                      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Войти</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </form>

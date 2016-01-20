@@ -1,27 +1,29 @@
 <?php
+require_once LAYERS_DIR . '/User/user.inc.php';
 
 class MemberAreaLogoutModel extends MainModel
 {
+   private $_User;
+    
     public function __construct()
     {
         parent::__construct();
+        $this->_User = new User();
     }
     
-    public function close_promin_session()
+    public function action_default()
     {
-        /*
-        $url = 'https://10.1.246.11:9097/ChameleonServer/UA/sessions/close/sid='
-            . $this->Customer->get_session_hash_value();
-        $content = file_get_contents($url);
-        var_dump($content);
-        die();*/
+     //   if ($this->CustomerAuth->is_logged())
+     //   {
+       //     throw new ExceptionProcessing(20, 1);
+       // }
+        $this->CustomerAuth->logout();
+        throw new ExceptionProcessing(20, 1);
     }
     
     public function run()
     {
-        #$this->close_promin_session();
         parent::run();
-        $this->CustomerAuth->logout();
-        throw new ExceptionProcessing(23, 1);
+        $this->determine_action();
     }
 }
