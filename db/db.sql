@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `tm_user_pictures` (
   `userId` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `key_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `useLocal` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
