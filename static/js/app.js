@@ -36,7 +36,13 @@ function register_click_handler()
 
         },
         success: function(data){
-
+            if(data.status == 1)
+            {
+                
+            } else 
+            {
+               alert(data.statusMessage); 
+            }
         }
     });
     
