@@ -16,7 +16,7 @@ function login_click_handler()
 
         },
         success: function(data){
-
+            alert(data.statusMessage);
         }
     });
     
