@@ -20,6 +20,7 @@ class MemberAreaLoginModel extends MainModel
         }
         
         $user_id = $this->_User->login((string)@$_POST['email'], (string)@$_POST['password']);
+        $this->Customer->set_id($user_id);
         $this->Customer->set_name($this->_User->get_name_by_user_id($user_id));
         $this->CustomerAuth->update_sessioned($this->Customer);
         $this->CustomerAuth->login();

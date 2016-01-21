@@ -22,9 +22,10 @@ class MainBalanceModel extends MainModel
     public function action_publish_start()
     {
         $this->is_ajax = true;
-        if ($this->is_customer_logged()) {
-            $this->_User->set_dt_publish($this->get_customer_id());
+        if (!$this->is_customer_logged()) {
+            throw new ExceptionProcessing(24);
         }
+        $this->_User->set_start_publish_data($this->get_customer_id());
         throw new ExceptionProcessing(1, 1);
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -33,13 +34,15 @@ class MainBalanceModel extends MainModel
     {
         $this->is_ajax = true;
         if ($this->is_customer_logged()) {
-            $dt_publish = $this->_User->get_dt_publish($this->get_customer_id());
-            if ($dt_publish == 0)
+            //$dt_publish = $this->_User->get_dt_publish($this->get_customer_id());
+            //if ($dt_publish == 0)
+            $status = $this->_User->get_status_by_user_id($this->get_customer_id());
+            if (!$status)
             {
                 throw new ExceptionProcessing(30);
             }
             $balance = $this->_User->get_balance_by_user_id($this->get_customer_id());
-            $this->_User->set_dt_publish($this->get_customer_id(), false);
+            $this->_User->set_stop_publish_data($this->get_customer_id(), $balance - 10);
         }
         throw new ExceptionProcessing(1, 1);
     }
