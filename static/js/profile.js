@@ -11,50 +11,57 @@ $(document).ready(function(){
 
     var url = window.location.hostname === 'blueimp.github.io' ?
             '//jquery-file-upload.appspot.com/' : 'profile.php?action=file_upload';
+
         $('#start')
             .on('click', function () {
                 var $this = $(this),
                     data = $this.data();
 
-                var files_upload = [];
-                $($this.data().files).each(function( index, elem ) {
-                    io_upload(elem, function(response) {
-                        files_upload.push(response);
-                    });
+                if ($this.data().files != undefined) {
 
-                });
+                    var i = $this.data().files.length;
 
-                $.ajax({
-                    type: "POST",
-                    url: "profile.php?action=file_upload",
-                    data: files_upload,
-                    beforeSend: function () {
-                        $('#spinner').modal('show');
-                    },
-                    success: function (data) {
+                    $($this.data().files).each(function( index, elem ) {
 
-                        $("#carousel-example-generic").carousel("pause").removeData();
-                        var content_indi = "";
-                        var content_inner = "";
-                        $.each(data.data, function (i, obj) {
-                            content_indi += '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
-                            content_inner += '<div class="item">'
-                                + '<img src="' + obj + '" alt="image">'
-                                + '<div class="carousel-caption active">'
-                                + 'Photo' + i
-                                + '</div>'
-                                + '</div>';
+                        io_upload(elem, function(response) {
+                            i--;
+                            response.number = i;
+
+                            $.ajax({
+                                type: "POST",
+                                url: "profile.php?action=file_upload",
+                                data: response,
+                                beforeSend: function () {
+                                    $('#spinner').modal('show');
+                                },
+                                success: function (data) {
+                                    if (data.data.upload) {
+                                        $("#carousel-example-generic").carousel("pause").removeData();
+                                        var content_indi = "";
+                                        var content_inner = "";
+                                        $.each(data.data.files, function (i, obj) {
+                                            content_indi += '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
+                                            content_inner += '<div class="item">'
+                                                + '<img src="' + obj.url + '" alt="image">'
+                                                + '<div class="carousel-caption active">'
+                                                + 'Photo' + i
+                                                + '</div>'
+                                                + '</div>';
+                                        });
+                                        $('#car_id').html(content_indi);
+                                        $('#car_inner').html(content_inner);
+                                        $('#car_inner .item').first().addClass('active');
+                                        $('#car_indi > li').first().addClass('active');
+                                        $('#carousel-example-generic').carousel();
+                                    }
+                                },
+                                complete: function () {
+                                    $('#spinner').modal('hide');
+                                }
+                            });
                         });
-                        $('#car_id').html(content_indi);
-                        $('#car_inner').html(content_inner);
-                        $('#car_inner .item').first().addClass('active');
-                        $('#car_indi > li').first().addClass('active');
-                        $('#carousel-example-generic').carousel();
-                    },
-                    complete: function () {
-                        $('#spinner').modal('hide');
-                    }
-                });
+                    });
+                }
             });
     $('#fileupload').fileupload({
         url: url,

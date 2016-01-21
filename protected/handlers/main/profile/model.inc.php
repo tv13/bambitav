@@ -61,28 +61,27 @@ class MainProfileModel extends MainModel
     {
 
         $this->get_customer_id();
-        $query = 'INSERT INTO tm_user_pictures (id, url, userId, key_code, useLocal) VALUES ((select UUID()), \''
-            . $_POST['full_size'] . '\', '
-            .  '1'//$this->get_customer_id()
-            . ', \'' . $_POST['key'] . '\', false);';
-        $this->_DBHandler->exec_query($query);
 
-        $this->is_ajax = true;
-        $this->Result = array(
-            'https://i.onthe.io/wjfkb82tfgre6ich7.91d8cbb5.jpg',
-            'https://i.onthe.io/wjfkb87ulito8hst8.3cc55de8.jpg',
-            'https://i.onthe.io/wjfkb82fec37td9ig.8f936576.jpg',
-            'https://i.onthe.io/wjfkb869jrof1ffbc.7f6402f7.jpg',
-            'https://i.onthe.io/wjfkb815e4759l2ql8.587d0d28.jpg'
-        );
+        if (!empty($_POST['full_size'])) {
+            $query = 'INSERT INTO tm_user_pictures (id, url, userId, key_code, useLocal) VALUES ((select UUID()), \''
+                . $_POST['full_size'] . '\', '
+                .  '1'//$this->get_customer_id()
+                . ', \'' . $_POST['key'] . '\', false);';
+            $this->_DBHandler->exec_query($query);
 
+            if ($_POST['number'] == 0) {
+
+                $this->is_ajax = true;
+
+                $this->_DBHandler->exec_query("SELECT url from tm_user_pictures WHERE userId = 1 limit 5 ");
+                $this->Result = array(
+                    'files' => $this->_DBHandler->get_all_data(),
+                     'upload' => true
+                );
+            }
+        }
     }
-    /////////////////////////////////////////////////////////////////////////////
 
-    public function action_get_images_test()
-    {
-
-    }
     /////////////////////////////////////////////////////////////////////////////
 
     public function get_balance()
