@@ -21,7 +21,7 @@ class MainProfileModel extends MainModel
     public function get_content_data()
     {
         $this->is_ajax = true;
-        $this->_DBHandler->exec_query("SELECT name, birthday, city, sex, phone_number, description FROM  tm_users ;");
+        $this->_DBHandler->exec_query("SELECT name, birthdate, city, sex, phone_number, description FROM  tm_users ;");
         $this->Result = true;//$this->_DBHandler->get_all_data();    
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ class MainProfileModel extends MainModel
             $this->_User->update_profile_info($this->get_customer_id());
             /*$this->_DBHandler->exec_query("INSERT INTO tm_users "
              . "(name, birthdate, city, sex, phone, text) "
-             . "VALUES ('$_name', '$_birthday', '$_city', '$_sex', '$_phoneNumber', '$_description');");
+             . "VALUES ('$_name', '$_birthdate', '$_city', '$_sex', '$_phone', '$_description');");
             */
         }
         $this->Result = true;
@@ -53,7 +53,10 @@ class MainProfileModel extends MainModel
 
     public function action_default()
     {
-
+        if (!$this->CustomerAuth->is_logged())
+        {
+            $this->redirect_to_main();
+        }
     }
     /////////////////////////////////////////////////////////////////////////////
 

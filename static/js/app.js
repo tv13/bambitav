@@ -1,9 +1,8 @@
 $(document).ready(function(){
- login_click_handler();
-$('#login_form').submit(login_click_handler);
-$('#register_form').submit(register_click_handler);
-$('#log_out').click(logout_click_handler);
-$('#profile_btn').click(profile_click_handler);
+    $('#login_form').submit(login_click_handler);
+    $('#register_form').submit(register_click_handler);
+    $('#log_out').click(logout_click_handler);
+    $('#profile_btn').click(profile_click_handler);
 });
 
 function login_click_handler()

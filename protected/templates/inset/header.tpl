@@ -50,10 +50,10 @@
 
                 
     <ul class="nav navbar-nav navbar-right">
-        <li><button type="button" id="sign_in" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" data-whatever="@mdo" style="display:none">Sign in</button></li>
-        <li><button type="button" id="log_out" class="btn btn-primary" style="display:none">Log out</button></li>
-        <li><button type="button" id="registration_btn" class="btn btn-primary" data-toggle="modal" data-target="#registrationModal" data-whatever="@mdo" style="display:none">Registration</button></li>
-        <li><button type="button" id="profile_btn" class="btn btn-primary" style="display:none">Profile</button></li>
+        <li><button type="button" id="sign_in" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" data-whatever="@mdo" {if $is_logged}style="display:none"{/if}>Sign in</button></li>
+        <li><button type="button" id="log_out" class="btn btn-primary" {if !$is_logged}style="display:none"{/if}>Log out</button></li>
+        <li><button type="button" id="registration_btn" class="btn btn-primary" data-toggle="modal" data-target="#registrationModal" data-whatever="@mdo" {if $is_logged}style="display:none"{/if}>Registration</button></li>
+        <li><button type="button" id="profile_btn" class="btn btn-primary" {if !$is_logged}style="display:none"{/if}>Profile</button></li>
         <li><button type="button" id="filter" class="btn btn-primary">Filter</button></li>
 
         
