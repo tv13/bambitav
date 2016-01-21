@@ -60,7 +60,8 @@ CREATE TABLE IF NOT EXISTS `tm_user_pictures` (
   `url` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
   `userId` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `key_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `useLocal` tinyint(1) NOT NULL DEFAULT '1'
+  `useLocal` tinyint(1) NOT NULL DEFAULT '1',
+  `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

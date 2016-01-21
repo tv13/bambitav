@@ -75,49 +75,55 @@ $(document).ready(function(){
         previewMaxHeight: 100,
         previewCrop: true
     }).on('fileuploadadd', function (e, data) {
-        data.context = $('<tr/>').appendTo('#files');
-        $.each(data.files, function (index, file) {
 
-            var node = $('<td/>')
-                .append($('</span>'));
-            if (!index) {
-                node
-                    .append('<br>');
-            }
-            node.appendTo(data.context);
-            var node = $('<td/>')
-                .append($('<p class="name"></p>').text(file.name));
-            if (!index) {
-                node
-                    .append('<br>');
-            }
-            node.appendTo(data.context);
-            if ($('#start').data().files != undefined) {
-                var btn_data = $('#start').data();
-                btn_data.files.push(data.files[0]);
-                $('#start').data(btn_data);
-            } else {
-                $('#start').data(data);
-            }
-        });
+        if ($('#start').data().files == undefined || $('#start').data().files.length < 5) {
+
+            data.context = $('<tr/>').appendTo('#files');
+            $.each(data.files, function (index, file) {
+
+                var node = $('<td/>')
+                    .append($('</span>'));
+                if (!index) {
+                    node
+                        .append('<br>');
+                }
+                node.appendTo(data.context);
+                var node = $('<td/>')
+                    .append($('<p class="name"></p>').text(file.name));
+                if (!index) {
+                    node
+                        .append('<br>');
+                }
+                node.appendTo(data.context);
+                if ($('#start').data().files != undefined) {
+                    var btn_data = $('#start').data();
+                    btn_data.files.push(data.files[0]);
+                    $('#start').data(btn_data);
+                } else {
+                    $('#start').data(data);
+                }
+                if ($('#start').data().files.length == 5) {
+                    $('#fileupload').prop('disabled', true).parent().addClass('disabled');
+                } else {
+                    $('#fileupload').prop('disabled', false).parent().removeClass('disabled');
+                }
+            });
+        }
     }).on('fileuploadprocessalways', function (e, data) {
-        var index = data.index,
-            file = data.files[index],
-            node = $(data.context.children()[index]);
-        if (file.preview) {
-            node
-                .prepend('<br>')
-                .prepend(file.preview);
-        }
-        if (file.error) {
-            node
-                .append('<br>')
-                .append($('<span class="text-danger"/>').text(file.error));
-        }
-        if (index + 1 === data.files.length) {
-            data.context.find('button')
-                .text('Загрузить')
-                .prop('disabled', !!data.files.error);
+        if (data.context != undefined) {
+            var index = data.index,
+                file = data.files[index],
+                node = $(data.context.children()[index]);
+            if (file.preview) {
+                node
+                    .prepend('<br>')
+                    .prepend(file.preview);
+            }
+            if (file.error) {
+                node
+                    .append('<br>')
+                    .append($('<span class="text-danger"/>').text(file.error));
+            }
         }
     }).on('fileuploadprogressall', function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);

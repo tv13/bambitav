@@ -165,10 +165,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /publish questionnaire -->
-            
-            <script>
-            </script>
         </div>
     </div>
 </div>

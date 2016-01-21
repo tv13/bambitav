@@ -73,7 +73,7 @@ class MainProfileModel extends MainModel
 
                 $this->is_ajax = true;
 
-                $this->_DBHandler->exec_query("SELECT url from tm_user_pictures WHERE userId = 1 limit 5 ");
+                $this->_DBHandler->exec_query("SELECT url from tm_user_pictures WHERE userId = 1 order by created DESC limit 5 ");
                 $this->Result = array(
                     'files' => $this->_DBHandler->get_all_data(),
                      'upload' => true
