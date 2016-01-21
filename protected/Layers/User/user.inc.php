@@ -350,14 +350,6 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function set_balance_by_user_id($user_id, $balance)
-    {
-        $this->_set_user_by_id($user_id);
-        $this->Fields['balance']->set($balance);
-        $this->update();
-    }
-    /////////////////////////////////////////////////////////////////////////////
-    
     public function get_balance_by_user_id($user_id)
     {
         $this->_set_user_by_id($user_id);
@@ -365,7 +357,7 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function set_dt_publish($user_id, $need_set_now = true)
+    /*public function set_dt_publish($user_id, $need_set_now = true)
     {
         if ($need_set_now)
         {
@@ -378,13 +370,38 @@ class User extends EntityWithDB
         $this->_set_user_by_id($user_id);
         $this->Fields['dt_publish']->set($dt_publish);
         $this->update();
-    }
+    }*/
     /////////////////////////////////////////////////////////////////////////////
     
-    public function get_dt_publish($user_id)
+    /*public function get_dt_publish($user_id)
     {
         $this->_set_user_by_id($user_id);
         return @$this->Fields['dt_publish']->get();
+    }*/
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function get_status_by_user_id($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        return (int)@$this->Fields['status']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function set_start_publish_data($user_id)
+    {
+        $this->_set_user_by_id($user_id);
+        $this->Fields['status']->set(1);
+        $this->Fields['dt_publish']->set(strftime('%Y-%m-%d %H:%M:%S'));
+        $this->update();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function set_stop_publish_data($user_id, $new_balance)
+    {
+        $this->_set_user_by_id($user_id);
+        $this->Fields['balance']->set($new_balance);
+        $this->Fields['status']->set(0);
+        $this->update();
     }
     /////////////////////////////////////////////////////////////////////////////
 }

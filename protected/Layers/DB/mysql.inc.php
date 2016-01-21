@@ -176,7 +176,11 @@ function exec_query($query)
           {
                print "Query : OK<br/>";
           } 
-     } 
+     }
+     elseif ($this->error_no)
+     {
+          throw new Exception;
+     }
 
      return !$this->error_no;
 } 
