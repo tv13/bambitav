@@ -23,21 +23,10 @@
                              data-interval="false">
                             <!-- Indicators -->
                             <ol class="carousel-indicators" id="car_id">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                             </ol>
 
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox" id="car_inner">
-                                {foreach $images as $key =>$image}
-                                <div class="item {if $key==0}active{/if}">
-                                    <img src="{$image}" alt="image">
-                                    <div class="carousel-caption active">
-                                        Photo3
-                                    </div>
-                                </div>
-                                {/foreach}
                             </div>
 
                             <!-- Controls -->
