@@ -35,7 +35,7 @@ $(document).ready(function(){
                                     $('#spinner').modal('show');
                                 },
                                 success: function (data) {
-                                    if (data.data.upload) {
+                                    if (data.data && data.data.upload) {
                                         $("#carousel-example-generic").carousel("pause").removeData();
                                         var content_indi = "";
                                         var content_inner = "";

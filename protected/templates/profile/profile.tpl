@@ -22,11 +22,18 @@
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
                              data-interval="false">
                             <!-- Indicators -->
-                            <ol class="carousel-indicators" id="car_id">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                             </ol>
 
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox" id="car_inner">
+                                <div class="item active">
+                                    <img src="{$HTTP_STATIC_PATH}/img/no-photo.jpg" alt="">
+                                    <div class="carousel-caption">
+                                        Photo
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Controls -->
