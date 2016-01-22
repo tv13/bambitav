@@ -37,7 +37,7 @@ function is_ajax()
 
 function redirect_to_main()
 {
-     $this-> redirect_url  = HTTP_ABS_PATH . '/index.php';
+     $this-> redirect_url  = HTTP_ABS_PATH;
      $this-> need_redirect = true;
 }
 ////////////////////////////////////////////////////////////////////////////

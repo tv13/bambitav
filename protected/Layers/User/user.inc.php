@@ -249,7 +249,23 @@ class User extends EntityWithDB
     
     public function update_profile_info($user_id)
     {
+        $this->_validate_update_data();
         $this->_update_profile($user_id);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_update_data()
+    {
+        $this->_validate_birthdate();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_birthdate()
+    {
+        if (!strtotime($this->_get_data_field('birthdate')))
+        {
+            throw new ExceptionProcessing(30);
+        }
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -260,10 +276,11 @@ class User extends EntityWithDB
         $this->Fields['country']->set($this->_get_data_field('country'));
         $this->Fields['region']->set($this->_get_data_field('region'));
         $this->Fields['city']->set($this->_get_data_field('city'));
-        //$this->Fields['birthday']->set($this->_get_data_field('birthday'));
+        $birthtime = strtotime($this->_get_data_field('birthdate'));
+        $this->Fields['birthdate']->set(date('Y-m-d', $birthtime));
         $this->Fields['sex']->set($this->_get_data_field('sex'));
         $this->Fields['phone']->set($this->_get_data_field('phone'));
-        //$this->Fields['description']->set($this->_get_data_field('description'));
+        $this->Fields['text']->set($this->_get_data_field('text'));
         $this->DBHandler->update();
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -276,10 +293,10 @@ class User extends EntityWithDB
             'country'   => $this->Fields['country']->get(),
             'region'    => $this->Fields['region']->get(),
             'city'      => $this->Fields['city']->get(),
-            //'birthday'  => $this->Fields['birthday']->get(),
+            'birthdate' => $this->Fields['birthdate']->get(),
             'sex'       => $this->Fields['sex']->get(),
             'phone'     => $this->Fields['phone']->get(),
-            //'description'=> $this->Fields['description']->get()
+            'text'      => $this->Fields['text']->get()
         );
     }
     /////////////////////////////////////////////////////////////////////////////

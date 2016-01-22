@@ -39,7 +39,7 @@ class MainBalanceModel extends MainModel
             $status = $this->_User->get_status_by_user_id($this->get_customer_id());
             if (!$status)
             {
-                throw new ExceptionProcessing(30);
+                throw new ExceptionProcessing(50);
             }
             $balance = $this->_User->get_balance_by_user_id($this->get_customer_id());
             $this->_User->set_stop_publish_data($this->get_customer_id(), $balance - 10);

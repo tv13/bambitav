@@ -76,8 +76,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="birsday">Дата рождения</label>
-                            <input type="date" id="birsday" class="form-control" required>
+                            <label for="birthdate">Дата рождения</label>
+                            <input type="date" id="birthdate" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="sex">Пол</label>
@@ -88,13 +88,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="phoneNumber">Номер телефона</label>
-                            <input type="text" id="phoneNumber" class="form-control" required>
+                            <label for="phone">Номер телефона</label>
+                            <input type="text" id="phone" class="form-control" required>
 
                         </div>
                         <div class="form-group">
-                            <label for="description">Текст объявления</label>
-                            <textarea class="form-control" id="description" rows="3"></textarea>
+                            <label for="text">Текст объявления</label>
+                            <textarea class="form-control" id="text" rows="3"></textarea>
                         </div>
                         <hr>
                         <button type="submit" class="btn btn-primary">Сохранить</button>

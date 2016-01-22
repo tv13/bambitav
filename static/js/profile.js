@@ -149,10 +149,13 @@ function load_profile_ajax_handler(response)
     if (response.status == 1) {
         var data = response.data;
         $('#name').val(data.name);
-        $('#birsday').val(data.birsday);
+        if (data.birthdate != '0000-00-00')
+        {
+            $('#birthdate').val(data.birthdate);
+        }
         $('#sex').val(data.sex);
-        $('#phoneNumber').val(data.phone);
-        //$('#description').val();
+        $('#phone').val(data.phone);
+        $('#text').val(data.text);
         if (data.country > 0)
         {
             $('#country').val(data.country).change();
@@ -164,16 +167,17 @@ function load_profile_ajax_handler(response)
 
 function profile_submit()
 {
+    $('form#formProfile').find('button[type=submit]').attr('disabled','disabled');
     $.post('profile.php',
     {
         'name': $('#name').val(),
-        'birthday': $('#birsday').val(),
-        'sex': $('#sex').val(),
-        'phone': $('#phoneNumber').val(),
-        'description': $('#description').val(),
         'country': $('#country').val(),
         'region': $('#region').val(),
         'city': $('#city').val(),
+        'birthdate': $('#birthdate').val(),
+        'sex': $('#sex').val(),
+        'phone': $('#phone').val(),
+        'text': $('#text').val(),
         'action': 'update_profile_info'
     }, handle_response).error(ajax_error_handler).handler = profile_submit_ajax_handler;
 
@@ -182,6 +186,7 @@ function profile_submit()
 
 function profile_submit_ajax_handler()
 {
+    $('form#formProfile').find('button[type=submit]').removeAttr('disabled');
     console.log('Jrssssssssss');
 }
 
