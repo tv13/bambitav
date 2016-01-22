@@ -56,7 +56,7 @@
                                     
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" id="filter" class="btn btn-primary center-block" data-toggle="modal" data-target="#photoModal" data-whatever="@mdo">Загрузить фото</button>
+                        <button type="button" id="upload_button" class="btn btn-primary center-block" data-toggle="modal" data-target="#photoModal" data-whatever="@mdo">Загрузить фото</button>
                     </div>
                 </div>   
                                     
