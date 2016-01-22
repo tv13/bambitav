@@ -57,6 +57,8 @@ $(document).ready(function(){
                                 },
                                 complete: function () {
                                     $('#spinner').modal('hide');
+                                                    $('#photoModal').modal('hide');
+
                                 }
                             });
                         });

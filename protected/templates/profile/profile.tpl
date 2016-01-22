@@ -50,6 +50,62 @@
                         </div>
                     </div>
                 </div>
+                                    
+                                    
+                                    
+                                    
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="filter" class="btn btn-primary center-block" data-toggle="modal" data-target="#photoModal" data-whatever="@mdo">Загрузить фото</button>
+                    </div>
+                </div>   
+                                    
+                                    
+                                    
+                                    
+                       <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Upload photo</h4>
+      </div>
+        <div class="modal-body">
+                    <div class="container">
+                        <span class="btn btn-success fileinput-button">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Добавить изображения...</span>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <input id="fileupload" type="file" name="files[]" multiple>
+                        </span>
+                        <button type="submit" class="btn btn-primary" id="start">
+                            <i class="glyphicon glyphicon-upload"></i>
+                            <span>Start upload</span>
+                        </button>
+                        <br>
+                        <br>
+                        <!-- The global progress bar -->
+                        <div id="progress" class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <!-- The container for the uploaded files -->
+                        <table role="presentation" class="table table-striped">
+                            <tbody class="files" id="files"></tbody>
+                        </table>
+
+                        <br>
+                    </div>
+  </div>
+
+    </div>
+  </div>
+</div>                 
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
             </div>
             <div class="col-md-6">
                 <h2>Heading</h2>
@@ -103,30 +159,7 @@
                 </form>
 
 
-                    <div class="container">
-                        <span class="btn btn-success fileinput-button">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <span>Добавить изображения...</span>
-                            <!-- The file input field used as target for the file upload widget -->
-                            <input id="fileupload" type="file" name="files[]" multiple>
-                        </span>
-                        <button type="submit" class="btn btn-primary" id="start">
-                            <i class="glyphicon glyphicon-upload"></i>
-                            <span>Start upload</span>
-                        </button>
-                        <br>
-                        <br>
-                        <!-- The global progress bar -->
-                        <div id="progress" class="progress">
-                            <div class="progress-bar progress-bar-success"></div>
-                        </div>
-                        <!-- The container for the uploaded files -->
-                        <table role="presentation" class="table table-striped">
-                            <tbody class="files" id="files"></tbody>
-                        </table>
 
-                        <br>
-                    </div>
             </div> <!-- /container -->
 
             <!-- publish questionnaire -->
