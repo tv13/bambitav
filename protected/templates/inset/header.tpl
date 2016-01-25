@@ -108,13 +108,10 @@
                             </div>
                             <div class="form-group">
 
-                                <label for="exampleInputPassword1">
-                                        Пароль
-                                </label>
-                                <input name="password" class="form-control" id="registerPassword" type="password" required />
+                                <div class="g-recaptcha" data-sitekey="6LddWxYTAAAAAHhtSr_UIRK-YsTziAEkiG_8aoDd"></div>
+
                             </div>
                                 
-                                <div class="g-recaptcha" data-sitekey="6LddWxYTAAAAAHhtSr_UIRK-YsTziAEkiG_8aoDd"></div>
                             <div class="form-group">
                                 <input id="exampleInputCaptcha" type="hidden" />
                             </div>

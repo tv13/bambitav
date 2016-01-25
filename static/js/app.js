@@ -42,7 +42,7 @@ function register_click_handler()
     $.ajax({
         url:"registration.php",
         type:"POST",
-        data: $('#formx').serialize(),
+        data: $('#register_form').serialize(),
 
         beforeSend: function () {
 
