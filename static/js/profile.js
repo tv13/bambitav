@@ -138,7 +138,7 @@ function add_images_to_carousel(files)
             + '</div>'
             + '</div>';
     });
-    $('#car_id').html(content_indi);
+    $('#car_ol').html(content_indi);
     $('#car_inner').html(content_inner);
     $('#car_inner .item').first().addClass('active');
     $('#car_indi > li').first().addClass('active');

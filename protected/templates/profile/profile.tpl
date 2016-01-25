@@ -22,7 +22,7 @@
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
                              data-interval="false">
                             <!-- Indicators -->
-                            <ol class="carousel-indicators">
+                            <ol id="car_ol" class="carousel-indicators">
                                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                             </ol>
 
