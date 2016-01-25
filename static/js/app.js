@@ -42,10 +42,8 @@ function register_click_handler()
     $.ajax({
         url:"registration.php",
         type:"POST",
-        data:{
-             'email': $('#registerEmail').val(),
-             'password':$('#registerPassword').val()
-        },
+        data: $('#formx').serialize(),
+
         beforeSend: function () {
 
         },

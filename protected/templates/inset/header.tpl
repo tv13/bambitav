@@ -25,7 +25,7 @@
 <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap-theme.min.css"/>
 <script src="{$HTTP_STATIC_PATH}/js/common.js" type="text/javascript"></script>
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
     <!-- Navigation -->
@@ -106,6 +106,15 @@
                                 </label>
                                 <input name="password" class="form-control" id="registerPassword" type="password" required />
                             </div>
+                            <div class="form-group">
+
+                                <label for="exampleInputPassword1">
+                                        Пароль
+                                </label>
+                                <input name="password" class="form-control" id="registerPassword" type="password" required />
+                            </div>
+                                
+                                <div class="g-recaptcha" data-sitekey="6LddWxYTAAAAAHhtSr_UIRK-YsTziAEkiG_8aoDd"></div>
                             <div class="form-group">
                                 <input id="exampleInputCaptcha" type="hidden" />
                             </div>
