@@ -126,7 +126,6 @@ $(document).ready(function(){
 
 function add_images_to_carousel(files)
 {
-    $("#carousel-example-generic").carousel("pause").removeData();
     var content_indi = "";
     var content_inner = "";
     $.each(files, function (i, obj) {
@@ -142,7 +141,7 @@ function add_images_to_carousel(files)
     $('#car_inner').html(content_inner);
     $('#car_inner .item').first().addClass('active');
     $('#car_indi > li').first().addClass('active');
-    $('#carousel-example-generic').carousel();
+    $('#carousel-example-generic').carousel("pause");
 }
 
 function load_profile_data()
