@@ -81,7 +81,7 @@ class MainProfileModel extends MainModel
 
                 $this->_DBHandler->exec_query("SELECT url from tm_user_pictures
                             WHERE userId = '".$this->get_customer_id()."'
-                                order by created DESC limit 5 ");
+                                order by created DESC");
                 $this->Result = array(
                     'files' => $this->_DBHandler->get_all_data(),
                     'upload' => true
