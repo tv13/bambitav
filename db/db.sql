@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2016 at 11:05 AM
+-- Generation Time: Jan 25, 2016 at 04:16 PM
 -- Server version: 5.5.29-0ubuntu0.12.04.2
 -- PHP Version: 5.5.27-1+deb.sury.org~precise+1
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `tm_users` (
 `id` bigint(30) unsigned NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(20) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '-1',
   `balance` decimal(6,2) NOT NULL DEFAULT '0.00',
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
   `rating` tinyint(1) NOT NULL,
   `dt_create` datetime NOT NULL,
   `dt_publish` datetime DEFAULT '0000-00-00 00:00:00'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -56,12 +56,12 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
 --
 
 CREATE TABLE IF NOT EXISTS `tm_user_pictures` (
-  `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `url` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+  `id` char(36) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `userId` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `key_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `key_code` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `useLocal` tinyint(1) NOT NULL DEFAULT '1',
-  `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

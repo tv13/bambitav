@@ -1,7 +1,6 @@
 <?php
 
 require_once LAYERS_DIR . '/Entity/entity_with_db.inc.php';
-require_once LAYERS_DIR . '/HTTP/browser.inc.php';
 //require_once LIB_DIR . '/Mailer/sendmail.php';
 
 class User extends EntityWithDB
@@ -38,7 +37,7 @@ class User extends EntityWithDB
         $result['dt_create']    = new FieldDateTime();
         $result['dt_publish']   = new FieldDateTime();
         
-        $result['email']->set_max_length(100);
+        $result['email']->set_max_length(255);
         $result['password']->set_max_length(20);
         $result['name']->set_max_length(50);
         $result['phone']->set_max_length(13);

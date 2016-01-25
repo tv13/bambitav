@@ -3,6 +3,7 @@ var vk_version = '5.5';
 $(document).ready(function(){
 
     load_profile_data();
+    load_user_images();
     $('form#formProfile').submit(profile_submit);
     $('#country').change(load_regions);
     $('#region').change(load_cities);
@@ -35,24 +36,9 @@ $(document).ready(function(){
                                     $('#spinner').modal('show');
                                 },
                                 success: function (data) {
-                                    if (data.data && data.data.upload) {
-                                        $("#carousel-example-generic").carousel("pause").removeData();
-                                        var content_indi = "";
-                                        var content_inner = "";
-                                        $.each(data.data.files, function (i, obj) {
-                                            content_indi += '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
-                                            content_inner += '<div class="item">'
-                                                + '<img src="' + obj.url + '" alt="image">'
-                                                + '<div class="carousel-caption active">'
-                                                + 'Photo' + i
-                                                + '</div>'
-                                                + '</div>';
-                                        });
-                                        $('#car_id').html(content_indi);
-                                        $('#car_inner').html(content_inner);
-                                        $('#car_inner .item').first().addClass('active');
-                                        $('#car_indi > li').first().addClass('active');
-                                        $('#carousel-example-generic').carousel();
+                                    if (data.data && data.data.upload)
+                                    {
+                                        add_images_to_carousel(data.data.files);
                                     }
                                 },
                                 complete: function () {
@@ -138,6 +124,27 @@ $(document).ready(function(){
 });
 
 
+function add_images_to_carousel(files)
+{
+    $("#carousel-example-generic").carousel("pause").removeData();
+    var content_indi = "";
+    var content_inner = "";
+    $.each(files, function (i, obj) {
+        content_indi += '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
+        content_inner += '<div class="item">'
+            + '<img src="' + obj.url + '" alt="image">'
+            + '<div class="carousel-caption active">'
+            + 'Photo' + (i+1)
+            + '</div>'
+            + '</div>';
+    });
+    $('#car_id').html(content_indi);
+    $('#car_inner').html(content_inner);
+    $('#car_inner .item').first().addClass('active');
+    $('#car_indi > li').first().addClass('active');
+    $('#carousel-example-generic').carousel();
+}
+
 function load_profile_data()
 {
     $.get('profile.php',
@@ -167,6 +174,21 @@ function load_profile_ajax_handler(response)
     }
 }
 
+function load_user_images()
+{
+    $.get('profile.php',
+    {
+        'action': 'load_user_images'
+    }, handle_response).error(ajax_error_handler).handler = load_user_images_ajax_handler;
+}
+
+function load_user_images_ajax_handler(response)
+{
+    if (response.data.length) {
+        add_images_to_carousel(response.data);
+    }
+}
+
 function profile_submit()
 {
     $('form#formProfile').find('button[type=submit]').attr('disabled','disabled');
@@ -186,10 +208,10 @@ function profile_submit()
     return false;
 }
 
-function profile_submit_ajax_handler()
+function profile_submit_ajax_handler(response)
 {
     $('form#formProfile').find('button[type=submit]').removeAttr('disabled');
-    console.log('Jrssssssssss');
+    console.log(response.status);
 }
 
 function countries_process(result)

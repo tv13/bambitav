@@ -2,11 +2,13 @@
 
 require_once LAYERS_DIR . '/Profile/profile.inc.php';
 require_once LAYERS_DIR . '/User/user.inc.php';
+require_once LAYERS_DIR . '/User/image.inc.php';
 
 class MainProfileModel extends MainModel
 {
     private $_profileLayer;
     private $_User;
+    private $_Image;
     /////////////////////////////////////////////////////////////////////////////
 
     public function __construct()
@@ -15,6 +17,7 @@ class MainProfileModel extends MainModel
         $this->_profileLayer = new Profile();
         $this->_DBHandler = produce_db();
         $this->_User = new User();
+        $this->_Image = new Image();
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -68,7 +71,7 @@ class MainProfileModel extends MainModel
         if (!empty($_POST['full_size'])) {
             $query = 'INSERT INTO tm_user_pictures (id, url, userId, key_code, useLocal) VALUES ((select UUID()), \''
                 . $_POST['full_size'] . '\', '
-                .  '1'//$this->get_customer_id()
+                .  $this->get_customer_id()
                 . ', \'' . $_POST['key'] . '\', false);';
             $this->_DBHandler->exec_query($query);
 
@@ -84,7 +87,13 @@ class MainProfileModel extends MainModel
             }
         }
     }
+    /////////////////////////////////////////////////////////////////////////////
 
+    public function action_load_user_images()
+    {
+        $this->is_ajax = true;
+        $this->Result = $this->_Image->get_images_by_user_id($this->get_customer_id());
+    }
     /////////////////////////////////////////////////////////////////////////////
 
     public function get_balance()
