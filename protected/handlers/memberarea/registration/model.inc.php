@@ -26,9 +26,13 @@ class MemberAreaRegistrationModel extends MainModel
             throw new ExceptionProcessing(20, 1);
         }
         
-        if (!$this->_ReCaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']))
+        if (empty($_POST['g-recaptcha-response']))
         {
             throw new ExceptionProcessing(12);
+        }
+        if (!$this->_ReCaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']))
+        {
+            throw new ExceptionProcessing(13);
         }
         
         $this->_User->set_data($_POST);

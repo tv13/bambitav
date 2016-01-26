@@ -235,7 +235,7 @@ class User extends EntityWithDB
     {
         if ($this->_get_data_field('password') != $this->_get_data_field('passwordConfirm'))
         {
-            throw new ExceptionProcessing(13);
+            throw new ExceptionProcessing(14);
         }
         return true;
     }
