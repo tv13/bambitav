@@ -207,6 +207,7 @@ class User extends EntityWithDB
     {
         $this->_validate_email($this->_get_data_field('email'));
         $this->_validate_password($this->_get_data_field('password'));
+        $this->_check_password_and_confirm();
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -225,6 +226,16 @@ class User extends EntityWithDB
         if (!preg_match("/^([a-z0-9_\.-]{6,20})$/", $password))
         {
             throw new ExceptionProcessing(7);
+        }
+        return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _check_password_and_confirm()
+    {
+        if ($this->_get_data_field('password') != $this->_get_data_field('passwordConfirm'))
+        {
+            throw new ExceptionProcessing(13);
         }
         return true;
     }

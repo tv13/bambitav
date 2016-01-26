@@ -1,23 +1,36 @@
 <?php
 
 require_once LAYERS_DIR . '/User/user.inc.php';
+require_once LIB_DIR . '/ReCaptcha/autoload.php';
 
 class MemberAreaRegistrationModel extends MainModel
 {
     private $_User;
+    private $_ReCaptcha;
     
     public function __construct()
     {
         parent::__construct();
         $this->_User = new User();
+        $this->_ReCaptcha = new \ReCaptcha\ReCaptcha(RECAPTCHA_GOOGLE_SECRET);
     }
     
     public function action_default()
     {
+        if (!isset($_POST['g-recaptcha-response']))
+        {
+            throw new ExceptionProcessing(2);
+        }
         if ($this->CustomerAuth->is_logged())
         {
             throw new ExceptionProcessing(20, 1);
         }
+        
+        if (!$this->_ReCaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']))
+        {
+            throw new ExceptionProcessing(12);
+        }
+        
         $this->_User->set_data($_POST);
         $this->_User->registration();
         $user_id = $this->_User->login((string)@$_POST['email'], (string)@$_POST['password']);

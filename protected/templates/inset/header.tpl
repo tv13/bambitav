@@ -86,42 +86,39 @@
 <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Registration</h4>
-      </div>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">Registration</h4>
+        </div>
         <div class="modal-body">
-                            <form role="form" id="register_form">
-            <div class="form-group">
-
-                                <label for="exampleInputEmail1">
-                                        Email
-                                </label>
-                                <input name="email" class="form-control" id="registerEmail" type="email" required />
-                            </div>
-                            <div class="form-group">
-
-                                <label for="exampleInputPassword1">
-                                        Пароль
-                                </label>
-                                <input name="password" class="form-control" id="registerPassword" type="password" required />
-                            </div>
-                            <div class="form-group">
-
-                                <div class="g-recaptcha" data-sitekey="6LddWxYTAAAAAHhtSr_UIRK-YsTziAEkiG_8aoDd"></div>
-
-                            </div>
-                                
-                            <div class="form-group">
-                                <input id="exampleInputCaptcha" type="hidden" />
-                            </div>
-                                      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </form>
-  </div>
-
+            <form role="form" id="register_form">
+                <div class="form-group">
+                    <label for="registerEmail">
+                            Email
+                    </label>
+                    <input name="email" class="form-control" id="registerEmail" type="email" required />
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">
+                            Пароль
+                    </label>
+                    <input name="password" class="form-control" id="registerPassword" type="password" required />
+                </div>
+                <div class="form-group">
+                    <label for="registerPasswordConfirm">
+                            Подтверждение пароля
+                    </label>
+                    <input name="passwordConfirm" class="form-control" id="registerPasswordConfirm" type="password" required />
+                </div>
+                <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="6LddWxYTAAAAAHhtSr_UIRK-YsTziAEkiG_8aoDd"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
     </div>
   </div>
 </div>
