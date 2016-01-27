@@ -74,7 +74,6 @@ class User extends EntityWithDB
     
     public function registration()
     {
-        $this->_validate_registration_data();
         $user_id = $this->_create();
         /*if ($this->_send_validate_email($user_id))
         {
@@ -203,7 +202,7 @@ class User extends EntityWithDB
     }*/
     /////////////////////////////////////////////////////////////////////////////
     
-    private function _validate_registration_data()
+    public function validate_registration_data()
     {
         $this->_validate_email($this->_get_data_field('email'));
         $this->_validate_password($this->_get_data_field('password'));
@@ -235,7 +234,7 @@ class User extends EntityWithDB
     {
         if ($this->_get_data_field('password') != $this->_get_data_field('passwordConfirm'))
         {
-            throw new ExceptionProcessing(14);
+            throw new ExceptionProcessing(13);
         }
         return true;
     }
