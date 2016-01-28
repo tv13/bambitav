@@ -1,31 +1,81 @@
 $(document).ready(function(){
+    
+    var show_more = load_questionnaires();
+    show_more();
+    $("#showMore").click(show_more);
+    
+});
+
+function load_questionnaires_by_params(params) {
     $.ajax({
-        url:"index.php",
-        type:"GET",
-        data:{ action: "content_data"
-        },
+        url : "",
+        type: "GET",
+        data: params,
         beforeSend: function () {
 
         },
-        success: function(data){
-      var maxLenth = 10;
-      for ( var i = 0, l = data.data.length; i < l; i++ ) {
-        var string = "";
-        var  string2 = string.concat("<div class=\"row\">", "<div class=\"col-md-6 portfolio-item\">");
-        var  string3 = string2.concat("<a href=\"#\">", "<img class=\"img-responsive\" src=\"http://placehold.it/700x400\" alt=\"\">",
-          "</a>", "<h3>", "<a href=\"#\">",data.data[i].id,", " ,data.data[i].name , ", ",data.data[i].birthdate,"</a>", "</h3>", "</div>");
-          i++;
-          if(i < l){
-         var string4 = string3.concat("<div class=\"col-md-6 portfolio-item\">", "<a href=\"#\">", "<img class=\"img-responsive\" src=\"http://placehold.it/700x400\" alt=\"\">", "</a>", "<h3>",
-          "<a href=\"#\">",data.data[i].id,", ",data.data[i].name ,", ",data.data[i].birthdate,"</a></h3>", "</div>");
-                      var string5 = string4.concat("</div>");
-          }
-          else
-          {
-            var string5 = string3.concat("</div>");
-          }
-           $("#itemContainer").append(string5);
-        }
+        success: function(data) {
+            // show more button + text
+            var navy_pages = data.data.navy_pages;
+            if (navy_pages.next.text != undefined)
+            {
+                $("#textShowMore").text(navy_pages.next.text);
+            }
+            else
+            {
+                $("#showMore").addClass("hide");
+            }
+            // total count records
+            if (params.page == 1)
+            {
+                $("#totalCount").text(data.data.navy_pages.total);
+            }
+            
+            
+            var records = data.data.records;
+            var current_num = (navy_pages.page_num-1) * navy_pages.per_page;
+            var i = 0;
+            var strElemsAppend = "";
+            while (i < records.length) {
+                if (!(current_num % 2))
+                {
+                    strElemsAppend += '<div class="row">';
+                }
+                strElemsAppend += '<div class="col-md-6 portfolio-item">'
+                                + '     <a href="#">'
+                                + '         <img class="img-responsive" src="http://placehold.it/700x400" alt="">'
+                                + '     </a>'
+                                + '     <h3>'
+                                + '         <a href="#">' + records[i].id + ", " + records[i].name + ", " + records[i].birthdate + '</a>'
+                                + '     </h3>'
+                                + '</div>';
+                            
+                if (current_num % 2)
+                {
+                    strElemsAppend += '</div>';
+                }
+                if (!i && current_num % 2)
+                {
+                    $("#itemContainer div.row:last").append(strElemsAppend);
+                    strElemsAppend = "";
+                }
+                ++i;
+                ++current_num;
+            }
+            $("#itemContainer").append(strElemsAppend);
         }
     });
-});
+}
+
+function load_questionnaires()
+{
+    var page_num = 0;
+    
+    return function() {
+        var params= {
+                        action: "content_data",
+                        page: ++page_num  
+                    };
+        load_questionnaires_by_params(params);
+    }
+}
