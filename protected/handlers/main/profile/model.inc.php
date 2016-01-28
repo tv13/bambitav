@@ -98,6 +98,15 @@ class MainProfileModel extends MainModel
     }
     /////////////////////////////////////////////////////////////////////////////
 
+    public function action_file_remove()
+    {
+        if (!empty($_POST['image_url'])) {
+            $query = 'DELETE FROM tm_user_pictures WHERE url = \''. $_POST['image_url'] . '\'';
+            $this->_DBHandler->exec_query($query);
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
     public function get_balance()
     {
         if ($this->is_customer_logged()) {

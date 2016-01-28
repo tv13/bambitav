@@ -321,3 +321,27 @@ function show_btn_publishing_cost()
 $('.carousel').carousel({
     interval: 3000
 });
+$('.carousel-remove').on('click', function() {
+    if (confirm('Вы действительно хотите удалить это изображение?')) {
+        if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('src') != undefined) {
+            var url = $($('.item.active').find('img')[0]).attr('src');
+            $('.item.active').remove();
+            $( "#car_inner div:first-child").addClass('active');
+            $.ajax({
+                type: "POST",
+                url: "profile.php?action=file_remove",
+                data: {image_url:url},
+                beforeSend: function () {
+                    $('#spinner').modal('show');
+                },
+                success: function (data) {
+                },
+                complete: function () {
+                    $('#spinner').modal('hide');
+                    $('#photoModal').modal('hide');
+
+                }
+            });
+        }
+    }
+});

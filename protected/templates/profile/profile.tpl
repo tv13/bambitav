@@ -8,8 +8,8 @@
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/jquery.fileupload.css">
 <style>
-    .carousel-inner>.item {
-        height:500px;
+    .carousel-inner > .item {
+        height: 500px;
     }
 </style>
 <div class="jumbotron">
@@ -47,65 +47,65 @@
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
+                            <a class="carousel-remove" href="#" role="button"
+                               data-slide="next">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <span class="sr-only">Remove</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                                    
-                                    
-                                    
-                                    
+
+
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" id="upload_button" class="btn btn-primary center-block" data-toggle="modal" data-target="#photoModal" data-whatever="@mdo">Загрузить фото</button>
+                        <button type="button" id="upload_button" class="btn btn-primary center-block"
+                                data-toggle="modal" data-target="#photoModal" data-whatever="@mdo">Загрузить фото
+                        </button>
                     </div>
-                </div>   
-                                    
-                                    
-                                    
-                                    
-                       <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Upload photo</h4>
-      </div>
-        <div class="modal-body">
-                    <div class="container">
+                </div>
+
+
+                <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="exampleModalLabel">Upload photo</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container">
                         <span class="btn btn-success fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>Добавить изображения...</span>
                             <!-- The file input field used as target for the file upload widget -->
                             <input id="fileupload" type="file" name="files[]" multiple>
                         </span>
-                        <button type="submit" class="btn btn-primary" id="start">
-                            <i class="glyphicon glyphicon-upload"></i>
-                            <span>Start upload</span>
-                        </button>
-                        <br>
-                        <br>
-                        <!-- The global progress bar -->
-                        <div id="progress" class="progress">
-                            <div class="progress-bar progress-bar-success"></div>
+                                    <button type="submit" class="btn btn-primary" id="start">
+                                        <i class="glyphicon glyphicon-upload"></i>
+                                        <span>Start upload</span>
+                                    </button>
+                                    <br>
+                                    <br>
+                                    <!-- The global progress bar -->
+                                    <div id="progress" class="progress">
+                                        <div class="progress-bar progress-bar-success"></div>
+                                    </div>
+                                    <!-- The container for the uploaded files -->
+                                    <table role="presentation" class="table table-striped">
+                                        <tbody class="files" id="files"></tbody>
+                                    </table>
+
+                                    <br>
+                                </div>
+                            </div>
+
                         </div>
-                        <!-- The container for the uploaded files -->
-                        <table role="presentation" class="table table-striped">
-                            <tbody class="files" id="files"></tbody>
-                        </table>
-
-                        <br>
                     </div>
-  </div>
+                </div>
 
-    </div>
-  </div>
-</div>                 
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+
             </div>
             <div class="col-md-6">
                 <h2>Heading</h2>
@@ -154,41 +154,50 @@
                         </div>
                         <hr>
                         <button type="submit" class="btn btn-primary">Сохранить</button>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#publishQuestionnaire">Разместить анкету</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#publishQuestionnaire">Разместить анкету
+                        </button>
                     </fieldset>
                 </form>
-
 
 
             </div> <!-- /container -->
 
             <!-- publish questionnaire -->
-            <div class="modal fade" id="publishQuestionnaire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal fade" id="publishQuestionnaire" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">Размещение анкеты</h4>
                         </div>
                         <div class="modal-body">
                             <h4>
-                                Ваш баланс составляет <span id="balanceValue">{$balance_value}</span> <span id="balanceCurrency"></span>
+                                Ваш баланс составляет <span id="balanceValue">{$balance_value}</span> <span
+                                        id="balanceCurrency"></span>
                             </h4>
                             <!--<form role="form" id="publish_form">-->
-                                <div class="form-group">
-                                    <label for="publishDays">
-                                        Укажите количество дней, на которое Вы хотите разместить анкету
-                                    </label>
-                                    <input name="namePublishDays" class="form-control" id="editPublishDays" type="text" required />
-                                    <p id="costBlock" class="modal-title hide">Стоимость: <span id="costValue"></span> <span id="costCurrency"></span></p>
-                                    <p id="needPayBlock" class="modal-title hide">Для размещения анкеты на <span id="txtPublishDays"></span> дня(ей) Вы должны пополнить свой баланс на <span id="needPayValue"></span> <span id="needPayCurrency"></span></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button id="btnPublishingCost" type="button" class="btn btn-primary">Расчитать</button>
-                                    <button id="btnPublish" type="button" class="btn btn-primary hide">Разместить</button>
-                                    <button id="btnRefillBalance" type="button" class="btn btn-primary hide">Пополнить</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
+                            <div class="form-group">
+                                <label for="publishDays">
+                                    Укажите количество дней, на которое Вы хотите разместить анкету
+                                </label>
+                                <input name="namePublishDays" class="form-control" id="editPublishDays" type="text"
+                                       required/>
+                                <p id="costBlock" class="modal-title hide">Стоимость: <span id="costValue"></span> <span
+                                            id="costCurrency"></span></p>
+                                <p id="needPayBlock" class="modal-title hide">Для размещения анкеты на <span
+                                            id="txtPublishDays"></span> дня(ей) Вы должны пополнить свой баланс на <span
+                                            id="needPayValue"></span> <span id="needPayCurrency"></span></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="btnPublishingCost" type="button" class="btn btn-primary">Расчитать</button>
+                                <button id="btnPublish" type="button" class="btn btn-primary hide">Разместить</button>
+                                <button id="btnRefillBalance" type="button" class="btn btn-primary hide">Пополнить
+                                </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
                             <!--</form>-->
                         </div>
                     </div>
