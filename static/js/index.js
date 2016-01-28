@@ -43,7 +43,9 @@ function load_questionnaires_by_params(params) {
                 }
                 strElemsAppend += '<div class="col-md-6 portfolio-item">'
                                 + '     <a href="#">'
-                                + '         <img class="img-responsive" src="http://placehold.it/700x400" alt="">'
+                                + '         <img class="img-responsive"'
+                                + '             src="' + (records[i].url ? records[i].url : 'http://placehold.it/700x400') + '"'
+                                + '             width="700" height="400" alt="">'
                                 + '     </a>'
                                 + '     <h3>'
                                 + '         <a href="#">' + records[i].id + ", " + records[i].name + ", " + records[i].birthdate + '</a>'
