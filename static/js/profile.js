@@ -133,6 +133,8 @@ function add_images_to_carousel(files)
         content_inner += '<div class="item">'
             + '<img src="' + obj.url + '" alt="image">'
             + '<div class="carousel-caption active">'
+            + 'Photo' + (i+1)
+            + '</div>'
             + '</div>';
     });
     $('#car_ol').html(content_indi);
@@ -322,17 +324,27 @@ $('.carousel').carousel({
 $('#carousel_remove').on('click', function() {
     if (confirm('Вы действительно хотите удалить это изображение?')) {
         if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('src') != undefined) {
+
             var url = $($('.item.active').find('img')[0]).attr('src');
             $('.item.active').remove();
-            $( "#car_inner div:first-child").addClass('active');
+
+            if ($( "#car_inner div:first-child").length < 1) {
+                add_images_to_carousel([{url:'/static/img/no-photo.jpg'}]);
+                if (!$('#carousel_remove').hasClass('hidden')) {
+                    $('#carousel_remove').addClass('hidden');
+                }
+                if (!$('#carousel_set_main').hasClass('hidden')) {
+                    $('#carousel_set_main').addClass('hidden');
+                }
+            } else {
+                $( "#car_inner div:first-child").addClass('active');
+            }
             $.ajax({
                 type: "POST",
                 url: "profile.php?action=file_remove",
                 data: {image_url:url},
                 beforeSend: function () {
                     $('#spinner').modal('show');
-                },
-                success: function (data) {
                 },
                 complete: function () {
                     $('#spinner').modal('hide');
@@ -351,8 +363,6 @@ $('#carousel_set_main').on('click', function() {
                 data: {image_url:url},
                 beforeSend: function () {
                     $('#spinner').modal('show');
-                },
-                success: function (data) {
                 },
                 complete: function () {
                     $('#spinner').modal('hide');
