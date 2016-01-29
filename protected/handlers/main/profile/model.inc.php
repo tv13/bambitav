@@ -107,6 +107,15 @@ class MainProfileModel extends MainModel
     }
     /////////////////////////////////////////////////////////////////////////////
 
+    public function action_set_main()
+    {
+        if (!empty($_POST['image_url'])) {
+            $query = 'UPDATE tm_user_pictures set useLocal=true WHERE url = \''. $_POST['image_url'] . '\'';
+            $this->_DBHandler->exec_query($query);
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
     public function get_balance()
     {
         if ($this->is_customer_logged()) {

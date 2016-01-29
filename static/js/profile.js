@@ -133,8 +133,6 @@ function add_images_to_carousel(files)
         content_inner += '<div class="item">'
             + '<img src="' + obj.url + '" alt="image">'
             + '<div class="carousel-caption active">'
-            + 'Photo' + (i+1)
-            + '</div>'
             + '</div>';
     });
     $('#car_ol').html(content_indi);
@@ -321,7 +319,7 @@ function show_btn_publishing_cost()
 $('.carousel').carousel({
     interval: 3000
 });
-$('.carousel-remove').on('click', function() {
+$('#carousel_remove').on('click', function() {
     if (confirm('Вы действительно хотите удалить это изображение?')) {
         if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('src') != undefined) {
             var url = $($('.item.active').find('img')[0]).attr('src');
@@ -338,10 +336,28 @@ $('.carousel-remove').on('click', function() {
                 },
                 complete: function () {
                     $('#spinner').modal('hide');
-                    $('#photoModal').modal('hide');
 
                 }
             });
         }
     }
+});
+$('#carousel_set_main').on('click', function() {
+        if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('src') != undefined) {
+            var url = $($('.item.active').find('img')[0]).attr('src');
+            $.ajax({
+                type: "POST",
+                url: "profile.php?action=set_main",
+                data: {image_url:url},
+                beforeSend: function () {
+                    $('#spinner').modal('show');
+                },
+                success: function (data) {
+                },
+                complete: function () {
+                    $('#spinner').modal('hide');
+
+                }
+            });
+        }
 });

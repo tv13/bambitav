@@ -47,9 +47,14 @@
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
-                            <a class="carousel-remove" href="#" role="button"
-                               data-slide="next">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <a class="carousel-control top" href="#" role="button"
+                               data-slide="next" id="carousel_remove">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true">Удалить</span>
+                                <span class="sr-only">Remove</span>
+                            </a>
+                            <a class="carousel-control bottom" href="#" role="button"
+                               data-slide="next" id="carousel_set_main">>
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true">Сделать главной</span>
                                 <span class="sr-only">Remove</span>
                             </a>
                         </div>
