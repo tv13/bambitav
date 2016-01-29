@@ -79,7 +79,7 @@ class MainProfileModel extends MainModel
 
                 $this->is_ajax = true;
 
-                $this->_DBHandler->exec_query("SELECT url from tm_user_pictures
+                $this->_DBHandler->exec_query("SELECT id, url from tm_user_pictures
                             WHERE userId = '".$this->get_customer_id()."'
                                 order by created DESC");
                 $this->Result = array(
@@ -100,8 +100,8 @@ class MainProfileModel extends MainModel
 
     public function action_file_remove()
     {
-        if (!empty($_POST['image_url'])) {
-            $query = 'DELETE FROM tm_user_pictures WHERE url = \''. $_POST['image_url'] . '\'';
+        if (!empty($_POST['image_id'])) {
+            $query = 'DELETE FROM tm_user_pictures WHERE id = \''. $_POST['image_id'] . '\'';
             $this->_DBHandler->exec_query($query);
         }
     }
@@ -114,7 +114,7 @@ class MainProfileModel extends MainModel
             $query = 'UPDATE `tm_user_pictures` set useLocal=false WHERE userId = \'".$this->get_customer_id()."\'';
             $this->_DBHandler->exec_query($query);
 
-            $query = 'UPDATE tm_user_pictures set useLocal=true WHERE url = \''. $_POST['image_url'] . '\'';
+            $query = 'UPDATE tm_user_pictures set useLocal=true WHERE id = \''. $_POST['image_id'] . '\'';
             $this->_DBHandler->exec_query($query);
         }
     }

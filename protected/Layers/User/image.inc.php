@@ -45,7 +45,7 @@ class Image extends EntityWithDB
         
         $images = array();
         foreach ($this->DBHandler->db->get_all_data() as $image) {
-            $images[] = array('url' => $image['url']);
+            $images[] = array('url' => $image['url'], 'id' => $image['id']);
         }
         return $images;
     }
