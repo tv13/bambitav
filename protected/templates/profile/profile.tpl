@@ -52,11 +52,6 @@
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true">Удалить</span>
                                 <span class="sr-only">Remove</span>
                             </a>
-                            <a class="carousel-control bottom" href="#" role="button"
-                               data-slide="next" id="carousel_set_main">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true">Сделать главной</span>
-                                <span class="sr-only">Remove</span>
-                            </a>
                         </div>
                     </div>
                 </div>

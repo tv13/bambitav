@@ -109,14 +109,19 @@ class MainProfileModel extends MainModel
 
     public function action_set_main()
     {
-        if (!empty($_POST['image_url'])) {
-
-            $query = 'UPDATE `tm_user_pictures` set useLocal=false WHERE userId = \''.$this->get_customer_id().'\'';
-            $this->_DBHandler->exec_query($query);
-
-            $query = 'UPDATE tm_user_pictures set useLocal=true WHERE id = \''. $_POST['image_id'] . '\'';
-            $this->_DBHandler->exec_query($query);
+        $this->is_ajax = true;
+        if (!$this->is_customer_logged() || empty($_POST['id']))
+        {
+            throw new ExceptionProcessing(2);
         }
+
+        $query = 'UPDATE `tm_user_pictures` set useLocal=false WHERE userId = \''.$this->get_customer_id().'\'';
+        $this->_DBHandler->exec_query($query);
+
+        $query = 'UPDATE tm_user_pictures set useLocal=true WHERE id = \''. $_POST['id'] . '\'';
+        $this->_DBHandler->exec_query($query);
+        
+        throw new ExceptionProcessing(1, 1);
     }
     /////////////////////////////////////////////////////////////////////////////
 

@@ -132,8 +132,15 @@ function add_images_to_carousel(files)
         content_indi += '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
         content_inner += '<div class="item">'
             + '<img src="' + obj.url + '" alt="image" id="' + obj.id + '">'
+            + '<div class="carousel-control bottom">'
+            +       '<span class="glyphicon'
+            +               (obj.useLocal == 0 ? ' carousel_set_main glyphicon-ok' : '')
+            +               '" aria-hidden="true">'
+            +           (obj.useLocal == 0 ? 'Сделать главной' : 'Главная')
+            +       '</span>'
+            + '</div>'
             + '<div class="carousel-caption active">'
-            + 'Photo' + (i+1)
+            +       'Photo' + (i+1)
             + '</div>'
             + '</div>';
     });
@@ -142,6 +149,7 @@ function add_images_to_carousel(files)
     $('#car_inner .item').first().addClass('active');
     $('#car_indi > li').first().addClass('active');
     $('#carousel-example-generic').carousel("pause");
+    $('.carousel_set_main').bind('click', set_main_image);
 }
 
 function load_profile_data()
@@ -354,20 +362,32 @@ $('#carousel_remove').on('click', function() {
         }
     }
 });
-$('#carousel_set_main').on('click', function() {
-        if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('id') != undefined) {
-            var im_id = $($('.item.active').find('img')[0]).attr('id');
-            $.ajax({
-                type: "POST",
-                url: "profile.php?action=set_main",
-                data: {image_id:im_id},
-                beforeSend: function () {
-                    $('#spinner').modal('show');
-                },
-                complete: function () {
-                    $('#spinner').modal('hide');
 
-                }
-            });
-        }
-});
+function set_main_image()
+{
+    if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('id') != undefined) {
+        var image_id = $($('.item.active').find('img')[0]).attr('id');
+        $.post('profile.php',
+        {
+            action: 'set_main',
+            id: image_id
+        }, handle_response).error(ajax_error_handler).handler = set_main_image_ajax_handler;
+    }
+}
+
+function set_main_image_ajax_handler(response)
+{
+    if (response.status == 1)
+    {
+        $('.carousel_set_main').unbind('click');
+        $('.item').find('span.glyphicon')
+            .addClass('carousel_set_main')
+            .addClass('glyphicon-ok')
+            .text('Сделать главной');
+        $('.item.active').find('span.glyphicon')
+            .removeClass('carousel_set_main')
+            .removeClass('glyphicon-ok')
+            .text('Главная');
+        $('.carousel_set_main').bind('click', set_main_image);
+    }
+}
