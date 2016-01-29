@@ -131,7 +131,7 @@ function add_images_to_carousel(files)
     $.each(files, function (i, obj) {
         content_indi += '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
         content_inner += '<div class="item">'
-            + '<img src="' + obj.url + '" alt="image">'
+            + '<img src="' + obj.url + '" alt="image" id="' + obj.id + '">'
             + '<div class="carousel-caption active">'
             + 'Photo' + (i+1)
             + '</div>'
@@ -323,9 +323,9 @@ $('.carousel').carousel({
 });
 $('#carousel_remove').on('click', function() {
     if (confirm('Вы действительно хотите удалить это изображение?')) {
-        if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('src') != undefined) {
+        if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('id') != undefined) {
 
-            var url = $($('.item.active').find('img')[0]).attr('src');
+            var im_id = $($('.item.active').find('img')[0]).attr('id');
             $('.item.active').remove();
 
             if ($( "#car_inner div:first-child").length < 1) {
@@ -342,7 +342,7 @@ $('#carousel_remove').on('click', function() {
             $.ajax({
                 type: "POST",
                 url: "profile.php?action=file_remove",
-                data: {image_url:url},
+                data: {image_id:im_id},
                 beforeSend: function () {
                     $('#spinner').modal('show');
                 },
@@ -355,12 +355,12 @@ $('#carousel_remove').on('click', function() {
     }
 });
 $('#carousel_set_main').on('click', function() {
-        if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('src') != undefined) {
-            var url = $($('.item.active').find('img')[0]).attr('src');
+        if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('id') != undefined) {
+            var im_id = $($('.item.active').find('img')[0]).attr('id');
             $.ajax({
                 type: "POST",
                 url: "profile.php?action=set_main",
-                data: {image_url:url},
+                data: {image_id:im_id},
                 beforeSend: function () {
                     $('#spinner').modal('show');
                 },
