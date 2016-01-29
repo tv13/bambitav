@@ -48,10 +48,11 @@
         </div>
         <!-- /.row -->
         <div id="itemContainer">
-
-            
         </div>
-                    <button type="button" class="btn btn-primary hide" id="showMore">Show More</button>
+        
+        Всего: <span id="totalCount"></span> записей
+
+        <button type="button" class="btn btn-primary" id="showMore">Show More (<span id="textShowMore"></span> записи)</button>
         <!-- /.row -->
 
         <hr>
