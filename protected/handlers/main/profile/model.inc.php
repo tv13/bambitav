@@ -111,7 +111,7 @@ class MainProfileModel extends MainModel
     {
         if (!empty($_POST['image_url'])) {
 
-            $query = 'UPDATE tm_user_pictures set useLocal=false WHERE userId = \'".$this->get_customer_id()."\'';
+            $query = 'UPDATE `tm_user_pictures` set useLocal=false WHERE userId = \'".$this->get_customer_id()."\'';
             $this->_DBHandler->exec_query($query);
 
             $query = 'UPDATE tm_user_pictures set useLocal=true WHERE url = \''. $_POST['image_url'] . '\'';
