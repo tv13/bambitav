@@ -15,36 +15,58 @@ $(document).ready(function(){
 
         $('#start')
             .on('click', function () {
+                $('#start').attr('disabled',false);
                 var $this = $(this),
                     data = $this.data();
 
+                var progress =parseInt(i*100/total);
+                $('#progress').css(
+                    'width',
+                    '0%'
+                ).attr(
+                    'aria-valuenow',
+                    0
+                ).html(0 + '%');
                 if ($this.data().files != undefined) {
 
-                    var i = $this.data().files.length;
+                    $('#pr_status').text('Подождите, идет загрузка...');
+                    var total = $this.data().files.length;
+                    var i = 0;
 
                     $($this.data().files).each(function( index, elem ) {
 
                         io_upload(elem, function(response) {
-                            i--;
+                            i++;
+                            var progress =parseInt(i*100/total);
+                            $('#progress').css(
+                                'width',
+                                progress + '%'
+                            ).attr(
+                                'aria-valuenow',
+                                progress
+                            ).html(progress + '%');
                             response.number = i;
+                            response.total = total;
 
                             $.ajax({
                                 type: "POST",
                                 url: "profile.php?action=file_upload",
                                 data: response,
                                 beforeSend: function () {
-                                    $('#spinner').modal('show');
                                 },
                                 success: function (data) {
                                     if (data.data && data.data.upload)
                                     {
                                         add_images_to_carousel(data.data.files);
+                                        if ($('#start').data().files != undefined) {
+                                            $('#start').data().files = undefined;
+                                        }
+                                        $('#pr_status').text('Файлы успешно загружены!');
+                                        $('#photoModal').modal('hide');
+
                                     }
                                 },
                                 complete: function () {
-                                    $('#spinner').modal('hide');
-                                                    $('#photoModal').modal('hide');
-
                                 }
                             });
                         });
@@ -90,6 +112,7 @@ $(document).ready(function(){
                 } else {
                     $('#start').data(data);
                 }
+                $('#start').attr('disabled',false);
                 if ($('#start').data().files.length == 5) {
                     $('#fileupload').prop('disabled', true).parent().addClass('disabled');
                 } else {

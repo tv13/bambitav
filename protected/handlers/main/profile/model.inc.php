@@ -75,7 +75,11 @@ class MainProfileModel extends MainModel
                 . ', \'' . $_POST['key'] . '\', false);';
             $this->_DBHandler->exec_query($query);
 
-            if ($_POST['number'] == 0) {
+            if (
+                isset($_POST['number'])
+                && isset($_POST['total'])
+                && $_POST['number'] == $_POST['total']
+            ) {
 
                 $this->is_ajax = true;
 
