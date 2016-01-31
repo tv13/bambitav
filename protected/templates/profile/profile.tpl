@@ -7,11 +7,7 @@
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/style.css">
 <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/jquery.fileupload.css">
-<style>
-    .carousel-inner > .item {
-        height: 500px;
-    }
-</style>
+
 <div class="jumbotron">
     <div class="container">
         <div class="row">
