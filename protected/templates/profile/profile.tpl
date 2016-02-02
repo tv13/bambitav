@@ -33,20 +33,15 @@
                             </div>
 
                             <!-- Controls -->
-                            <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                            <a class="left carousel-control arrow" href="#carousel-example-generic" role="button"
                                data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                            <a class="right carousel-control arrow" href="#carousel-example-generic" role="button"
                                data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
-                            </a>
-                            <a class="carousel-control top" href="#" role="button"
-                               data-slide="next" id="carousel_remove">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true">Удалить</span>
-                                <span class="sr-only">Remove</span>
                             </a>
                         </div>
                     </div>

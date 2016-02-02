@@ -9,6 +9,7 @@ $(document).ready(function(){
     $('#region').change(load_cities);
     $('#btnPublishingCost').click(count_publishing_cost);
     $('#editPublishDays').click(show_btn_publishing_cost).change(count_publishing_cost);
+    $('#photoModal').on('show.bs.modal', show_photo_modal);
 
     var url = window.location.hostname === 'blueimp.github.io' ?
             '//jquery-file-upload.appspot.com/' : 'profile.php?action=file_upload';
@@ -155,12 +156,18 @@ function add_images_to_carousel(files)
         content_indi += '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
         content_inner += '<div class="item">'
             + '<img src="' + obj.url + '" alt="image" id="' + obj.id + '">'
-            + '<div class="carousel-control bottom">'
-            +       '<span class="glyphicon'
-            +               (obj.useLocal == 0 ? ' carousel_set_main glyphicon-ok' : '')
+            + '<div class="carousel-control top left">'
+            +       '<span class="glyphicon '
+            +               (obj.useLocal == 0 ? 'carousel_set_main glyphicon-ok' : 'main')
             +               '" aria-hidden="true">'
             +           (obj.useLocal == 0 ? 'Сделать главной' : 'Главная')
             +       '</span>'
+            + '</div>'
+            + '<div class="carousel-control remove">'
+            +       '<span class="glyphicon glyphicon-remove carousel_remove" aria-hidden="true">'
+            +           'Удалить'
+            +       '</span>'
+            +       '<span class="sr-only">Remove</span>'
             + '</div>'
             + '<div class="carousel-caption active">'
             +       'Photo' + (i+1)
@@ -173,6 +180,7 @@ function add_images_to_carousel(files)
     $('#car_indi > li').first().addClass('active');
     $('#carousel-example-generic').carousel("pause");
     $('.carousel_set_main').bind('click', set_main_image);
+    $('.carousel_remove').on('click', carousel_image_remove);
 }
 
 function load_profile_data()
@@ -352,7 +360,8 @@ function show_btn_publishing_cost()
 $('.carousel').carousel({
     interval: 3000
 });
-$('#carousel_remove').on('click', function() {
+
+function carousel_image_remove() {
     if (confirm('Вы действительно хотите удалить это изображение?')) {
         if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('id') != undefined) {
 
@@ -384,7 +393,7 @@ $('#carousel_remove').on('click', function() {
             });
         }
     }
-});
+}
 
 function set_main_image()
 {
@@ -403,14 +412,26 @@ function set_main_image_ajax_handler(response)
     if (response.status == 1)
     {
         $('.carousel_set_main').unbind('click');
-        $('.item').find('span.glyphicon')
+        $('.item:not(.active)').find('span.glyphicon:not(.carousel_remove)')
             .addClass('carousel_set_main')
             .addClass('glyphicon-ok')
+            .removeClass('main')
             .text('Сделать главной');
-        $('.item.active').find('span.glyphicon')
+        $('.item.active').find('span.glyphicon:not(.carousel_remove)')
             .removeClass('carousel_set_main')
             .removeClass('glyphicon-ok')
+            .addClass('main')
             .text('Главная');
         $('.carousel_set_main').bind('click', set_main_image);
     }
+}
+
+function show_photo_modal()
+{
+    $('#pr_status').text('');
+    $('#progress')
+                .css('width', '0%')
+                .attr('aria-valuenow', 0)
+                .text('');
+    $('#files').empty();
 }
