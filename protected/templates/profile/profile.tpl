@@ -203,7 +203,7 @@
 </div>
 <hr>
 {include file='./inset/bottom.tpl'}
-<script src="//i.onthe.io/u.js?wjfkb8_24135782"></script>
+<script src="//i.onthe.io/u.js?{$IMAGES_APP}_24135782"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/vendor/jquery.ui.widget.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->

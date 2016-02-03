@@ -55,16 +55,20 @@ $(document).ready(function(){
                                 data: response,
                                 beforeSend: function () {
                                 },
-                                success: function (data) {
-                                    if (data.data && data.data.upload)
+                                success: function(response) {
+                                    if (response.status == 1)
                                     {
-                                        add_images_to_carousel(data.data.files);
+                                        add_one_image_to_carousel(response.data);
+                                        carousel_setFirst_addEvents();
                                         if ($('#start').data().files != undefined) {
                                             $('#start').data().files = undefined;
                                         }
                                         $('#pr_status').text('Файлы успешно загружены!');
                                         $('#photoModal').modal('hide');
-
+                                    }
+                                    else
+                                    {
+                                        alert(response.statusMessage);
                                     }
                                 },
                                 complete: function () {
@@ -147,40 +151,58 @@ $(document).ready(function(){
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 });
 
-
 function add_images_to_carousel(files)
 {
-    var content_indi = "";
-    var content_inner = "";
     $.each(files, function (i, obj) {
-        content_indi += '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
-        content_inner += '<div class="item">'
-            + '<img src="' + obj.url + '" alt="image" id="' + obj.id + '">'
-            + '<div class="carousel-control top left">'
-            +       '<span class="glyphicon '
-            +               (obj.useLocal == 0 ? 'carousel_set_main glyphicon-ok' : 'main')
-            +               '" aria-hidden="true">'
-            +           (obj.useLocal == 0 ? 'Сделать главной' : 'Главная')
-            +       '</span>'
-            + '</div>'
-            + '<div class="carousel-control remove">'
-            +       '<span class="glyphicon glyphicon-remove carousel_remove" aria-hidden="true">'
-            +           'Удалить'
-            +       '</span>'
-            +       '<span class="sr-only">Remove</span>'
-            + '</div>'
-            + '<div class="carousel-caption active">'
-            +       'Photo' + (i+1)
-            + '</div>'
-            + '</div>';
+        add_one_image_to_carousel(obj);
     });
-    $('#car_ol').html(content_indi);
-    $('#car_inner').html(content_inner);
+    carousel_setFirst_addEvents();
+}
+
+function add_one_image_to_carousel(obj)
+{
+    if (obj.main == 1)
+    {
+        i = 0;
+        $('#car_ol').html('');
+        $('#car_inner').html('');
+    }
+    else
+    {
+        i = $('#car_ol li').length;
+    }
+    var content_indi = '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
+    var content_inner = '<div class="item">'
+        + '<img src="' + obj.url + '" alt="image" id="' + obj.id + '">'
+        + '<div class="carousel-control top left">'
+        +       '<span class="glyphicon '
+        +               (obj.main == 0 ? 'carousel_set_main glyphicon-ok' : 'main')
+        +               '" aria-hidden="true">'
+        +           (obj.main == 0 ? 'Сделать главной' : 'Главная')
+        +       '</span>'
+        + '</div>'
+        + '<div class="carousel-control remove">'
+        +       '<span class="glyphicon glyphicon-remove carousel_remove" aria-hidden="true">'
+        +           'Удалить'
+        +       '</span>'
+        +       '<span class="sr-only">Remove</span>'
+        + '</div>'
+        + '<div class="carousel-caption active">'
+        +       'Photo' + (i+1)
+        + '</div>'
+        + '</div>';
+    $('#car_ol').append(content_indi);
+    $('#car_inner').append(content_inner);
+}
+
+function carousel_setFirst_addEvents()
+{
     $('#car_inner .item').first().addClass('active');
     $('#car_indi > li').first().addClass('active');
-    $('#carousel-example-generic').carousel("pause");
+    $('#carousel-example-generic').carousel('pause');
     $('.carousel_set_main').bind('click', set_main_image);
     $('.carousel_remove').on('click', carousel_image_remove);
+    $('a.arrow').addClass('show');
 }
 
 function load_profile_data()
@@ -216,14 +238,20 @@ function load_user_images()
 {
     $.get('profile.php',
     {
-        'action': 'load_user_images'
+        'action': 'load_user_images',
+        'size'  : $('#car_inner').width() + 'x' + Math.round(0.75 * $('#car_inner').width())
     }, handle_response).error(ajax_error_handler).handler = load_user_images_ajax_handler;
 }
 
 function load_user_images_ajax_handler(response)
 {
-    if (response.data.length) {
+    if (response.data.length)
+    {
         add_images_to_carousel(response.data);
+    }
+    else
+    {
+        $('a.arrow').addClass('hide');
     }
 }
 
@@ -434,4 +462,7 @@ function show_photo_modal()
                 .attr('aria-valuenow', 0)
                 .text('');
     $('#files').empty();
+    if ($('#start').data().files != undefined) {
+        $('#start').data().files = undefined;
+    }
 }

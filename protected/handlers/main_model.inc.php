@@ -108,7 +108,7 @@ function compile_actions_method_name($action_name)
 }
 ////////////////////////////////////////////////////////////////////////////
 
-private function get_action_name()
+protected function get_action_name()
 {
      if (isset ($_POST['action']))
      {

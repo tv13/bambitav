@@ -32,14 +32,12 @@ class MainProfileModel extends MainModel
     public function action_update_profile_info()
     {
         $this->is_ajax = true;
-        if ($this->is_customer_logged()) {
-            $this->_User->set_data($_POST);
-            $this->_User->update_profile_info($this->get_customer_id());
-            /*$this->_DBHandler->exec_query("INSERT INTO tm_users "
-             . "(name, birthdate, city, sex, phone, text) "
-             . "VALUES ('$_name', '$_birthdate', '$_city', '$_sex', '$_phone', '$_description');");
-            */
-        }
+        $this->_User->set_data($_POST);
+        $this->_User->update_profile_info($this->get_customer_id());
+        /*$this->_DBHandler->exec_query("INSERT INTO tm_users "
+         . "(name, birthdate, city, sex, phone, text) "
+         . "VALUES ('$_name', '$_birthdate', '$_city', '$_sex', '$_phone', '$_description');");
+        */
         $this->Result = true;
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -47,9 +45,6 @@ class MainProfileModel extends MainModel
     public function action_load_profile_info()
     {
         $this->is_ajax = true;
-        if (!$this->is_customer_logged()) {
-            throw new ExceptionProcessing(24);
-        }
         $this->Result = $this->_User->load_profile_info($this->get_customer_id());
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -65,40 +60,28 @@ class MainProfileModel extends MainModel
 
     public function action_file_upload()
     {
+        $this->is_ajax = true;
 
-        $this->get_customer_id();
-
-        if (!empty($_POST['full_size'])) {
-            $query = 'INSERT INTO tm_user_pictures (id, url, userId, key_code, useLocal) VALUES ((select UUID()), \''
-                . $_POST['full_size'] . '\', '
-                .  $this->get_customer_id()
-                . ', \'' . $_POST['key'] . '\', false);';
-            $this->_DBHandler->exec_query($query);
-
-            if (
-                isset($_POST['number'])
-                && isset($_POST['total'])
-                && $_POST['number'] == $_POST['total']
-            ) {
-
-                $this->is_ajax = true;
-
-                $this->_DBHandler->exec_query("SELECT id, url from tm_user_pictures
-                            WHERE userId = '".$this->get_customer_id()."'
-                                order by created DESC");
-                $this->Result = array(
-                    'files' => $this->_DBHandler->get_all_data(),
-                    'upload' => true
-                );
-            }
+        if (empty($_POST['key']))
+        {
+            throw new ExceptionProcessing(2);
         }
+        
+        $main_image = $this->_Image->is_exist_user_images($this->get_customer_id()) ? 0 : 1;
+        $image_id = $this->_Image->insert_image($this->get_customer_id(), (string)@$_POST['key'], $main_image);
+        
+        $this->Result = array(
+                            'id'    => $image_id,
+                            'url'   => (string)@$_POST['full_size'],
+                            'main'  => $main_image
+                        );
     }
     /////////////////////////////////////////////////////////////////////////////
 
     public function action_load_user_images()
     {
         $this->is_ajax = true;
-        $this->Result = $this->_Image->get_images_by_user_id($this->get_customer_id());
+        $this->Result = $this->_Image->get_images_by_user_id($this->get_customer_id(), (string)@$_GET['size']);
     }
     /////////////////////////////////////////////////////////////////////////////
 
@@ -114,16 +97,12 @@ class MainProfileModel extends MainModel
     public function action_set_main()
     {
         $this->is_ajax = true;
-        if (!$this->is_customer_logged() || empty($_POST['id']))
+        if (empty($_POST['id']))
         {
             throw new ExceptionProcessing(2);
         }
-
-        $query = 'UPDATE `tm_user_pictures` set useLocal=false WHERE userId = \''.$this->get_customer_id().'\'';
-        $this->_DBHandler->exec_query($query);
-
-        $query = 'UPDATE tm_user_pictures set useLocal=true WHERE id = \''. $_POST['id'] . '\'';
-        $this->_DBHandler->exec_query($query);
+        
+        $this->_Image->set_main($this->get_customer_id(), (string)@$_POST['id']);
         
         throw new ExceptionProcessing(1, 1);
     }
@@ -141,6 +120,10 @@ class MainProfileModel extends MainModel
     public function run()
     {
         parent::run();
+        if (!$this->is_customer_logged() && $this->get_action_name() != 'default')
+        {
+            throw new ExceptionProcessing(24);
+        }
         $this->determine_action();
     }
     /////////////////////////////////////////////////////////////////////////////

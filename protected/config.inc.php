@@ -62,4 +62,11 @@ define('RECAPTCHA_GOOGLE_SECRET', '6LddWxYTAAAAAAqgb6nvriEJxkCYTLcYwxrOuQUn');
 ////////////////////////////////////////////////////////////////////////////
 
 define('PER_PAGE_DEFAULT', 10);
+
+////////////////////////////////////////////////////////////////////////////
+
+// i.onthe.io - images
+define('IMAGES_SERVER', 'https://i.onthe.io/');
+define('IMAGES_APP', 'wjfkb8');
+define('IMAGES_SECRET', 'AJHBOyn1LAEDIPax53bO91M6d3oPwSZX');
 ?>

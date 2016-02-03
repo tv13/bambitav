@@ -18,6 +18,7 @@ var $value = null;
 var $error_code;
 var $validater = null;
 var $is_valid = true;
+var $need_escape = true;
 /////////////////////////////////////////////////////////////////////////////
 
 function __construct($value = null)
@@ -51,6 +52,12 @@ function raise_error($error_code)
 function is_valid()
 {
      return $this-> is_valid;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+function set_not_need_escape()
+{
+     $this->need_escape = false;
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -147,7 +154,11 @@ function get_mysql_string_context($str)
 
 function get_db_context()
 {
-     return $this-> get_mysql_string_context($this-> get());
+    if (!$this->need_escape)
+    {
+        return $this->get();
+    }
+    return $this-> get_mysql_string_context($this-> get());
 }
 /////////////////////////////////////////////////////////////////////////////
 
