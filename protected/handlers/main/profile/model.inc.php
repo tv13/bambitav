@@ -67,12 +67,13 @@ class MainProfileModel extends MainModel
             throw new ExceptionProcessing(2);
         }
         
+        $key = (string)@$_POST['key'];
         $main_image = $this->_Image->is_exist_user_images($this->get_customer_id()) ? 0 : 1;
-        $image_id = $this->_Image->insert_image($this->get_customer_id(), (string)@$_POST['key'], $main_image);
+        $image_id = $this->_Image->insert_image($this->get_customer_id(), $key, $main_image);
         
         $this->Result = array(
                             'id'    => $image_id,
-                            'url'   => (string)@$_POST['full_size'],
+                            'url'   => $this->_Image->get_url_by_key_and_size($key, (string)@$_POST['size']),
                             'main'  => $main_image
                         );
     }
@@ -85,12 +86,15 @@ class MainProfileModel extends MainModel
     }
     /////////////////////////////////////////////////////////////////////////////
 
-    public function action_file_remove()
+    public function action_image_remove()
     {
-        if (!empty($_POST['image_id'])) {
-            $query = 'DELETE FROM tm_user_pictures WHERE id = \''. $_POST['image_id'] . '\'';
-            $this->_DBHandler->exec_query($query);
+        $this->is_ajax = true;
+        if (empty($_POST['id']))
+        {
+            throw new ExceptionProcessing(2);
         }
+        $this->_Image->delete_image((string)@$_POST['id']);
+        throw new ExceptionProcessing(1, 1);
     }
     /////////////////////////////////////////////////////////////////////////////
 

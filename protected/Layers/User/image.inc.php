@@ -43,7 +43,7 @@ class Image extends EntityWithDB
         foreach ($this->DBHandler->db->get_all_data() as $image) {
             $images[] = array(
                             'id'    => $image['id'],
-                            'url'   => $this->_get_url_by_key_and_size($image['key_code'], $size),
+                            'url'   => $this->get_url_by_key_and_size($image['key_code'], $size),
                             'main'  => $image['main']
                         );
         }
@@ -51,7 +51,7 @@ class Image extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
 
-    private function _get_url_by_key_and_size($image_key, $size)
+    public function get_url_by_key_and_size($image_key, $size)
     {
         $url = $image_key . '.r' . $size;
         $sign = substr(md5($url . IMAGES_SECRET), 0, 8);
@@ -88,6 +88,7 @@ class Image extends EntityWithDB
     
     public function set_main($user_id, $image_id)
     {
+        $this->check_exist_image_id($image_id);
         $this->_set_main_to_0_4_all_user_images($user_id);
         $this->_set_main_image($image_id);
     }
@@ -109,6 +110,37 @@ class Image extends EntityWithDB
                     SET main = 1
                     WHERE id = '$image_id'";
         $this->DBHandler->db->exec_query($query);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function delete_image($image_id)
+    {
+        $this->check_exist_image_id($image_id);
+        $this->DBHandler->delete_by_primary();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function check_exist_image_id($image_id)
+    {
+        if (!$this->is_exist_image_id($image_id))
+        {
+            throw new ExceptionProcessing(31);
+        }
+        return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function is_exist_image_id($image_id)
+    {
+        return '' != $this->get_user_id_by_image_id($image_id);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function get_user_id_by_image_id($image_id)
+    {
+        $this->set_id_value($image_id);
+        $this->load();
+        return $this->Fields['user_id']->get();
     }
     /////////////////////////////////////////////////////////////////////////////
 }

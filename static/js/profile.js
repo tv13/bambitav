@@ -2,8 +2,10 @@ var vk_version = '5.5';
     
 $(document).ready(function(){
 
+    var img_size = $('#car_inner').width() + 'x' + Math.round(0.75 * $('#car_inner').width());
+    
     load_profile_data();
-    load_user_images();
+    load_user_images(img_size);
     $('form#formProfile').submit(profile_submit);
     $('#country').change(load_regions);
     $('#region').change(load_cities);
@@ -17,8 +19,7 @@ $(document).ready(function(){
         $('#start')
             .on('click', function () {
                 $('#start').attr('disabled',false);
-                var $this = $(this),
-                    data = $this.data();
+                var $this = $(this);
 
                 var progress =parseInt(i*100/total);
                 $('#progress').css(
@@ -48,6 +49,7 @@ $(document).ready(function(){
                             ).html(progress + '%');
                             response.number = i;
                             response.total = total;
+                            response.size = img_size;
 
                             $.ajax({
                                 type: "POST",
@@ -197,8 +199,11 @@ function add_one_image_to_carousel(obj)
 
 function carousel_setFirst_addEvents()
 {
-    $('#car_inner .item').first().addClass('active');
-    $('#car_indi > li').first().addClass('active');
+    if ($('#car_inner .item.active').length == 0)
+    {
+        $('#car_inner .item').first().addClass('active');
+        $('#car_indi > li').first().addClass('active');
+    }
     $('#carousel-example-generic').carousel('pause');
     $('.carousel_set_main').bind('click', set_main_image);
     $('.carousel_remove').on('click', carousel_image_remove);
@@ -234,12 +239,12 @@ function load_profile_ajax_handler(response)
     }
 }
 
-function load_user_images()
+function load_user_images(img_size)
 {
     $.get('profile.php',
     {
-        'action': 'load_user_images',
-        'size'  : $('#car_inner').width() + 'x' + Math.round(0.75 * $('#car_inner').width())
+        action: 'load_user_images',
+        size  : img_size
     }, handle_response).error(ajax_error_handler).handler = load_user_images_ajax_handler;
 }
 
@@ -393,7 +398,7 @@ function carousel_image_remove() {
     if (confirm('Вы действительно хотите удалить это изображение?')) {
         if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('id') != undefined) {
 
-            var im_id = $($('.item.active').find('img')[0]).attr('id');
+            var img_id = $($('.item.active').find('img')[0]).attr('id');
             $('.item.active').remove();
 
             if ($( "#car_inner div:first-child").length < 1) {
@@ -409,8 +414,10 @@ function carousel_image_remove() {
             }
             $.ajax({
                 type: "POST",
-                url: "profile.php?action=file_remove",
-                data: {image_id:im_id},
+                url: "profile.php?action=image_remove",
+                data: {
+                    id: img_id
+                },
                 beforeSend: function () {
                     $('#spinner').modal('show');
                 },
