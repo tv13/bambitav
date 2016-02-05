@@ -24,8 +24,7 @@
 
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox" id="car_inner">
-                                <div class="item active">
-                                    <img src="{$HTTP_STATIC_PATH}/img/no-photo.jpg" alt="">
+                                <div class="item active no_photo">
                                     <div class="carousel-caption">
                                         Photo
                                     </div>
@@ -33,12 +32,12 @@
                             </div>
 
                             <!-- Controls -->
-                            <a class="left carousel-control arrow" href="#carousel-example-generic" role="button"
+                            <a class="left carousel-control arrow hide" href="#carousel-example-generic" role="button"
                                data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="right carousel-control arrow" href="#carousel-example-generic" role="button"
+                            <a class="right carousel-control arrow hide" href="#carousel-example-generic" role="button"
                                data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>

@@ -37,7 +37,8 @@ class Image extends EntityWithDB
     public function get_images_by_user_id($user_id, $size)
     {
         $this->DBHandler->db->exec_query("SELECT * FROM `" . $this->DBHandler->get_table_name()
-                . "` WHERE `user_id` = '" . mysql_real_escape_string($user_id) . "'");
+                . "` WHERE `user_id` = '$user_id'
+                        ORDER BY `id`");
         
         $images = array();
         foreach ($this->DBHandler->db->get_all_data() as $image) {
@@ -88,7 +89,7 @@ class Image extends EntityWithDB
     
     public function set_main($user_id, $image_id)
     {
-        $this->check_exist_image_id($image_id);
+        $this->_check_exist_image_id($image_id);
         $this->_set_main_to_0_4_all_user_images($user_id);
         $this->_set_main_image($image_id);
     }
@@ -115,14 +116,36 @@ class Image extends EntityWithDB
     
     public function delete_image($image_id)
     {
-        $this->check_exist_image_id($image_id);
+        $user_id = $this->_get_user_id_by_image_id($image_id);
+        $this->_check_exist_image_id(null, $user_id);
+        $main = $this->_get_main_by_image_id($image_id);
         $this->DBHandler->delete_by_primary();
+        if ($main)
+        {
+            $image_id = $this->_get_id_first_user_image($user_id);
+            if (!empty($image_id))
+            {
+                $this->_set_main_image($image_id);
+            }
+        }
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function check_exist_image_id($image_id)
+    private function _get_id_first_user_image($user_id)
     {
-        if (!$this->is_exist_image_id($image_id))
+        $query = "SELECT `id`
+                    FROM " . $this->DBHandler->get_table_name() . "
+                    WHERE `user_id` = '$user_id'
+                    ORDER BY `id`
+                    LIMIT 1";
+        $this->DBHandler->db->exec_query($query);
+        return $this->DBHandler->db->get_one();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _check_exist_image_id($image_id, $user_id = null)
+    {
+        if (!$this->_is_exist_image_id($image_id, $user_id))
         {
             throw new ExceptionProcessing(31);
         }
@@ -130,17 +153,30 @@ class Image extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function is_exist_image_id($image_id)
+    private function _is_exist_image_id($image_id, $user_id = null)
     {
-        return '' != $this->get_user_id_by_image_id($image_id);
+        return '' != !isset($user_id) ? $this->_get_user_id_by_image_id($image_id) : $user_id;
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function get_user_id_by_image_id($image_id)
+    private function _get_user_id_by_image_id($image_id)
+    {
+        $this->_load_image_by_id($image_id);
+        return $this->Fields['user_id']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_main_by_image_id($image_id)
+    {
+        $this->_load_image_by_id($image_id);
+        return $this->Fields['main']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _load_image_by_id($image_id)
     {
         $this->set_id_value($image_id);
         $this->load();
-        return $this->Fields['user_id']->get();
     }
     /////////////////////////////////////////////////////////////////////////////
 }

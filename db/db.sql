@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 25, 2016 at 04:16 PM
+-- Generation Time: Feb 05, 2016 at 01:46 PM
 -- Server version: 5.5.29-0ubuntu0.12.04.2
 -- PHP Version: 5.5.27-1+deb.sury.org~precise+1
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
   `rating` tinyint(1) NOT NULL,
   `dt_create` datetime NOT NULL,
   `dt_publish` datetime DEFAULT '0000-00-00 00:00:00'
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -56,13 +56,12 @@ CREATE TABLE IF NOT EXISTS `tm_users` (
 --
 
 CREATE TABLE IF NOT EXISTS `tm_user_pictures` (
-  `id` char(36) COLLATE utf8_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `userId` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+`id` bigint(30) unsigned NOT NULL,
+  `user_id` bigint(30) unsigned NOT NULL,
   `key_code` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
-  `useLocal` tinyint(1) NOT NULL DEFAULT '1',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `main` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_create` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
 -- Indexes for dumped tables
@@ -78,7 +77,7 @@ ALTER TABLE `tm_users`
 -- Indexes for table `tm_user_pictures`
 --
 ALTER TABLE `tm_user_pictures`
- ADD PRIMARY KEY (`id`), ADD KEY `userId` (`userId`);
+ ADD PRIMARY KEY (`id`), ADD KEY `userId` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -88,6 +87,11 @@ ALTER TABLE `tm_user_pictures`
 -- AUTO_INCREMENT for table `tm_users`
 --
 ALTER TABLE `tm_users`
+MODIFY `id` bigint(30) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tm_user_pictures`
+--
+ALTER TABLE `tm_user_pictures`
 MODIFY `id` bigint(30) unsigned NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -2,10 +2,10 @@ var vk_version = '5.5';
     
 $(document).ready(function(){
 
-    var img_size = $('#car_inner').width() + 'x' + Math.round(0.75 * $('#car_inner').width());
+    var img_size = get_image_carousel_size();
     
     load_profile_data();
-    load_user_images(img_size);
+    load_user_images();
     $('form#formProfile').submit(profile_submit);
     $('#country').change(load_regions);
     $('#region').change(load_cities);
@@ -60,7 +60,18 @@ $(document).ready(function(){
                                 success: function(response) {
                                     if (response.status == 1)
                                     {
-                                        add_one_image_to_carousel(response.data);
+                                        if ($('#car_inner div').first().hasClass('no_photo'))
+                                        {
+                                            i = 0;
+                                            $('#car_ol').html('');
+                                            $('#car_inner').html('');
+                                            $('#car_inner div').first().removeClass('no_photo');
+                                        }
+                                        else
+                                        {
+                                            i = $('#car_ol li').length;
+                                        }
+                                        add_one_image_to_carousel(i, response.data);
                                         carousel_setFirst_addEvents();
                                         if ($('#start').data().files != undefined) {
                                             $('#start').data().files = undefined;
@@ -153,26 +164,53 @@ $(document).ready(function(){
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 });
 
+function get_image_carousel_size()
+{
+    return $('#car_inner').width() + 'x' + Math.round(0.75 * $('#car_inner').width());
+}
+
+function load_user_images()
+{
+    $.get('profile.php',
+    {
+        action: 'load_user_images',
+        size  : get_image_carousel_size()
+    }, handle_response).error(ajax_error_handler).handler = load_user_images_ajax_handler;
+}
+
+function load_user_images_ajax_handler(response)
+{
+    if (response.data.length)
+    {
+        add_images_to_carousel(response.data);
+    }
+    else
+    {
+        $('#car_ol').html('');
+        
+        var txt_elem_no_photo =
+            '<div class="item active no_photo">'
+            +   '<div class="carousel-caption">'
+            +       'Photo'
+            +   '</div>'
+            + '</div>';
+        $('#car_inner').html(txt_elem_no_photo);
+    }
+}
+
 function add_images_to_carousel(files)
 {
+    $('#car_ol').html('');
+    $('#car_inner').html('');
+    
     $.each(files, function (i, obj) {
-        add_one_image_to_carousel(obj);
+        add_one_image_to_carousel(i, obj);
     });
     carousel_setFirst_addEvents();
 }
 
-function add_one_image_to_carousel(obj)
+function add_one_image_to_carousel(i, obj)
 {
-    if (obj.main == 1)
-    {
-        i = 0;
-        $('#car_ol').html('');
-        $('#car_inner').html('');
-    }
-    else
-    {
-        i = $('#car_ol li').length;
-    }
     var content_indi = '<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>';
     var content_inner = '<div class="item">'
         + '<img src="' + obj.url + '" alt="image" id="' + obj.id + '">'
@@ -201,13 +239,24 @@ function carousel_setFirst_addEvents()
 {
     if ($('#car_inner .item.active').length == 0)
     {
+        $('#car_ol > li').first().addClass('active');
         $('#car_inner .item').first().addClass('active');
-        $('#car_indi > li').first().addClass('active');
     }
     $('#carousel-example-generic').carousel('pause');
-    $('.carousel_set_main').bind('click', set_main_image);
-    $('.carousel_remove').on('click', carousel_image_remove);
-    $('a.arrow').addClass('show');
+    $('.carousel_set_main')
+                    .unbind('click')
+                    .bind('click', set_main_image);
+    $('.carousel_remove')
+                    .unbind('click')
+                    .bind('click', carousel_image_remove);
+    if ($('#car_inner .item').length > 1)
+    {
+        $('a.arrow').removeClass('hide');
+    }
+    else
+    {
+        $('a.arrow').addClass('hide');
+    }
 }
 
 function load_profile_data()
@@ -236,27 +285,6 @@ function load_profile_ajax_handler(response)
         }
         $('#region').attr("val", data.region);
         $('#city').attr("val", data.city);
-    }
-}
-
-function load_user_images(img_size)
-{
-    $.get('profile.php',
-    {
-        action: 'load_user_images',
-        size  : img_size
-    }, handle_response).error(ajax_error_handler).handler = load_user_images_ajax_handler;
-}
-
-function load_user_images_ajax_handler(response)
-{
-    if (response.data.length)
-    {
-        add_images_to_carousel(response.data);
-    }
-    else
-    {
-        $('a.arrow').addClass('hide');
     }
 }
 
@@ -398,35 +426,21 @@ function carousel_image_remove() {
     if (confirm('Вы действительно хотите удалить это изображение?')) {
         if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('id') != undefined) {
 
-            var img_id = $($('.item.active').find('img')[0]).attr('id');
-            $('.item.active').remove();
-
-            if ($( "#car_inner div:first-child").length < 1) {
-                add_images_to_carousel([{url:'/static/img/no-photo.jpg'}]);
-                if (!$('#carousel_remove').hasClass('hidden')) {
-                    $('#carousel_remove').addClass('hidden');
-                }
-                if (!$('#carousel_set_main').hasClass('hidden')) {
-                    $('#carousel_set_main').addClass('hidden');
-                }
-            } else {
-                $( "#car_inner div:first-child").addClass('active');
-            }
-            $.ajax({
-                type: "POST",
-                url: "profile.php?action=image_remove",
-                data: {
-                    id: img_id
-                },
-                beforeSend: function () {
-                    $('#spinner').modal('show');
-                },
-                complete: function () {
-                    $('#spinner').modal('hide');
-
-                }
-            });
+            var image_id = $($('.item.active').find('img')[0]).attr('id');
+            $.post('profile.php',
+            {
+                action: 'image_remove',
+                id: image_id
+            }, handle_response).error(ajax_error_handler).handler = image_remove_ajax_handler;
         }
+    }
+}
+
+function image_remove_ajax_handler(response)
+{
+    if (response.status == 1)
+    {
+        load_user_images();
     }
 }
 
