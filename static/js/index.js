@@ -48,7 +48,7 @@ function load_questionnaires_by_params(params) {
                                 + '             width="700" height="400" alt="">'
                                 + '     </a>'
                                 + '     <h3>'
-                                + '         <a href="#">' + records[i].id + ", " + records[i].name + ", " + records[i].birthdate + '</a>'
+                                + '         <a href="#">' + records[i].name + ", " + records[i].birthdate + '</a>'
                                 + '     </h3>'
                                 + '</div>';
                             
@@ -75,8 +75,9 @@ function load_questionnaires()
     
     return function() {
         var params= {
-                        action: "content_data",
-                        page: ++page_num  
+                        action  : 'content_data',
+                        size    : '700x400',
+                        page    : ++page_num  
                     };
         load_questionnaires_by_params(params);
     }

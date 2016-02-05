@@ -11,7 +11,7 @@ require_once LAYERS_DIR.'/Paging/paged_lister.inc.php';
 
 class UsersList extends PagedLister
 {
-    const SQL_JOIN = 'FROM `tm_users` AS users LEFT JOIN `tm_user_pictures` AS pic ON users.id = pic.userId';
+    const SQL_JOIN = 'FROM `tm_users` AS users LEFT JOIN `tm_user_pictures` AS pic ON users.id = pic.user_id';
     /////////////////////////////////////////////////////////////////////////////
 
     function get_conditions()
@@ -19,7 +19,7 @@ class UsersList extends PagedLister
         $result = array();
 
         $result[] = 'users.status = -1';
-        $result[] = 'pic.useLocal = 1 OR ISNULL(pic.useLocal)';
+        $result[] = 'pic.main = 1 OR ISNULL(pic.main)';
 
         return $result;
     }
@@ -28,7 +28,7 @@ class UsersList extends PagedLister
     function get_list()
     {
         $this-> db-> exec_query("
-            SELECT users.*, pic.url " . self::SQL_JOIN
+            SELECT users.name, users.birthdate, pic.key_code " . self::SQL_JOIN
             . $this-> get_where_part().$this-> get_limit_part());
         return $this-> db-> get_all_data();
     }
