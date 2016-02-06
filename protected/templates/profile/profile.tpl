@@ -186,6 +186,8 @@
                                             id="needPayValue"></span> <span id="needPayCurrency"></span></p>
                             </div>
                             <div class="modal-footer">
+                                <div id="alert_placeholder">
+                                </div>
                                 <button id="btnPublishingCost" type="button" class="btn btn-primary">Расчитать</button>
                                 <button id="btnPublish" type="button" class="btn btn-primary hide">Разместить</button>
                                 <button id="btnRefillBalance" type="button" class="btn btn-primary hide">Пополнить
