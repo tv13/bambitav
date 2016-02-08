@@ -8,6 +8,7 @@ class CustomerAuth extends UserSessionAuth
     public function create_child_objects()
     {
         $this-> set_info_key('admin');
+        $this->set_expiration_minutes(AUTH_EXPIRATION_MINUTES);
     }
     ////////////////////////////////////////////////////////////////////////////
 

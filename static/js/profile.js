@@ -1,11 +1,19 @@
 var vk_version = '5.5';
     
+$(window).on('load', function () {
+    var $preloader = $('#page-preloader'),
+        $spinner   = $preloader.find('.spinner');
+    $spinner.fadeOut();
+    $preloader.fadeOut('slow');
+});
+
 $(document).ready(function(){
 
     var img_size = get_image_carousel_size();
     
     load_profile_data();
     load_user_images();
+    $('#profile_btn').addClass('hide');
     $('form#formProfile').submit(profile_submit);
     $('#country').change(load_regions);
     $('#region').change(load_cities);
@@ -21,20 +29,20 @@ $(document).ready(function(){
                 $('#start').attr('disabled',false);
                 var $this = $(this);
 
-                var progress =parseInt(i*100/total);
-                $('#progress').css(
-                    'width',
-                    '0%'
-                ).attr(
-                    'aria-valuenow',
-                    0
-                ).html(0 + '%');
                 if ($this.data().files != undefined) {
 
                     $('#pr_status').text('Подождите, идет загрузка...');
                     var total = $this.data().files.length;
                     var i = 0;
 
+                    $('#progress').css(
+                        'width',
+                        '0%'
+                    ).attr(
+                        'aria-valuenow',
+                        0
+                    ).html(0 + '%');
+                        
                     $($this.data().files).each(function( index, elem ) {
 
                         io_upload(elem, function(response) {
@@ -101,58 +109,22 @@ $(document).ready(function(){
             .test(window.navigator.userAgent),
         previewMaxWidth: 100,
         previewMaxHeight: 100,
+        imageMinWidth: 700,
+        imageMinHeight: 400,
         previewCrop: true
-    }).on('fileuploadadd', function (e, data) {
-
-        if ($('#start').data().files == undefined || $('#start').data().files.length < 5) {
-
-            data.context = $('<tr/>').appendTo('#files');
-            $.each(data.files, function (index, file) {
-
-                var node = $('<td/>')
-                    .append($('</span>'));
-                if (!index) {
-                    node
-                        .append('<br>');
-                }
-                node.appendTo(data.context);
-                var node = $('<td/>')
-                    .append($('<p class="name"></p>').text(file.name));
-                if (!index) {
-                    node
-                        .append('<br>');
-                }
-                node.appendTo(data.context);
-                if ($('#start').data().files != undefined) {
-                    var btn_data = $('#start').data();
-                    btn_data.files.push(data.files[0]);
-                    $('#start').data(btn_data);
-                } else {
-                    $('#start').data(data);
-                }
-                $('#start').attr('disabled',false);
-                if ($('#start').data().files.length == 5) {
-                    $('#fileupload').prop('disabled', true).parent().addClass('disabled');
-                } else {
-                    $('#fileupload').prop('disabled', false).parent().removeClass('disabled');
-                }
-            });
-        }
     }).on('fileuploadprocessalways', function (e, data) {
-        if (data.context != undefined) {
-            var index = data.index,
-                file = data.files[index],
-                node = $(data.context.children()[index]);
-            if (file.preview) {
-                node
-                    .prepend('<br>')
-                    .prepend(file.preview);
-            }
-            if (file.error) {
+        var index = data.index,
+            file = data.files[index];
+        if (file.error) {
+            alert(file.error);
+        }
+        else {
+            add_image_to_preview_table(data);
+            /*if (file.error) {
                 node
                     .append('<br>')
                     .append($('<span class="text-danger"/>').text(file.error));
-            }
+            }*/
         }
     }).on('fileuploadprogressall', function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -163,6 +135,49 @@ $(document).ready(function(){
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 });
+
+function add_image_to_preview_table(data)
+{
+    var index = data.index,
+        file = data.files[index];
+    if ($('#start').data().files == undefined || $('#start').data().files.length < 5) {
+
+        data.context = $('<tr/>').appendTo('#files');
+
+        var node = $('<td/>')
+            .append($('</span>'));
+        if (!index) {
+            node
+                .append('<br>');
+        }
+        node.appendTo(data.context);
+        if (file.preview) {
+            node
+                .prepend(file.preview);
+        }
+
+        var node = $('<td/>')
+            .append($('<p class="name"></p>').text(file.name));
+        if (!index) {
+            node
+                .append('<br>');
+        }
+        node.appendTo(data.context);
+        if ($('#start').data().files != undefined) {
+            var btn_data = $('#start').data();
+            btn_data.files.push(data.files[0]);
+            $('#start').data(btn_data);
+        } else {
+            $('#start').data(data);
+        }
+        $('#start').attr('disabled',false);
+        if ($('#start').data().files.length == 5) {
+            $('#fileupload').prop('disabled', true).parent().addClass('disabled');
+        } else {
+            $('#fileupload').prop('disabled', false).parent().removeClass('disabled');
+        }
+    }
+}
 
 function get_image_carousel_size()
 {

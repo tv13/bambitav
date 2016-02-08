@@ -1,5 +1,7 @@
 <body>
 
+<div id="page-preloader"><span class="spinner"></span></div>
+
 {include file='./inset/header.tpl'}
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -87,7 +89,7 @@
                                         </div>
                                     </div>
                                     <!-- The container for the uploaded files -->
-                                    <table role="presentation" class="table table-striped">
+                                    <table role="presentation" class="table table-striped table_photo_upload">
                                         <tbody class="files" id="files"></tbody>
                                     </table>
 
@@ -144,7 +146,7 @@
                         </div>
                         <div class="form-group">
                             <label for="text">Текст объявления</label>
-                            <textarea class="form-control" id="text" rows="3"></textarea>
+                            <textarea class="form-control" id="text" rows="3" required></textarea>
                         </div>
                         <hr>
                         <button type="submit" class="btn btn-primary">Сохранить</button>

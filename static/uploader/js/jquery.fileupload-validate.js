@@ -43,7 +43,9 @@
             maxFileSize: '@',
             minFileSize: '@',
             maxNumberOfFiles: '@',
-            disabled: '@disableValidation'
+            disabled: '@disableValidation',
+            imageMinWidth: '@',
+            imageMinHeight: '@'
         }
     );
 
@@ -72,8 +74,10 @@
             messages: {
                 maxNumberOfFiles: 'Maximum number of files exceeded',
                 acceptFileTypes: 'File type not allowed',
-                maxFileSize: 'File is too large',
-                minFileSize: 'File is too small'
+                maxFileSize: 'Размер файла очень большой!',
+                minFileSize: 'File is too small',
+                minWidthHeight: 'Изображение очень маленькое!\n'
+                                + 'Размеры изображения должны быть больше 700 x 400'
             }
         },
 
@@ -103,6 +107,10 @@
                 } else if ($.type(fileSize) === 'number' &&
                         fileSize < options.minFileSize) {
                     file.error = settings.i18n('minFileSize');
+                } else if (options.imageMinWidth && options.imageMinHeight &&
+                        (file.origin.width < options.imageMinWidth
+                            || file.origin.height < options.imageMinHeight)) {
+                    file.error = settings.i18n('minWidthHeight');
                 } else {
                     delete file.error;
                 }

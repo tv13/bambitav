@@ -33,6 +33,7 @@ date_default_timezone_set('Europe/Kiev');
 define('DOMAIN_ROOT', 'env-8112542.unicloud.pl/new/');
 define('PROJECT_NAME', 'bambitav');
 define('SESSION_NAME', PROJECT_NAME . '_rand');
+define('AUTH_EXPIRATION_MINUTES', 30);
 
 define('ABS_PATH', rtrim(str_replace('\\', '/',dirname(__FILE__))),  '/');
 define('ABS_STATIC_PATH', rtrim(realpath(ABS_PATH.'/../static/'), '/'));

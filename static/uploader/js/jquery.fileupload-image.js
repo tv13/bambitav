@@ -196,6 +196,7 @@
                                 options.forceResize)) {
                             data[newImg.getContext ? 'canvas' : 'img'] = newImg;
                         }
+                        data.origin = data.img;
                         data.preview = newImg;
                         dfd.resolveWith(that, [data]);
                     },
@@ -300,6 +301,7 @@
             setImage: function (data, options) {
                 if (data.preview && !options.disabled) {
                     data.files[data.index][options.name || 'preview'] = data.preview;
+                    data.files[data.index][options.name || 'origin'] = data.origin;
                 }
                 return data;
             },
