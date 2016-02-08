@@ -1,99 +1,133 @@
-$(document).ready(function(){
-    $('#login_form').submit(login_click_handler);
-    $('#register_form').submit(register_click_handler);
+$(document).ready(function () {
+    var isChanged = false;
+    var login_form = $('#login_form');
+    var register_form = $('#register_form');
+    var login = $('#login');
+    var register = $('#register');
+
+    var setUnchanged = function () {
+        isChanged = false;
+        login.prop('disabled', true);
+    };
+    var setUnchangedRegister = function () {
+        isChanged = false;
+        register.prop('disabled', true);
+    };
+    var setChangedRegister = function (e) {
+        if($('#registerPassword').val() != $('#registerPasswordConfirm').val()) {
+            setUnchangedRegister();
+            if ($('#registerPasswordConfirm').val() != '') {
+                bootstrap_alert.warning('Пароли не совпадают', '_r');
+            }
+        }
+    };
+    var setChanged = function () {
+        login.prop('disabled', false);
+    };
+
+    login_form.submit(login_click_handler);
+    login_form.on('change', setChanged);
+
+    register_form.submit(register_click_handler);
+    register_form.on('change', setChangedRegister);
+
     $('#log_out').click(logout_click_handler);
+
     $('#profile_btn').click(profile_click_handler);
-});
 
-function login_click_handler()
-{
-    $.ajax({
-        url:"login.php",
-        type:"POST",
-        data:{
-             'email': $('#emailLogin').val(),
-             'password':$('#passwordLogin').val()
-        },
-        beforeSend: function () {
-
-        },
-        success: function(data){
-            if(data.status == 1)
-            {
-                $('#loginModal').modal('hide')
-                $('#sign_in').hide();
-                $('#registration_btn').hide();
-                $('#profile_btn').show();
-                $('#log_out').show();
-                
-            } else 
-            {
-                $('#sign_in').show();
-                $('#registration_btn').show();
-            }
+    var bootstrap_alert = {
+        warning: function (message, id) {
+            $('#alert_placeholder' + id).html('<div class="alert alert-danger" id="upload-danger"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
         }
-    });
-    
-    return false;
-}
+    };
 
-function register_click_handler()
-{
-    $.ajax({
-        url:"registration.php",
-        type:"POST",
-        data: $('#register_form').serialize(),
-
-        beforeSend: function () {
-
-        },
-        success: function(data){
-            if(data.status == 1)
-            {
-                $('#registrationModal').modal('hide')
-                $('#sign_in_btn').hide();
-                $('#registration_btn').hide();
-                $('#profile_btn').show();
-                $('#log_out').show();
-                $('#sign_in').hide();
-                
-            } else 
-            {
-               alert(data.statusMessage); 
-            }
-        }
-    });
-    
-    return false;
-}
-
-function logout_click_handler()
-{
+    function login_click_handler() {
         $.ajax({
-        url:"logout.php",
-        type:"POST",
-        data:{
-        },
-        beforeSend: function () {
+            url: "login.php",
+            type: "POST",
+            data: {
+                'email': $('#emailLogin').val(),
+                'password': $('#passwordLogin').val()
+            },
+            beforeSend: function () {
 
-        },
-        success: function(data){
-            if(data.status == 1)
-            {
-                $('#sign_in').show();
-                $('#registration_btn').show();
-                $('#profile_btn').hide();
-                $('#log_out').hide();
-                window.location.href = "./";
-            } else 
-            {
-               alert(data.statusMessage); 
+            },
+            success: function (data) {
+                if (data.status == 1) {
+                    $('#loginModal').modal('hide')
+                    $('#sign_in').hide();
+                    $('#registration_btn').hide();
+                    $('#profile_btn').show();
+                    $('#log_out').show();
+
+                } else {
+                    if (data.statusMessage != undefined) {
+                        setUnchanged();
+                        bootstrap_alert.warning(data.statusMessage, '');
+                    }
+                    $('#sign_in').show();
+                    $('#registration_btn').show();
+                }
             }
-        }
-    });
-}
-function profile_click_handler()
-{
-    window.location.href = "./profile.php";
+        });
 
-}
+        return false;
+    }
+
+    function register_click_handler() {
+        $.ajax({
+            url: "registration.php",
+            type: "POST",
+            data: $('#register_form').serialize(),
+
+            beforeSend: function () {
+
+            },
+            success: function (data) {
+                if (data.status == 1) {
+                    $('#registrationModal').modal('hide')
+                    $('#sign_in_btn').hide();
+                    $('#registration_btn').hide();
+                    $('#profile_btn').show();
+                    $('#log_out').show();
+                    $('#sign_in').hide();
+
+                } else {
+                    setUnchangedRegister();
+                    if (data.statusMessage != undefined) {
+                        bootstrap_alert.warning(data.statusMessage, '_r');
+                    }
+                }
+            }
+        });
+
+        return false;
+    }
+
+    function logout_click_handler() {
+        $.ajax({
+            url: "logout.php",
+            type: "POST",
+            data: {},
+            beforeSend: function () {
+
+            },
+            success: function (data) {
+                if (data.status == 1) {
+                    $('#sign_in').show();
+                    $('#registration_btn').show();
+                    $('#profile_btn').hide();
+                    $('#log_out').hide();
+                    window.location.href = "./";
+                } else {
+                    alert(data.statusMessage);
+                }
+            }
+        });
+    }
+
+    function profile_click_handler() {
+        window.location.href = "./profile.php";
+
+    }
+});
