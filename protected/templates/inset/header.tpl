@@ -71,7 +71,9 @@
                     </button>
                 </li>
                 <li>
-                    <button type="button" id="filter" class="btn btn-primary">Filter</button>
+                    <button type="button" id="filter" class="btn btn-primary" data-toggle="modal"
+                            data-target="#filterModal" data-whatever="@mdo">Filter
+                    </button>
                 </li>
 
 
@@ -175,3 +177,46 @@
 </div>
     
 
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Filter</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="register_form">
+                    <div id="alert_placeholder_r">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label for="editAgeMin">
+                                Min age
+                            </label>
+                            <input name="ageMin" class="form-control" id="editAgeMin" type="text" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editAgeMax">
+                                Max age
+                            </label>
+                            <input name="ageMax" class="form-control" id="editAgeMax" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex">Пол</label>
+                        <select id="sex" class="form-control" required>
+                            <option value="">Не указан</option>
+                            <option value="m">Мужской</option>
+                            <option value="f">Женский</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="register">Применить</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

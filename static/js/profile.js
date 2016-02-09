@@ -181,7 +181,7 @@ function add_image_to_preview_table(data)
 
 function get_image_carousel_size()
 {
-    return $('#car_inner').width() + 'x' + Math.round(0.75 * $('#car_inner').width());
+    return $('#car_inner').width() + 'x' + $('#car_inner').height();
 }
 
 function load_user_images()
