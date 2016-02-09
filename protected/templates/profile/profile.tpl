@@ -28,7 +28,7 @@
                             <div class="carousel-inner" role="listbox" id="car_inner">
                                 <div class="item active no_photo">
                                     <div class="carousel-caption">
-                                        Photo
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -223,5 +223,6 @@
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-image.js"></script>
 <!-- The File Upload validation plugin -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-validate.js"></script>
+<script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
 <script src="http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=1000&callback=countries_process"></script>

@@ -71,7 +71,7 @@
                     </button>
                 </li>
                 <li>
-                    <button type="button" id="filter" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="filter_btn" class="btn btn-primary" data-toggle="modal"
                             data-target="#filterModal" data-whatever="@mdo">Filter
                     </button>
                 </li>
@@ -189,6 +189,21 @@
                 <form role="form" id="register_form">
                     <div id="alert_placeholder_r">
                     </div>
+                        <div class="form-group hide" id="country_filter_div">
+                            <label for="country_filter">Страна</label>
+                            <select id="country_filter" class="form-control" required>
+                            </select>
+                        </div>
+                        <div class="form-group hide" id="region_filter_div">
+                            <label for="region_filter">Область</label>
+                            <select id="region_filter" class="form-control">
+                            </select>
+                        </div>
+                        <div class="form-group hide" id="city_filter_div">
+                            <label for="city_filter">Город</label>
+                            <select id="city_filter" class="form-control">
+                            </select>
+                        </div>
                     <div class="form-group">
                         <div class="col-md-6">
                             <label for="editAgeMin">
@@ -204,8 +219,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sex">Пол</label>
-                        <select id="sex" class="form-control" required>
+                        <label for="sex_filter">Пол</label>
+                        <select id="sex_filter" class="form-control" required>
                             <option value="">Не указан</option>
                             <option value="m">Мужской</option>
                             <option value="f">Женский</option>

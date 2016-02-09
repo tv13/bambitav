@@ -82,3 +82,7 @@ function load_questionnaires()
         load_questionnaires_by_params(params);
     }
 }
+
+function select_users_countries()
+{
+}

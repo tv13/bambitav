@@ -13,7 +13,7 @@ $(document).ready(function(){
     
     load_profile_data();
     load_user_images();
-    $('#profile_btn').addClass('hide');
+    $('#profile_btn, #filter_btn').addClass('hide');
     $('form#formProfile').submit(profile_submit);
     $('#country').change(load_regions);
     $('#region').change(load_cities);
@@ -206,7 +206,7 @@ function load_user_images_ajax_handler(response)
         var txt_elem_no_photo =
             '<div class="item active no_photo">'
             +   '<div class="carousel-caption">'
-            +       'Photo'
+            +       ''
             +   '</div>'
             + '</div>';
         $('#car_inner').html(txt_elem_no_photo);
@@ -243,7 +243,7 @@ function add_one_image_to_carousel(i, obj)
         +       '<span class="sr-only">Remove</span>'
         + '</div>'
         + '<div class="carousel-caption active">'
-        +       'Photo' + (i+1)
+        +       'Фото ' + (i+1)
         + '</div>'
         + '</div>';
     $('#car_ol').append(content_indi);
@@ -331,24 +331,6 @@ function profile_submit_ajax_handler(response)
 function countries_process(result)
 {
     set_option_for_select(result.response.items, '#country', false);
-}
-
-function set_option_for_select(response, id_select, is_region)
-{
-    if (response.length) {
-        $(id_select).append('<option value="0">Выберите...</option>');
-        $.each(response, function(i, val) {
-            $(id_select).append('<option value="'+val.id+'">' + val.title + '</option>');
-        });
-        $(id_select + '_div').removeClass('hide');
-        if ($(id_select).attr('val') > 0)
-        {
-            $(id_select).val($(id_select).attr('val')).change();
-        }
-    }
-    else if (is_region)  {
-        load_cities();
-    }
 }
 
 function load_regions()
