@@ -1,4 +1,3 @@
-var vk_version = '5.5';
     
 $(window).on('load', function () {
     var $preloader = $('#page-preloader'),
@@ -15,8 +14,8 @@ $(document).ready(function(){
     load_user_images();
     $('#profile_btn, #filter_btn').addClass('hide');
     $('form#formProfile').submit(profile_submit);
-    $('#country').change(load_regions);
-    $('#region').change(load_cities);
+    $('#country').change(vk.load_regions);
+    $('#region').change(vk.load_cities);
     $('#btnPublishingCost').click(count_publishing_cost);
     $('#editPublishDays').click(show_btn_publishing_cost).change(count_publishing_cost);
     $('#photoModal').on('show.bs.modal', show_photo_modal);
@@ -330,51 +329,17 @@ function profile_submit_ajax_handler(response)
 
 function countries_process(result)
 {
-    set_option_for_select(result.response.items, '#country', false);
-}
-
-function load_regions()
-{
-    $('#region_div').addClass('hide');
-    $('#region').empty();
-    $('#city_div').addClass('hide');
-    $('#city').empty();
-    if ($('#country').val() >= 0)
-    {
-        addScript('http://api.vk.com/method/database.getRegions?v=' + vk_version
-                    + '&need_all=1&offset=0&count=1000&callback=regions_process'
-                    + '&country_id=' + $('#country').val());
-    }
-}
-
-function addScript(src)
-{
-    var elem = document.createElement("script");
-    elem.src = src;
-    document.head.appendChild(elem);
+    vk.set_option_for_select(result.response.items, '#country', false);
 }
 
 function regions_process(result)
 {
-    set_option_for_select(result.response.items, '#region', true);
-}
-
-function load_cities()
-{
-    $('#city_div').addClass('hide');
-    $('#city').empty();
-    if (!$('#region_div').hasClass('hide') ? $('#region').val() >= 0 : $('#country').val() >= 0)
-    {
-        addScript('http://api.vk.com/method/database.getCities?v=' + vk_version
-                    + '&offset=0&need_all=1&count=1000&callback=cities_process'
-                    + '&country_id=' + $('#country').val()
-                    + (!$('#region_div').hasClass('hide') ? '&region_id=' + $('#region').val() : ''));
-    }
+    vk.set_option_for_select(result.response.items, '#region', true);
 }
 
 function cities_process(result)
 {
-    set_option_for_select(result.response.items, '#city', false);
+    vk.set_option_for_select(result.response.items, '#city', false);
 }
 
 function count_publishing_cost()

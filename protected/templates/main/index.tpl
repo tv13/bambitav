@@ -69,6 +69,5 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/index.js"></script>
-    <script src="http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=1000&callback=select_users_countries"></script>
 </body>
 </html>
