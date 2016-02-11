@@ -14,8 +14,8 @@ $(document).ready(function(){
     load_user_images();
     $('#profile_btn, #filter_btn').addClass('hide');
     $('form#formProfile').submit(profile_submit);
-    $('#country').change(vk.load_regions);
-    $('#region').change(vk.load_cities);
+    $('#country').change(Vk.load_regions);
+    $('#region').change(Vk.load_cities);
     $('#btnPublishingCost').click(count_publishing_cost);
     $('#editPublishDays').click(show_btn_publishing_cost).change(count_publishing_cost);
     $('#photoModal').on('show.bs.modal', show_photo_modal);
@@ -297,8 +297,8 @@ function load_profile_ajax_handler(response)
         {
             $('#country').val(data.country).change();
         }
-        $('#region').attr("val", data.region);
-        $('#city').attr("val", data.city);
+        $('#region').attr('value', data.region);
+        $('#city').attr('value', data.city);
     }
 }
 
@@ -329,17 +329,17 @@ function profile_submit_ajax_handler(response)
 
 function countries_process(result)
 {
-    vk.set_option_for_select(result.response.items, '#country', false);
+    Vk.set_option_for_select(result.response.items, '#country', false);
 }
 
 function regions_process(result)
 {
-    vk.set_option_for_select(result.response.items, '#region', true);
+    Vk.set_option_for_select(result.response.items, '#region', true);
 }
 
 function cities_process(result)
 {
-    vk.set_option_for_select(result.response.items, '#city', false);
+    Vk.set_option_for_select(result.response.items, '#city', false);
 }
 
 function count_publishing_cost()

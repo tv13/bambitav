@@ -3,7 +3,11 @@ $(document).ready(function(){
     var show_more = load_questionnaires();
     show_more();
     $("#showMore").click(show_more);
-    
+    $('#country_filter').change(function() { Vk.load_regions(true); });
+    $('#region_filter').change(function() { Vk.load_cities(true); });
+    //$('#filter_form button#set_filter').click(set_filter);
+    $('form#filter_form').submit(Filter.apply_filter);
+    Users_vk_data.add_vk_getCountries();
 });
 
 function load_questionnaires_by_params(params) {
@@ -83,6 +87,76 @@ function load_questionnaires()
     }
 }
 
-function select_users_countries()
+var Users_vk_data = {
+    vk_response: {},
+    users_vk_db_data: {},
+    
+    add_vk_getCountries:
+        function()
+        {
+            Vk.add_script('http://api.vk.com/method/database.getCountries?v=' + Vk.vk_version
+                        + '&need_all=1&count=1000&callback=Users_vk_data.process_users_vk_data');
+        },
+    
+    process_users_vk_data:
+        function(response_vk) 
+        {
+            $.get('',
+            {
+                action: 'get_users_vk_data'
+            }, handle_response).error(ajax_error_handler).handler = Users_vk_data.get_users_vk_data_ajax_handler;
+
+            Users_vk_data.vk_response = response_vk;
+        },
+
+    get_users_vk_data_ajax_handler:
+        function(response)
+        {
+            Vk.set_option_for_select(Users_vk_data.vk_response.response.items, '#country_filter', false, response.data);
+
+            Users_vk_data.users_vk_db_data = response;
+        }
+}
+
+function regions_process(result)
 {
+    Vk.set_option_for_select(result.response.items, '#region_filter', true, Users_vk_data.users_vk_db_data.data[$('#country_filter').val()]);
+}
+
+function cities_process(result)
+{
+    var region_val = !$('#region_filter_div').hasClass('hide') ? $('#region_filter').val() : 0;
+    Vk.set_option_for_select(result.response.items, '#city_filter', false, Users_vk_data.users_vk_db_data.data[$('#country_filter').val()][region_val]);
+}
+
+var Filter = {
+    apply_filter:
+        function()
+        {
+            $('form#filter_form').find('button[type=submit]').attr('disabled','disabled');
+            $.post('',
+                Filter.get_filter_request_data()
+            , handle_response).error(ajax_error_handler).handler = Filter.apply_filter_ajax_handler;
+
+            return false;
+        },
+
+    get_filter_request_data:
+        function()
+        {
+            var request_data = {
+                action: 'apply_filter'
+            };
+            var param_name;
+            $('#filter_form .filter').each(function(){
+                param_name = $(this).attr('id').replace('_filter', '');
+                request_data[param_name] = $(this).val();
+            });
+            return request_data;
+        },
+        
+    apply_filter_ajax_handler:
+        function()
+        {
+        }
 }

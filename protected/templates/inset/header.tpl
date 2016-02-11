@@ -186,48 +186,48 @@
                 <h4 class="modal-title" id="exampleModalLabel">Filter</h4>
             </div>
             <div class="modal-body">
-                <form role="form" id="register_form">
+                <form role="form" id="filter_form">
                     <div id="alert_placeholder_r">
                     </div>
                         <div class="form-group hide" id="country_filter_div">
                             <label for="country_filter">Страна</label>
-                            <select id="country_filter" class="form-control" required>
+                            <select id="country_filter" class="filter form-control" required>
                             </select>
                         </div>
                         <div class="form-group hide" id="region_filter_div">
                             <label for="region_filter">Область</label>
-                            <select id="region_filter" class="form-control">
+                            <select id="region_filter" class="filter form-control">
                             </select>
                         </div>
                         <div class="form-group hide" id="city_filter_div">
                             <label for="city_filter">Город</label>
-                            <select id="city_filter" class="form-control">
+                            <select id="city_filter" class="filter form-control">
                             </select>
                         </div>
                     <div class="form-group">
                         <div class="col-md-6">
-                            <label for="editAgeMin">
+                            <label for="age_min_filter">
                                 Min age
                             </label>
-                            <input name="ageMin" class="form-control" id="editAgeMin" type="text" required/>
+                            <input id="age_min_filter" class="filter form-control" type="text" />
                         </div>
                         <div class="col-md-6">
-                            <label for="editAgeMax">
+                            <label for="age_max_filter">
                                 Max age
                             </label>
-                            <input name="ageMax" class="form-control" id="editAgeMax" type="text" required/>
+                            <input id="age_max_filter" class="filter form-control" type="text" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="sex_filter">Пол</label>
-                        <select id="sex_filter" class="form-control" required>
+                        <select id="sex_filter" class="filter form-control">
                             <option value="">Не указан</option>
                             <option value="m">Мужской</option>
                             <option value="f">Женский</option>
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="register">Применить</button>
+                        <button type="submit" class="btn btn-primary">Применить</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </form>

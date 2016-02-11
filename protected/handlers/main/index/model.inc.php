@@ -29,7 +29,9 @@ class MainIndexModel extends MainModel
 
     public function get_lister_instance()
     {
+        $is_main = isset($_GET['page']);
         return new UsersList(
+                $is_main
 		/*$this->get_category_id(),
 		$this->get_search_string()*/
 	);
@@ -58,6 +60,60 @@ class MainIndexModel extends MainModel
                             'navy_pages'=> $this->get_navy_pages(),
                             'records'   => $questionnaires
                         );
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function action_get_users_vk_data()
+    {
+        $this->is_ajax = true;
+        $vk_data = array();
+        foreach ($this->Lister->get_vk_data() as $value) {
+            if (!$value['country'])
+            {
+                continue;
+            }
+            if (!isset($vk_data[$value['country']]))
+            {
+                $vk_data[$value['country']] =
+                                array(
+                                    $value['region'] => $this->_get_City($value)
+                                );
+            }
+            else
+            {
+                $country = $value['country'];
+                $region = $value['region'];
+                if (!isset($vk_data[$country][$region]))
+                {
+                    $vk_data[$country][$region] = $this->_get_City($value);
+                }
+                else
+                {
+                    $Region_val = $vk_data[$country][$region];
+                    if (!isset($Region_val[$value['city']]))
+                    {
+                        $Region_val[$value['city']] = 1;
+                        $vk_data[$country][$region] = $Region_val;
+                    }
+                }
+            }
+        }
+        $this->Result = $vk_data;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_City($value)
+    {
+        return array(
+                    $value['city']  => 1
+                );
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function action_apply_filter()
+    {
+        $this->is_ajax = true;
+        $this->Result = true;
     }
     /////////////////////////////////////////////////////////////////////////////
     
