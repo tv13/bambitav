@@ -19,18 +19,8 @@ var setChangedF = function () {
 
 $(document).ready(function(){
 
+    form.on('keyup', setChangedF);
     form.on('change', setChangedF);
-
-    form.find('input[type="text"]').each(function() {
-        $(this).keyup( function() {
-            setChangedF()
-        });
-    });
-    form.find('textarea').each(function() {
-        $(this).keyup( function() {
-            setChangedF()
-        });
-    });
 
     var img_size = get_image_carousel_size();
     
