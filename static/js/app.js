@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var isChanged = false;
+    var isChangedR = false;
     var login_form = $('#login_form');
     var register_form = $('#register_form');
     var login = $('#login');
@@ -10,36 +11,45 @@ $(document).ready(function () {
         login.prop('disabled', true);
     };
     var setUnchangedRegister = function () {
-        isChanged = false;
+        isChangedR = false;
         register.prop('disabled', true);
     };
     var setChangedRegister = function (e) {
-        if($('#registerPassword').val() != $('#registerPasswordConfirm').val()) {
+        $('.custom_close').click();
+        isChangedR = true;
+        if (
+            ($('#registerPassword').val() != $('#registerPasswordConfirm').val())
+            && $('#registerPasswordConfirm').val() != ''
+        ) {
             setUnchangedRegister();
             if ($('#registerPasswordConfirm').val() != '') {
                 bootstrap_alert.warning('Пароли не совпадают', '_r');
             }
+        } else {
+
+            register.prop('disabled', false);
         }
     };
     var setChanged = function () {
+        $('.custom_close').click();
         login.prop('disabled', false);
     };
 
     login_form.submit(login_click_handler);
     login_form.on('change', setChanged);
+    login_form.find('input').each(function(){
+        $(this).keyup(setChanged());
+    });
 
     register_form.submit(register_click_handler);
     register_form.on('change', setChangedRegister);
+    register_form.find('input').each(function(){
+        $(this).keyup(setChangedRegister());
+    });
 
     $('#log_out').click(logout_click_handler);
 
     $('#profile_btn').click(profile_click_handler);
-
-    var bootstrap_alert = {
-        warning: function (message, id) {
-            $('#alert_placeholder' + id).html('<div class="alert alert-danger" id="upload-danger"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
-        }
-    };
 
     function login_click_handler() {
         $.ajax({
@@ -63,7 +73,7 @@ $(document).ready(function () {
                 } else {
                     if (data.statusMessage != undefined) {
                         setUnchanged();
-                        bootstrap_alert.warning(data.statusMessage, '');
+                        this.bootstrap_alert.warning(data.statusMessage, '');
                     }
                     $('#sign_in').show();
                     $('#registration_btn').show();
@@ -95,7 +105,7 @@ $(document).ready(function () {
                 } else {
                     setUnchangedRegister();
                     if (data.statusMessage != undefined) {
-                        bootstrap_alert.warning(data.statusMessage, '_r');
+                        this.bootstrap_alert.warning(data.statusMessage, '_r');
                     }
                 }
             }

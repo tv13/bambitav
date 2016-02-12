@@ -32,42 +32,6 @@
     background-image: url(../img/no-photo.jpg);
     height: 390px;
 }
-
-.table_photo_upload {
-    table-layout: fixed;
-}
-#files td:first-child {
-    width: 116px;
-}
-/* Чтобы длинное название файла не выходило за границы попапа для загрузки файлов */
-#files p.name {
-    width: 100%;
-    white-space: nowrap; /* Отменяем перенос текста */
-    overflow: hidden; /* Обрезаем содержимое */
-    padding: 5px; /* Поля */
-    text-overflow: ellipsis; /* Многоточие */
-    display: inline-block;
-    text-align: center;
-}
-#files p.name:hover {
-    white-space: normal; /* Обычный перенос текста */
-}
-
-#page-preloader {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: #fff;
-    z-index: 100500;
-}
-#page-preloader .spinner {
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    background: url(../img/ajax-loader.gif) no-repeat 50% 50%;
-    margin: -16px 0 0 -16px;
+#upload_button {
+    margin-top:10px;
 }

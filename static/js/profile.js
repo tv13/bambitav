@@ -6,7 +6,33 @@ $(window).on('load', function () {
     $preloader.fadeOut('slow');
 });
 
+
 $(document).ready(function(){
+    var isChangedF = false;
+    var form = $('#formProfile');
+    var submit = $('#send_data');
+
+    var setUnchangedF = function () {
+        isChangedF = false;
+        submit.prop('disabled', true);
+    };
+    var setChangedF = function () {
+        submit.prop('disabled', false);
+        $('.custom_close').click();
+    };
+
+    form.on('change', setChangedF);
+
+    form.find('input[type="text"]').each(function() {
+        $(this).keyup( function() {
+            setChangedF()
+        });
+    });
+    form.find('textarea').each(function() {
+        $(this).keyup( function() {
+            setChangedF()
+        });
+    });
 
     var img_size = get_image_carousel_size();
     
@@ -133,7 +159,6 @@ $(document).ready(function(){
         );
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
-});
 
 function add_image_to_preview_table(data)
 {
@@ -297,26 +322,44 @@ function load_profile_ajax_handler(response)
         {
             $('#country').val(data.country).change();
         }
-        $('#region').attr('value', data.region);
-        $('#city').attr('value', data.city);
+        $('#region').attr("val", data.region);
+        $('#city').attr("val", data.city);
     }
 }
 
 function profile_submit()
 {
-    $('form#formProfile').find('button[type=submit]').attr('disabled','disabled');
-    $.post('profile.php',
-    {
-        'name': $('#name').val(),
-        'country': $('#country').val(),
-        'region': $('#region').val(),
-        'city': $('#city').val(),
-        'birthdate': $('#birthdate').val(),
-        'sex': $('#sex').val(),
-        'phone': $('#phone').val(),
-        'text': $('#text').val(),
-        'action': 'update_profile_info'
-    }, handle_response).error(ajax_error_handler).handler = profile_submit_ajax_handler;
+    $.ajax({
+        type: "POST",
+        url: "profile.php",
+        data:  {
+            'name': $('#name').val(),
+            'country': $('#country').val(),
+            'region': $('#region').val(),
+            'city': $('#city').val(),
+            'birthdate': $('#birthdate').val(),
+            'sex': $('#sex').val(),
+            'phone': $('#phone').val(),
+            'text': $('#text').val(),
+            'action': 'update_profile_info'
+        },
+        beforeSend: function () {
+
+        },
+        success: function(response) {
+            if (response.status == 1)
+            {
+                bootstrap_alert.success('Данные успешно сохранены!', '_form');
+            }
+            else
+            {
+                bootstrap_alert.warning(response.statusMessage, '_form');
+            }
+        },
+        complete: function () {
+            setUnchangedF();
+        }
+    });
 
     return false;
 }
@@ -324,22 +367,17 @@ function profile_submit()
 function profile_submit_ajax_handler(response)
 {
     $('form#formProfile').find('button[type=submit]').removeAttr('disabled');
-    console.log(response.status);
 }
 
-function countries_process(result)
-{
-    Vk.set_option_for_select(result.response.items, '#country', false);
-}
 
 function regions_process(result)
 {
-    Vk.set_option_for_select(result.response.items, '#region', true);
+    vk.set_option_for_select(result.response.items, '#region', true);
 }
 
 function cities_process(result)
 {
-    Vk.set_option_for_select(result.response.items, '#city', false);
+    vk.set_option_for_select(result.response.items, '#city', false);
 }
 
 function count_publishing_cost()
@@ -449,3 +487,4 @@ function show_photo_modal()
         $('#start').data().files = undefined;
     }
 }
+});
