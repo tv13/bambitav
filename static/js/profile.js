@@ -8,12 +8,10 @@ $(window).on('load', function () {
 
 
 $(document).ready(function(){
-    var isChangedF = false;
     var form = $('#formProfile');
     var submit = $('#send_data');
 
     var setUnchangedF = function () {
-        isChangedF = false;
         submit.prop('disabled', true);
     };
     var setChangedF = function () {
@@ -67,7 +65,7 @@ $(document).ready(function(){
                         'aria-valuenow',
                         0
                     ).html(0 + '%');
-                        
+
                     $($this.data().files).each(function( index, elem ) {
 
                         io_upload(elem, function(response) {
@@ -322,8 +320,8 @@ function load_profile_ajax_handler(response)
         {
             $('#country').val(data.country).change();
         }
-        $('#region').attr("val", data.region);
-        $('#city').attr("val", data.city);
+        $('#region').attr('value', data.region);
+        $('#city').attr('value', data.city);
     }
 }
 
@@ -343,9 +341,6 @@ function profile_submit()
             'text': $('#text').val(),
             'action': 'update_profile_info'
         },
-        beforeSend: function () {
-
-        },
         success: function(response) {
             if (response.status == 1)
             {
@@ -355,8 +350,6 @@ function profile_submit()
             {
                 bootstrap_alert.warning(response.statusMessage, '_form');
             }
-        },
-        complete: function () {
             setUnchangedF();
         }
     });
@@ -369,15 +362,19 @@ function profile_submit_ajax_handler(response)
     $('form#formProfile').find('button[type=submit]').removeAttr('disabled');
 }
 
+function countries_process(result)
+{
+    Vk.set_option_for_select(result.response.items, '#country', false);
+}
 
 function regions_process(result)
 {
-    vk.set_option_for_select(result.response.items, '#region', true);
+    Vk.set_option_for_select(result.response.items, '#region', true);
 }
 
 function cities_process(result)
 {
-    vk.set_option_for_select(result.response.items, '#city', false);
+    Vk.set_option_for_select(result.response.items, '#city', false);
 }
 
 function count_publishing_cost()
