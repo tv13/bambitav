@@ -11,28 +11,51 @@ require_once LAYERS_DIR.'/Paging/paged_lister.inc.php';
 
 class UsersList extends PagedLister
 {
-    private $_is_main;
+    private $_Data = null;
+    private $_Conditions;
     const SQL_JOIN = 'FROM `tm_users` AS users LEFT JOIN `tm_user_pictures` AS pic ON users.id = pic.user_id';
     /////////////////////////////////////////////////////////////////////////////
     
-    public function __construct($is_main = false)
+    public function __construct($Data)
     {
         parent::__construct();
-        $this->_is_main = $is_main;
+        $this->_Data = $Data;
     }
     /////////////////////////////////////////////////////////////////////////////
 
     function get_conditions()
     {
-        $result = array();
-
-        $result[] = 'status = -1';
-        if ($this->_is_main)
+        $this->_Conditions = array();
+        $this->_Conditions[] = 'status = -1';
+        if (!empty($this->_get_data_field('page')))
         {
-            $result[] = 'pic.main = 1 OR ISNULL(pic.main)';
+            $this->_Conditions[] = 'pic.main = 1 OR ISNULL(pic.main)';
         }
+        $this->_add_condition('country');
+        $this->_add_condition('region');
+        $this->_add_condition('city');
+        $this->_add_condition('sex');
 
-        return $result;
+        return $this->_Conditions;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _add_condition($field)
+    {
+        if (!empty($this->_get_data_field($field)))
+        {
+            $this->_Conditions[] = $field . ' = "' . $this->_get_data_field($field) . '"';
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _get_data_field($field)
+    {
+        if (isset($this->_Data[$field]))
+        {
+            return trim(html_entity_decode((string)$this->_Data[$field]));
+        }
+        return '';
     }
     ////////////////////////////////////////////////////////////////////////////
 

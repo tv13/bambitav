@@ -29,9 +29,8 @@ class MainIndexModel extends MainModel
 
     public function get_lister_instance()
     {
-        $is_main = isset($_GET['page']);
         return new UsersList(
-                $is_main
+                $_GET
 		/*$this->get_category_id(),
 		$this->get_search_string()*/
 	);
@@ -107,13 +106,6 @@ class MainIndexModel extends MainModel
         return array(
                     $value['city']  => 1
                 );
-    }
-    /////////////////////////////////////////////////////////////////////////////
-    
-    public function action_apply_filter()
-    {
-        $this->is_ajax = true;
-        $this->Result = true;
     }
     /////////////////////////////////////////////////////////////////////////////
     

@@ -312,8 +312,8 @@ function load_profile_ajax_handler(response)
         {
             $('#country').val(data.country).change();
         }
-        $('#region').attr('value', data.region);
-        $('#city').attr('value', data.city);
+        $('#region').attr('user_val', data.region);
+        $('#city').attr('user_val', data.city);
     }
 }
 

@@ -13,18 +13,26 @@ var Vk = {
     set_option_for_select:
         function(items, select_id, is_region, db_data)
         {
+            var user_db_value,
+                isset_user_db_value = false;
+                
             if (items.length) {
+                user_db_value = $(select_id).attr('user_val');
                 $(select_id).append('<option value="0">Выберите...</option>');
                 $.each(items, function(i, val) {
                     if (!db_data || db_data && db_data[val.id])
                     {
                         $(select_id).append('<option value="'+val.id+'">' + val.title + '</option>');
+                        if (user_db_value > 0 && val.id == user_db_value)
+                        {
+                            isset_user_db_value = true;
+                        }
                     }
                 });
                 $(select_id + '_div').removeClass('hide');
-                if ($(select_id).attr('value') > 0)
+                if (isset_user_db_value)
                 {
-                    $(select_id).val($(select_id).attr('value')).change();
+                    $(select_id).val(user_db_value).change();
                 }
             }
             else if (is_region)  {
@@ -40,7 +48,7 @@ var Vk = {
             $('#region' + elem_id_part).empty();
             $('#city' + elem_id_part + '_div').addClass('hide');
             $('#city' + elem_id_part).empty();
-            if ($('#country' + elem_id_part).val() >= 0)
+            if ($('#country' + elem_id_part).val() > 0)
             {
                 Vk.add_script('http://api.vk.com/method/database.getRegions?v=' + Vk.vk_version
                             + '&need_all=1&offset=0&count=1000&callback=regions_process'
@@ -54,7 +62,7 @@ var Vk = {
             var elem_id_part = Vk.get_elem_id_part(from_filter);
             $('#city' + elem_id_part + '_div').addClass('hide');
             $('#city' + elem_id_part).empty();
-            if (!$('#region' + elem_id_part + '_div').hasClass('hide') ? $('#region' + elem_id_part).val() >= 0 : $('#country' + elem_id_part).val() >= 0)
+            if (!$('#region' + elem_id_part + '_div').hasClass('hide') ? $('#region' + elem_id_part).val() > 0 : $('#country' + elem_id_part).val() > 0)
             {
                 Vk.add_script('http://api.vk.com/method/database.getCities?v=' + Vk.vk_version
                             + '&offset=0&need_all=1&count=1000&callback=cities_process'

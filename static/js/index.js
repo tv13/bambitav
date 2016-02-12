@@ -5,7 +5,6 @@ $(document).ready(function(){
     $("#showMore").click(show_more);
     $('#country_filter').change(function() { Vk.load_regions(true); });
     $('#region_filter').change(function() { Vk.load_cities(true); });
-    //$('#filter_form button#set_filter').click(set_filter);
     $('form#filter_form').submit(Filter.apply_filter);
     Users_vk_data.add_vk_getCountries();
 });
@@ -19,6 +18,17 @@ function load_questionnaires_by_params(params) {
 
         },
         success: function(data) {
+            if (data.status == 0)
+            {
+                return false;
+            }
+            if ($('#filterModal').hasClass('in'))
+            {
+                $("#itemContainer").empty();
+                $('#filterModal').modal('hide');
+                $('form#filter_form').find('button[type=submit]').removeAttr('disabled');
+            }
+            
             // show more button + text
             var navy_pages = data.data.navy_pages;
             if (navy_pages.next.text != undefined)
@@ -73,7 +83,7 @@ function load_questionnaires_by_params(params) {
     });
 }
 
-function load_questionnaires()
+function load_questionnaires(filter_data)
 {
     var page_num = 0;
     
@@ -83,6 +93,7 @@ function load_questionnaires()
                         size    : '700x400',
                         page    : ++page_num  
                     };
+        $.extend(params, filter_data);
         load_questionnaires_by_params(params);
     }
 }
@@ -134,29 +145,23 @@ var Filter = {
         function()
         {
             $('form#filter_form').find('button[type=submit]').attr('disabled','disabled');
-            $.post('',
-                Filter.get_filter_request_data()
-            , handle_response).error(ajax_error_handler).handler = Filter.apply_filter_ajax_handler;
-
+            var show_more = load_questionnaires(Filter.get_filter_request_data());
+            show_more();
+            $("#showMore")
+                    .unbind('click')
+                    .bind('click', show_more);
             return false;
         },
 
     get_filter_request_data:
         function()
         {
-            var request_data = {
-                action: 'apply_filter'
-            };
+            var request_data = {};
             var param_name;
             $('#filter_form .filter').each(function(){
                 param_name = $(this).attr('id').replace('_filter', '');
                 request_data[param_name] = $(this).val();
             });
             return request_data;
-        },
-        
-    apply_filter_ajax_handler:
-        function()
-        {
         }
 }
