@@ -6,18 +6,18 @@ $(window).on('load', function () {
     $preloader.fadeOut('slow');
 });
 
+var form = $('#formProfile');
+var submit = $('#send_data');
+
+var setUnchangedF = function () {
+    submit.prop('disabled', true);
+};
+var setChangedF = function () {
+    submit.prop('disabled', false);
+    $('.custom_close').click();
+};
 
 $(document).ready(function(){
-    var form = $('#formProfile');
-    var submit = $('#send_data');
-
-    var setUnchangedF = function () {
-        submit.prop('disabled', true);
-    };
-    var setChangedF = function () {
-        submit.prop('disabled', false);
-        $('.custom_close').click();
-    };
 
     form.on('change', setChangedF);
 
@@ -122,6 +122,7 @@ $(document).ready(function(){
                     });
                 }
             });
+
     $('#fileupload').fileupload({
         url: url,
         dataType: 'json',
@@ -158,6 +159,7 @@ $(document).ready(function(){
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
+});
 function add_image_to_preview_table(data)
 {
     var index = data.index,
@@ -484,4 +486,3 @@ function show_photo_modal()
         $('#start').data().files = undefined;
     }
 }
-});
