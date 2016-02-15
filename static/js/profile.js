@@ -1,4 +1,4 @@
-    
+
 $(window).on('load', function () {
     var $preloader = $('#page-preloader'),
         $spinner   = $preloader.find('.spinner');
@@ -23,7 +23,7 @@ $(document).ready(function(){
     form.on('change', setChangedF);
 
     var img_size = get_image_carousel_size();
-    
+
     load_profile_data();
     load_user_images();
     $('#profile_btn, #filter_btn').addClass('hide');
@@ -35,83 +35,84 @@ $(document).ready(function(){
     $('#photoModal').on('show.bs.modal', show_photo_modal);
 
     var url = window.location.hostname === 'blueimp.github.io' ?
-            '//jquery-file-upload.appspot.com/' : 'profile.php?action=file_upload';
+        '//jquery-file-upload.appspot.com/' : 'profile.php?action=file_upload';
 
-        $('#start')
-            .on('click', function () {
-                $('#start').attr('disabled',false);
-                var $this = $(this);
+    $('#start')
+        .on('click', function () {
+            $('#start').attr('disabled',false);
+            var $this = $(this);
 
-                if ($this.data().files != undefined) {
+            if ($this.data().files != undefined) {
 
-                    $('#pr_status').text('Подождите, идет загрузка...');
-                    var total = $this.data().files.length;
-                    var i = 0;
+                $('#pr_status').text('Подождите, идет загрузка...');
+                var total = $this.data().files.length;
+                var i = 0;
 
-                    $('#progress').css(
-                        'width',
-                        '0%'
-                    ).attr(
-                        'aria-valuenow',
-                        0
-                    ).html(0 + '%');
+                $('#progress').css(
+                    'width',
+                    '0%'
+                ).attr(
+                    'aria-valuenow',
+                    0
+                ).html(0 + '%');
 
-                    $($this.data().files).each(function( index, elem ) {
+                $($this.data().files).each(function( index, elem ) {
 
-                        io_upload(elem, function(response) {
-                            i++;
-                            var progress =parseInt(i*100/total);
-                            $('#progress').css(
-                                'width',
-                                progress + '%'
-                            ).attr(
-                                'aria-valuenow',
-                                progress
-                            ).html(progress + '%');
-                            response.number = i;
-                            response.total = total;
-                            response.size = img_size;
+                    io_upload(elem, function(response) {
+                        i++;
+                        var progress =parseInt(i*100/total);
+                        $('#progress').css(
+                            'width',
+                            progress + '%'
+                        ).attr(
+                            'aria-valuenow',
+                            progress
+                        ).html(progress + '%');
+                        response.number = i;
+                        response.total = total;
+                        response.size = img_size;
 
-                            $.ajax({
-                                type: "POST",
-                                url: "profile.php?action=file_upload",
-                                data: response,
-                                beforeSend: function () {
-                                },
-                                success: function(response) {
-                                    if (response.status == 1)
+                        $.ajax({
+                            type: "POST",
+                            url: "profile.php?action=file_upload",
+                            data: response,
+                            beforeSend: function () {
+                            },
+                            success: function(response) {
+                                if (response.status == 1)
+                                {
+                                    if ($('#car_inner div').first().hasClass('no_photo'))
                                     {
-                                        if ($('#car_inner div').first().hasClass('no_photo'))
-                                        {
-                                            i = 0;
-                                            $('#car_ol').html('');
-                                            $('#car_inner').html('');
-                                            $('#car_inner div').first().removeClass('no_photo');
-                                        }
-                                        else
-                                        {
-                                            i = $('#car_ol li').length;
-                                        }
-                                        add_one_image_to_carousel(i, response.data);
-                                        carousel_setFirst_addEvents();
-                                        if ($('#start').data().files != undefined) {
-                                            $('#start').data().files = undefined;
-                                        }
-                                        $('#pr_status').text('Файлы успешно загружены!');
-                                        $('#photoModal').modal('hide');
+                                        i = 0;
+                                        $('#car_ol').html('');
+                                        $('#car_inner').html('');
+                                        $('#car_inner div').first().removeClass('no_photo');
                                     }
                                     else
                                     {
-                                        alert(response.statusMessage);
+                                        i = $('#car_ol li').length;
                                     }
-                                },
-                                complete: function () {
+                                    add_one_image_to_carousel(i, response.data);
+                                    carousel_setFirst_addEvents();
+                                    if ($('#start').data().files != undefined) {
+                                        $('#start').data().files = undefined;
+                                    }
+                                    $('#pr_status').text('Файлы успешно загружены!');
+                                    bootstrap_alert.success('Файлы успешно загружены!', '_image');
+                                    $('#photoModal').modal('hide');
                                 }
-                            });
+                                else
+                                {
+                                    bootstrap_alert.warning(response.statusMessage, '_image');
+                                }
+                            },
+                            complete: function () {
+                            }
                         });
                     });
-                }
-            });
+                });
+            }
+        });
 
     $('#fileupload').fileupload({
         url: url,
@@ -135,10 +136,10 @@ $(document).ready(function(){
         else {
             add_image_to_preview_table(data);
             /*if (file.error) {
-                node
-                    .append('<br>')
-                    .append($('<span class="text-danger"/>').text(file.error));
-            }*/
+             node
+             .append('<br>')
+             .append($('<span class="text-danger"/>').text(file.error));
+             }*/
         }
     }).on('fileuploadprogressall', function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -201,10 +202,10 @@ function get_image_carousel_size()
 function load_user_images()
 {
     $.get('profile.php',
-    {
-        action: 'load_user_images',
-        size  : get_image_carousel_size()
-    }, handle_response).error(ajax_error_handler).handler = load_user_images_ajax_handler;
+        {
+            action: 'load_user_images',
+            size  : get_image_carousel_size()
+        }, handle_response).error(ajax_error_handler).handler = load_user_images_ajax_handler;
 }
 
 function load_user_images_ajax_handler(response)
@@ -216,7 +217,7 @@ function load_user_images_ajax_handler(response)
     else
     {
         $('#car_ol').html('');
-        
+
         var txt_elem_no_photo =
             '<div class="item active no_photo">'
             +   '<div class="carousel-caption">'
@@ -231,7 +232,7 @@ function add_images_to_carousel(files)
 {
     $('#car_ol').html('');
     $('#car_inner').html('');
-    
+
     $.each(files, function (i, obj) {
         add_one_image_to_carousel(i, obj);
     });
@@ -273,11 +274,11 @@ function carousel_setFirst_addEvents()
     }
     $('#carousel-example-generic').carousel('pause');
     $('.carousel_set_main')
-                    .unbind('click')
-                    .bind('click', set_main_image);
+        .unbind('click')
+        .bind('click', set_main_image);
     $('.carousel_remove')
-                    .unbind('click')
-                    .bind('click', carousel_image_remove);
+        .unbind('click')
+        .bind('click', carousel_image_remove);
     if ($('#car_inner .item').length > 1)
     {
         $('a.arrow').removeClass('hide');
@@ -291,9 +292,9 @@ function carousel_setFirst_addEvents()
 function load_profile_data()
 {
     $.get('profile.php',
-    {
-        'action': 'load_profile_info'
-    }, handle_response).error(ajax_error_handler).handler = load_profile_ajax_handler;
+        {
+            'action': 'load_profile_info'
+        }, handle_response).error(ajax_error_handler).handler = load_profile_ajax_handler;
 }
 
 function load_profile_ajax_handler(response)
@@ -376,7 +377,7 @@ function count_publishing_cost()
     var cost_publish = publish_days * 1;
     var balance = $form_publish.find('#balanceValue').text();
     if (!isInt(publish_days) || parseInt(publish_days) <= 0) {
-        alert("Количество дней должно быть целое и положительное!");
+        bootstrap_alert.warning('Количество дней должно быть целое и положительное!', '_days');
         return;
     }
     $form_publish.find('#costBlock').removeClass('hide');
@@ -417,10 +418,10 @@ function carousel_image_remove() {
 
             var image_id = $($('.item.active').find('img')[0]).attr('id');
             $.post('profile.php',
-            {
-                action: 'image_remove',
-                id: image_id
-            }, handle_response).error(ajax_error_handler).handler = image_remove_ajax_handler;
+                {
+                    action: 'image_remove',
+                    id: image_id
+                }, handle_response).error(ajax_error_handler).handler = image_remove_ajax_handler;
         }
     }
 }
@@ -438,10 +439,10 @@ function set_main_image()
     if ($('.item.active').find('img').length > 0 && $($('.item.active').find('img')[0]).attr('id') != undefined) {
         var image_id = $($('.item.active').find('img')[0]).attr('id');
         $.post('profile.php',
-        {
-            action: 'set_main',
-            id: image_id
-        }, handle_response).error(ajax_error_handler).handler = set_main_image_ajax_handler;
+            {
+                action: 'set_main',
+                id: image_id
+            }, handle_response).error(ajax_error_handler).handler = set_main_image_ajax_handler;
     }
 }
 
@@ -468,9 +469,9 @@ function show_photo_modal()
 {
     $('#pr_status').text('');
     $('#progress')
-                .css('width', '0%')
-                .attr('aria-valuenow', 0)
-                .text('');
+        .css('width', '0%')
+        .attr('aria-valuenow', 0)
+        .text('');
     $('#files').empty();
     if ($('#start').data().files != undefined) {
         $('#start').data().files = undefined;

@@ -35,3 +35,9 @@
 #upload_button {
     margin-top:10px;
 }
+.custom_alert{
+    height:52px;
+    margin-bottom:10px;
+    margin-top:5px;
+    text-align: left;
+}

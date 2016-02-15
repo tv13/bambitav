@@ -28,7 +28,7 @@
                             <div class="carousel-inner" role="listbox" id="car_inner">
                                 <div class="item active no_photo">
                                     <div class="carousel-caption">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -67,26 +67,28 @@
                                 <h4 class="modal-title" id="exampleModalLabel">Upload photo</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="container">
                         <span class="btn btn-success fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>Добавить изображения...</span>
                             <!-- The file input field used as target for the file upload widget -->
                             <input id="fileupload" type="file" name="files[]" multiple>
                         </span>
-                                    <button type="submit" class="btn btn-primary" id="start">
-                                        <i class="glyphicon glyphicon-upload"></i>
-                                        <span>Start upload</span>
-                                    </button>
-                                    <br>
-                                    <br>
-                                    <!-- The global progress bar -->
-                                    <p id="pr_status"></p>
-                                    <div class="progress">
-                                        <div id="progress" class="progress-bar progress-bar-striped active" role="progressbar"
-                                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-                                            <span class="sr-only">0%</span>
-                                        </div>
+                                <button type="submit" class="btn btn-primary" id="start">
+                                    <i class="glyphicon glyphicon-upload"></i>
+                                    <span>Start upload</span>
+                                </button>
+                                <br>
+                                <br>
+                                <!-- The global progress bar -->
+                                <p id="pr_status"></p>
+                                <div class="progress">
+                                    <div id="progress" class="progress-bar progress-bar-striped active" role="progressbar"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                        <span class="sr-only">0%</span>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div id="alert_placeholder_image" class="custom_alert">
                                     </div>
                                     <!-- The container for the uploaded files -->
                                     <table role="presentation" class="table table-striped table_photo_upload">
@@ -148,8 +150,7 @@
                             <label for="text">Текст объявления</label>
                             <textarea class="form-control" id="text" rows="3" required></textarea>
                         </div>
-                        <hr>
-                        <div id="alert_placeholder_form">
+                        <div id="alert_placeholder_form" class="custom_alert">
                         </div>
                         <button type="submit" class="btn btn-primary" id="send_data" disabled>Сохранить</button>
                         <button type="button" class="btn btn-success" data-toggle="modal"
@@ -190,7 +191,7 @@
                                             id="needPayValue"></span> <span id="needPayCurrency"></span></p>
                             </div>
                             <div class="modal-footer">
-                                <div id="alert_placeholder">
+                                <div id="alert_placeholder_days" class="custom_alert">
                                 </div>
                                 <button id="btnPublishingCost" type="button" class="btn btn-primary">Расчитать</button>
                                 <button id="btnPublish" type="button" class="btn btn-primary hide">Разместить</button>
