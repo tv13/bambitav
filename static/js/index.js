@@ -18,15 +18,17 @@ function load_questionnaires_by_params(params) {
 
         },
         success: function(data) {
+            $('form#filter_form').find('button[type=submit]').removeAttr('disabled');
+            
             if (data.status == 0)
             {
+                alert(data.statusMessage);
                 return false;
             }
             if ($('#filterModal').hasClass('in'))
             {
                 $("#itemContainer").empty();
                 $('#filterModal').modal('hide');
-                $('form#filter_form').find('button[type=submit]').removeAttr('disabled');
             }
             
             // show more button + text

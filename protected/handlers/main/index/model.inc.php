@@ -29,11 +29,7 @@ class MainIndexModel extends MainModel
 
     public function get_lister_instance()
     {
-        return new UsersList(
-                $_GET
-		/*$this->get_category_id(),
-		$this->get_search_string()*/
-	);
+        return new UsersList($_GET);
     }
     /////////////////////////////////////////////////////////////////////////////
     

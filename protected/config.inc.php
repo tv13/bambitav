@@ -70,4 +70,11 @@ define('PER_PAGE_DEFAULT', 10);
 define('IMAGES_SERVER', 'https://i.onthe.io/');
 define('IMAGES_APP', 'wjfkb8');
 define('IMAGES_SECRET', 'AJHBOyn1LAEDIPax53bO91M6d3oPwSZX');
+
+////////////////////////////////////////////////////////////////////////////
+
+// filter
+define('FILTER_AGE_MIN', 6);
+define('FILTER_AGE_MAX', 70);
+
 ?>
