@@ -51,7 +51,7 @@ var Vk = {
             if ($('#country' + elem_id_part).val() > 0)
             {
                 Vk.add_script('http://api.vk.com/method/database.getRegions?v=' + Vk.vk_version
-                            + '&need_all=1&offset=0&count=1000&callback=regions_process'
+                            + '&need_all=0&offset=0&count=1000&callback=regions_process'
                             + '&country_id=' + $('#country' + elem_id_part).val());
             }
         },
@@ -65,7 +65,7 @@ var Vk = {
             if (!$('#region' + elem_id_part + '_div').hasClass('hide') ? $('#region' + elem_id_part).val() > 0 : $('#country' + elem_id_part).val() > 0)
             {
                 Vk.add_script('http://api.vk.com/method/database.getCities?v=' + Vk.vk_version
-                            + '&offset=0&need_all=1&count=1000&callback=cities_process'
+                            + '&offset=0&need_all=0&count=1000&callback=cities_process'
                             + '&country_id=' + $('#country' + elem_id_part).val()
                             + (!$('#region' + elem_id_part + '_div').hasClass('hide') ? '&region_id=' + $('#region' + elem_id_part).val() : ''));
             }

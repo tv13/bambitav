@@ -250,7 +250,7 @@ class User extends EntityWithDB
     {
         $this->Fields['email']->set($this->_get_data_field('email'));
         $this->Fields['password']->set($this->_get_data_field('password'));
-        $this->Fields['status']->set(-1);
+        $this->Fields['status']->set(-2);
         $this->Fields['dt_create']->now();
         $this->DBHandler->insert();
     }
@@ -290,6 +290,7 @@ class User extends EntityWithDB
         $this->Fields['sex']->set($this->_get_data_field('sex'));
         $this->Fields['phone']->set($this->_get_data_field('phone'));
         $this->Fields['text']->set($this->_get_data_field('text'));
+        $this->Fields['status']->set(-1);
         $this->DBHandler->update();
     }
     /////////////////////////////////////////////////////////////////////////////

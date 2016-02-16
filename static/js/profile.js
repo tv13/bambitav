@@ -334,6 +334,9 @@ function profile_submit()
             'text': $('#text').val(),
             'action': 'update_profile_info'
         },
+        beforeSend: function () {
+            $('form#formProfile').find('button[type=submit]').attr('disabled','disabled');
+        },
         success: function(response) {
             if (response.status == 1)
             {
