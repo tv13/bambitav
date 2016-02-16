@@ -12,100 +12,43 @@
 
 <div class="jumbotron">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Heading</h2>
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
-                             data-interval="false">
-                            <!-- Indicators -->
-                            <ol id="car_ol" class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            </ol>
+        <div class="row clearfix">
+            <div class="col-sm-12 col-md-6 image_content">
+                <h2>Heading</h2>
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
+                     data-interval="false">
+                    <!-- Indicators -->
+                    <ol id="car_ol" class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    </ol>
 
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner" role="listbox" id="car_inner">
-                                <div class="item active no_photo">
-                                    <div class="carousel-caption">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox" id="car_inner">
+                        <div class="item active no_photo">
+                            <div class="carousel-caption">
 
-                                    </div>
-                                </div>
                             </div>
-
-                            <!-- Controls -->
-                            <a class="left carousel-control arrow hide" href="#carousel-example-generic" role="button"
-                               data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="right carousel-control arrow hide" href="#carousel-example-generic" role="button"
-                               data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
                         </div>
                     </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control arrow hide" href="#carousel-example-generic" role="button"
+                       data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control arrow hide" href="#carousel-example-generic" role="button"
+                       data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="button" id="upload_button" class="btn btn-primary center-block"
-                                data-toggle="modal" data-target="#photoModal" data-whatever="@mdo">Загрузить фото
-                        </button>
-                    </div>
-                </div>
-
-
-                <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="exampleModalLabel">Upload photo</h4>
-                            </div>
-                            <div class="modal-body">
-                        <span class="btn btn-success fileinput-button">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            <span>Добавить изображения...</span>
-                            <!-- The file input field used as target for the file upload widget -->
-                            <input id="fileupload" type="file" name="files[]" multiple>
-                        </span>
-                                <button type="submit" class="btn btn-primary" id="start">
-                                    <i class="glyphicon glyphicon-upload"></i>
-                                    <span>Start upload</span>
-                                </button>
-                                <br>
-                                <br>
-                                <!-- The global progress bar -->
-                                <p id="pr_status"></p>
-                                <div class="progress">
-                                    <div id="progress" class="progress-bar progress-bar-striped active" role="progressbar"
-                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-                                        <span class="sr-only">0%</span>
-                                    </div>
-                                </div>
-                                <div class="container">
-                                    <div id="alert_placeholder_image" class="custom_alert">
-                                    </div>
-                                    <!-- The container for the uploaded files -->
-                                    <table role="presentation" class="table table-striped table_photo_upload">
-                                        <tbody class="files" id="files"></tbody>
-                                    </table>
-
-                                    <br>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
+                <button type="button" id="upload_button" class="btn btn-primary center-block"
+                        data-toggle="modal" data-target="#photoModal" data-whatever="@mdo">Загрузить фото
+                </button>
             </div>
-            <div class="col-md-6">
+
+            <div class="col-sm-12 col-md-6 clearfix jumbotron">
                 <h2>Heading</h2>
                 <form id="formProfile">
                     <fieldset enable>
@@ -158,9 +101,53 @@
                         </button>
                     </fieldset>
                 </form>
-
-
             </div> <!-- /container -->
+
+
+            <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">Upload photo</h4>
+                        </div>
+                        <div class="modal-body">
+                        <span class="btn btn-success fileinput-button">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>Добавить изображения...</span>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <input id="fileupload" type="file" name="files[]" multiple>
+                        </span>
+                            <button type="submit" class="btn btn-primary" id="start">
+                                <i class="glyphicon glyphicon-upload"></i>
+                                <span>Start upload</span>
+                            </button>
+                            <br>
+                            <br>
+                            <!-- The global progress bar -->
+                            <p id="pr_status"></p>
+                            <div class="progress">
+                                <div id="progress" class="progress-bar progress-bar-striped active" role="progressbar"
+                                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                    <span class="sr-only">0%</span>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div id="alert_placeholder_image" class="custom_alert">
+                                </div>
+                                <!-- The container for the uploaded files -->
+                                <table role="presentation" class="table table-striped table_photo_upload">
+                                    <tbody class="files" id="files"></tbody>
+                                </table>
+
+                                <br>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
             <!-- publish questionnaire -->
             <div class="modal fade" id="publishQuestionnaire" tabindex="-1" role="dialog"
