@@ -61,16 +61,20 @@
                             <select id="country" class="form-control" required>
                             </select>
                         </div>
-                        <div class="form-group hide" id="region_div">
+                        <div class="form-group hide" id="city_main_div">
+                            <label for="city_main">Город</label>
+                            <select id="city_main" class="form-control" required>
+                            </select>
+                        </div>
+                        <div class="form-group hide" id="city_other_div">
+                            <label for="city_other">Другой город</label>
+                            <input type="text" id="city_other" class="form-control">
+                        </div>
+                        <!--<div class="form-group hide" id="region_div">
                             <label for="region">Область</label>
                             <select id="region" class="form-control">
                             </select>
-                        </div>
-                        <div class="form-group hide" id="city_div">
-                            <label for="city">Город</label>
-                            <select id="city" class="form-control">
-                            </select>
-                        </div>
+                        </div>-->
 
                         <div class="form-group">
                             <label for="birthdate">Дата рождения</label>

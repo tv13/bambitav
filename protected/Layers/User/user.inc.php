@@ -27,7 +27,7 @@ class User extends EntityWithDB
         $result['birthdate']    = new FieldDate();
         $result['services']     = new FieldInt();
         $result['country']      = new FieldInt();
-        $result['region']       = new FieldInt();
+        //$result['region']       = new FieldInt();
         $result['city']         = new FieldInt();
         $result['text']         = new FieldString();
         $result['size']         = new FieldInt();
@@ -283,7 +283,7 @@ class User extends EntityWithDB
         $this->_set_user_by_id($user_id);
         $this->Fields['name']->set($this->_get_data_field('name'));
         $this->Fields['country']->set($this->_get_data_field('country'));
-        $this->Fields['region']->set($this->_get_data_field('region'));
+        //$this->Fields['region']->set($this->_get_data_field('region'));
         $this->Fields['city']->set($this->_get_data_field('city'));
         $birthtime = strtotime($this->_get_data_field('birthdate'));
         $this->Fields['birthdate']->set(date('Y-m-d', $birthtime));
@@ -301,7 +301,7 @@ class User extends EntityWithDB
         return array(
             'name'      => $this->Fields['name']->get(),
             'country'   => $this->Fields['country']->get(),
-            'region'    => $this->Fields['region']->get(),
+            //'region'    => $this->Fields['region']->get(),
             'city'      => $this->Fields['city']->get(),
             'birthdate' => $this->Fields['birthdate']->get(),
             'sex'       => $this->Fields['sex']->get(),
