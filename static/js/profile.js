@@ -384,7 +384,7 @@ function cities_other_process(result)
     Vk.show_cities_by_name(result.response.items);
 }
 
-function city_other_show_name(result)
+function city_other_show_names(result)
 {
     $('#city_other').val(result.response[0].title);
 }

@@ -149,7 +149,7 @@ var Vk = {
         function(city_ids)
         {
             Vk.add_script('http://api.vk.com/method/database.getCitiesById?v=' + Vk.vk_version
-                        + '&city_ids=' + city_ids + '&callback=city_other_show_name');
+                        + '&city_ids=' + city_ids.toString() + '&callback=city_other_show_names');
         },
         
     show_cities_by_name:

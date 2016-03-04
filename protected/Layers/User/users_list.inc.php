@@ -37,7 +37,7 @@ class UsersList extends PagedLister
             $this->_Conditions[] = '(pic.main = 1 OR ISNULL(pic.main))';
         }
         $this->_add_condition('country');
-        $this->_add_condition('region');
+        //$this->_add_condition('region');
         $this->_add_condition('city');
         $this->_add_condition('sex');
         if (!empty($this->_get_data_field('age_min')))
@@ -114,7 +114,7 @@ class UsersList extends PagedLister
     function get_vk_data()
     {
         $this-> db-> exec_query("
-            SELECT country, region, city FROM `tm_users`"
+            SELECT country, city FROM `tm_users`"
             . $this-> get_where_part());
         return $this-> db-> get_all_data();
     }

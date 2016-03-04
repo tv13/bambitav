@@ -196,11 +196,11 @@
                             <select id="country_filter" class="filter form-control" required>
                             </select>
                         </div>
-                        <div class="form-group hide" id="region_filter_div">
+                        <!--<div class="form-group hide" id="region_filter_div">
                             <label for="region_filter">Область</label>
                             <select id="region_filter" class="filter form-control">
                             </select>
-                        </div>
+                        </div>-->
                         <div class="form-group hide" id="city_filter_div">
                             <label for="city_filter">Город</label>
                             <select id="city_filter" class="filter form-control">

@@ -69,6 +69,32 @@ class MainIndexModel extends MainModel
             }
             if (!isset($vk_data[$value['country']]))
             {
+                $vk_data[$value['country']] = array($value['city']);
+            }
+            else
+            {
+                $country = $value['country'];
+                if (!in_array($value['city'], $vk_data[$country]))
+                {
+                    $vk_data[$country][] = $value['city'];
+                }
+            }
+        }
+        $this->Result = $vk_data;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    /*public function action_get_users_vk_data()
+    {
+        $this->is_ajax = true;
+        $vk_data = array();
+        foreach ($this->Lister->get_vk_data() as $value) {
+            if (!$value['country'])
+            {
+                continue;
+            }
+            if (!isset($vk_data[$value['country']]))
+            {
                 $vk_data[$value['country']] =
                                 array(
                                     $value['region'] => $this->_get_City($value)
@@ -102,7 +128,7 @@ class MainIndexModel extends MainModel
         return array(
                     $value['city']  => 1
                 );
-    }
+    }*/
     /////////////////////////////////////////////////////////////////////////////
     
     public function run()
