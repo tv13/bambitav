@@ -81,7 +81,7 @@ function load_questionnaires_by_params(params) {
                                 +                       records[i].name
                                 +                   '</span>'
                                 +                   '<span class="profile-right">'
-                                +                       (records[i].age < 100 ? records[i].age + ', ' : '')
+                                +                       (records[i].age >= 6 && records[i].age < 100 ? records[i].age + ', ' : '')
                                 +                       '<i class="fa fa-' + sex_img + ' profile_ico"></i>'
                                 +                   '</span>'
                                 +               '</a>'
