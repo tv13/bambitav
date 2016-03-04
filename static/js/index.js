@@ -54,31 +54,39 @@ function load_questionnaires_by_params(params) {
             var current_num = (navy_pages.page_num-1) * navy_pages.per_page;
             var i = 0;
             var strElemsAppend = "";
-            var gender;
+            var sex_img;
             while (i < records.length) {
-                gender = records[i].gender == 'f' ? 'venus' : 'mars';
+                if (records[i].sex == 'm')
+                {
+                    sex_img = 'mars';
+                }
+                else if (records[i].sex == 'f')
+                {
+                    sex_img = 'venus';
+                }
+                
                 if (!(current_num % 2))
                 {
                     strElemsAppend += '<div class="row">';
                 }
                 strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center">'
-                                + '     <a href="#">'
-                                + '         <img class="img-responsive"'
-                                + '             src="' + (records[i].url ? records[i].url : 'http://placehold.it/700x400') + '" alt="">'
-                                + '     </a>'
-                                + '     <div class="caption">'
-                                + '         <h3>'
-                                + '             <a href="#">'
-                                + '                 <span class="profile-left">'
+                                +       '<a href="#">'
+                                +           '<img class="img-responsive"'
+                                +               'src="' + (records[i].url ? records[i].url : 'http://placehold.it/700x400') + '" alt="">'
+                                +       '</a>'
+                                +       '<div class="caption">'
+                                +           '<h3>'
+                                +               '<a href="#">'
+                                +                   '<span class="profile-left">'
                                 +                       records[i].name
-                                + '                 </span>'
-                                + '                 <span class="profile-right">'
-                                + '                     22, '
-                                + '                     <i class="fa fa-' + gender + ' profile_ico"></i>'
-                                + '                 </span>'
-                                + '             </a>'
-                                + '         </h3>'
-                                + '     </div>'
+                                +                   '</span>'
+                                +                   '<span class="profile-right">'
+                                +                       (records[i].age < 100 ? records[i].age + ', ' : '')
+                                +                       '<i class="fa fa-' + sex_img + ' profile_ico"></i>'
+                                +                   '</span>'
+                                +               '</a>'
+                                +           '</h3>'
+                                +       '</div>'
                                 + '</div>';
                             
                 if (current_num % 2)
