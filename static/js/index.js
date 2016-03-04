@@ -1,104 +1,133 @@
 $(document).ready(function(){
-    
-    var show_more = load_questionnaires();
-    show_more();
-    $("#showMore").click(show_more);
-    $('#country_filter').change(function() { Vk.load_regions(true); });
-    $('#region_filter').change(function() { Vk.load_cities(true); });
-    $('form#filter_form').submit(Filter.apply_filter);
-    Users_vk_data.add_vk_getCountries();
+
+    Questionnaires.init();
 });
 
-function load_questionnaires_by_params(params) {
-    $.ajax({
-        url : "",
-        type: "GET",
-        data: params,
-        beforeSend: function () {
+var Questionnaires = {
+    showMore :null,
+    init: function() {
 
-        },
-        success: function(data) {
-            $('form#filter_form').find('button[type=submit]').removeAttr('disabled');
-            
-            if (data.status == 0)
-            {
-                alert(data.statusMessage);
-                return false;
-            }
-            if ($('#filterModal').hasClass('in'))
-            {
-                $("#itemContainer").empty();
-                $('#filterModal').modal('hide');
-            }
-            
-            // show more button + text
-            var navy_pages = data.data.navy_pages;
-            if (navy_pages.next.text != undefined)
-            {
-                $("#textShowMore").text(navy_pages.next.text);
-            }
-            else
-            {
-                $("#showMore").addClass("hide");
-            }
-            // total count records
-            if (params.page == 1)
-            {
-                $("#totalCount").text(data.data.navy_pages.total);
-            }
-            
-            
-            var records = data.data.records;
-            var current_num = (navy_pages.page_num-1) * navy_pages.per_page;
-            var i = 0;
-            var strElemsAppend = "";
-            while (i < records.length) {
-                if (!(current_num % 2))
+        this.showMore = $("#showMore");
+
+        this.load_questionnaires();
+        this.showMore.click(this.load_questionnaires);
+
+        $('#country_filter').change(function() { Vk.load_regions(true); });
+        $('#region_filter').change(function() { Vk.load_cities(true); });
+
+        $('form#filter_form').submit(Filter.apply_filter);
+
+        Users_vk_data.add_vk_getCountries();
+    },
+    load_questionnaires_by_params: function(params) {
+        $.ajax({
+            url : "",
+            type: "GET",
+            data: params,
+            beforeSend: function () {
+
+            },
+            success: function(data) {
+
+                data = {"status":1,"data":{"navy_pages":{"links":[{"text":"1-10","url":"\/new\/?action=content_data&amp;size=700x400&amp;page=1","is_current":true,"page_num":1},{"text":"11-13","url":"\/new\/?action=content_data&amp;size=700x400&amp;page=2","is_current":false,"page_num":2}],"prev":[],"next":{"text":"11-13","url":"\/new\/?action=content_data&amp;size=700x400&amp;page=2","is_current":false,"page_num":2},"first":[],"last":{"text":"11-13","url":"\/new\/?action=content_data&amp;size=700x400&amp;page=2","is_current":false,"page_num":2},"total":"4","links_count":2,"page_num":1,"from_item":1,"url_format":"\/new\/?action=content_data&amp;size=700x400&amp;page=%d","per_page":10},"records":[{"name":"Isabella","age":"18", "gender":"f","url":"https:\/\/i.onthe.io\/wjfkb87g4bji458ph.r525x390.1bc75003.jpg"},{"name":"Susanna","age":"19", "gender":"f", "url":"https:\/\/i.onthe.io/wjfkb8qqknks81enc.r525x390.707e3aae.jpg"},{"name":"Eleonora","age":"50", "gender":"m","url":"https:\/\/i.onthe.io\/wjfkb866aoqcpo2o6.r700x400.f6a29886.jpg"},{"name":"Bambi","age":"25","url":"https:\/\/i.onthe.io\/wjfkb83e3bqacq0vl.r700x400.cafccadd.jpg"}]}};
+
+                $('form#filter_form').find('button[type=submit]').removeAttr('disabled');
+
+                if (data.status == 0)
                 {
-                    strElemsAppend += '<div class="row">';
+                    alert(data.statusMessage);
+                    return false;
                 }
-                strElemsAppend += '<div class="col-md-6 portfolio-item">'
-                                + '     <a href="#">'
-                                + '         <img class="img-responsive" style="outline: 2px solid #000; width="700"; height="400";"'
-                                + '             src="' + (records[i].url ? records[i].url : 'http://placehold.it/700x400') + '"'
-                                + '             width="700" height="400" alt="">'
-                                + '     </a>'
-                                + '     <h3>'
-                                + '         <a href="#">' + records[i].name + ", " + records[i].birthdate + '</a>'
-                                + '     </h3>'
-                                + '</div>';
-                            
-                if (current_num % 2)
-                {
-                    strElemsAppend += '</div>';
-                }
-                if (!i && current_num % 2)
-                {
-                    $("#itemContainer div.row:last").append(strElemsAppend);
-                    strElemsAppend = "";
-                }
-                ++i;
-                ++current_num;
+                Questionnaires.show();
+                Questionnaires.setNavy(data.data.navy_pages, params.page);
+
+                $("#itemContainer").append(Questionnaires.fill(data.data.records, data.data.navy_pages));
             }
-            $("#itemContainer").append(strElemsAppend);
+        });
+    },
+    fill: function(records, navy_pages){
+        var strElemsAppend = "";
+        var current_num = (navy_pages.page_num-1) * navy_pages.per_page;
+        var i = 0;
+        while (i < records.length) {
+            if (!(current_num % 2))
+            {
+                strElemsAppend += '<div class="row">';
+            }
+            strElemsAppend += Questionnaires.build(records[i]);
+
+            if (current_num % 2)
+            {
+                strElemsAppend += '</div>';
+            }
+            if (!i && current_num % 2)
+            {
+                $("#itemContainer div.row:last").append(strElemsAppend);
+                strElemsAppend = "";
+            }
+            ++i;
+            ++current_num;
         }
-    });
-}
 
-function load_questionnaires(filter_data)
-{
-    var page_num = 0;
-    
-    return function() {
+        return strElemsAppend;
+    },
+    build: function(record) {
+        var gender = record.gender == 'f' ? 'venus' : 'mars';
+
+        return '<div class="col-md-6 portfolio-item thumbnail text-center">'
+                    + '     <a href="#">'
+                    + '         <img class="img-responsive" '
+                    + '             src="' + (record.url ? record.url : 'http://placehold.it/700x400') + '"'
+                    + '              alt="">'
+                    + '         <div class="caption">'
+                    + '             <h3>'
+                    + '                 <a href="#">' +
+                    '<span class="profile-left">' + record.name + '</span>' +
+                    '<span class="profile-right">' + record.age +
+                    ',&nbsp;<i class="fa fa-' + gender  + ' profile_ico"></i>' +
+                    '</span>' +
+                    '</a>'
+                    + '             </h3>'
+                    + '         </div>'
+                    + '     </a>'
+                    + '</div>';
+    },
+    setNavy: function(navy_pages, page) {
+        if (navy_pages.next.text != undefined)
+        {
+            $("#textShowMore").text(navy_pages.next.text);
+        }
+        else
+        {
+            $("#showMore").addClass("hide");
+        }
+
+        if (page == 1)
+        {
+            $("#totalCount").text(navy_pages.total);
+        }
+    },
+    show: function(){
+        if ($('#filterModal').hasClass('in'))
+        {
+            $("#itemContainer").empty();
+            $('#filterModal').modal('hide');
+        }
+    },
+    load_questionnaires: function(filter_data) {
+        var page_num = 0;
+        console.log(3);
         var params= {
-                        action  : 'content_data',
-                        size    : '700x400',
-                        page    : ++page_num  
-                    };
+            action  : 'content_data',
+            size    : '700x400',
+            page    : ++page_num
+        };
         $.extend(params, filter_data);
-        load_questionnaires_by_params(params);
+
+        return Questionnaires.load_questionnaires_by_params(params);
     }
-}
+
+};
 
 var Users_vk_data = {
     vk_response: {},

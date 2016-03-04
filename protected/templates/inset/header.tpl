@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="{$HTTP_STATIC_PATH}/js/alert_custom.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/common.js" type="text/javascript"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -51,30 +52,29 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <button type="button" id="sign_in" class="btn btn-primary" data-toggle="modal"
-                            data-target="#loginModal" data-whatever="@mdo" {if $is_logged}style="display:none"{/if}>Sign
-                        in
+                    <button type="button" id="sign_in" class="btn btn-primary bambi_high" data-toggle="modal"
+                            data-target="#loginModal" data-whatever="@mdo" {if $is_logged}style="display:none"{/if}>Войти
                     </button>
                 </li>
                 <li>
-                    <button type="button" id="log_out" class="btn btn-primary"
-                            {if !$is_logged}style="display:none"{/if}>Log out
+                    <button type="button" id="log_out" class="btn btn-primary bambi_high"
+                            {if !$is_logged}style="display:none"{/if}>Выйти
                     </button>
                 </li>
                 <li>
-                    <button type="button" id="registration_btn" class="btn btn-primary" data-toggle="modal"
+                    <button type="button" id="registration_btn" class="btn btn-primary bambi_high" data-toggle="modal"
                             data-target="#registrationModal" data-whatever="@mdo"
-                            {if $is_logged}style="display:none"{/if}>Registration
+                            {if $is_logged}style="display:none"{/if}>Регистрация
                     </button>
                 </li>
                 <li>
-                    <button type="button" id="profile_btn" class="btn btn-primary"
-                            {if !$is_logged}style="display:none"{/if}>Profile
+                    <button type="button" id="profile_btn" class="btn btn-primary bambi_high"
+                            {if !$is_logged}style="display:none"{/if}>Профиль
                     </button>
                 </li>
                 <li>
-                    <button type="button" id="filter_btn" class="btn btn-primary" data-toggle="modal"
-                            data-target="#filterModal" data-whatever="@mdo">Filter
+                    <button type="button" id="filter_btn" class="btn btn-primary bambi_high" data-toggle="modal"
+                            data-target="#filterModal" data-whatever="@mdo">Фильтр
                     </button>
                 </li>
 

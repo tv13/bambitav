@@ -86,3 +86,62 @@
     max-width:555px;
     margin:auto;
 }
+
+.thumbnail {
+    border: 0 none;
+    box-shadow: none;
+    margin:0;
+    padding:0;
+}
+
+.caption h4 {
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+}
+.col-md-6.portfolio-item {
+    max-width:525px;
+    max-height:390px;
+    border-radius: 10px;
+    margin: 5px;
+}
+.thumbnail .caption {
+     padding: 5px;
+     color: #333;
+     border-radius: 0 0 10px 10px;
+     max-width: 516px;
+ }
+.thumbnail a>img, .thumbnail>img {
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 10px;
+}
+.caption {
+    width: 100%;
+    bottom: 0.2rem;
+    position: absolute;
+    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
+    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
+    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
+}
+.profile-left {
+    float:left;
+}
+.profile-right {
+    float:right;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.profile_ico {
+    font-size:30px;
+    font-weight: bold;
+}
+.bambi_high {
+    margin:5px;
+}
