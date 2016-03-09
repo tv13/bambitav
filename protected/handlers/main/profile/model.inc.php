@@ -131,4 +131,10 @@ class MainProfileModel extends MainModel
         $this->determine_action();
     }
     /////////////////////////////////////////////////////////////////////////////
+    
+    public function isMyAccount()
+    {
+        return $this->get_customer_id() == (string)@$_GET['userId'];
+    }
+    /////////////////////////////////////////////////////////////////////////////
 };
