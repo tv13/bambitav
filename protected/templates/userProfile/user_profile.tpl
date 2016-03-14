@@ -12,7 +12,7 @@
         <div class="row clearfix">
             <div class="col-sm-12 col-md-6 image_content">
                 <h2>Heading</h2>
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
+                <div id="carousel-example-generic" class="carousel slide no-control" data-ride="carousel"
                      data-interval="false">
                     <!-- Indicators -->
                     <ol id="car_ol" class="carousel-indicators">
@@ -44,67 +44,49 @@
 
             <div class="col-sm-12 col-md-6 clearfix jumbotron">
                 <h2>Heading</h2>
-                <form id="formProfile">
-                    <fieldset disabled>
-                        <div class="form-group">
-                            <label for="name">Имя</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group hide" id="country_div">
-                            <label for="country">Страна</label>
-                            <select id="country" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group hide" id="city_main_div">
-                            <label for="city_main">Город</label>
-                            <select id="city_main" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group hide" id="city_other_div">
-                            <label for="city_other">Другой город</label>
-                            <input type="text" id="city_other" class="form-control">
-                        </div>
-                        <!--<div class="form-group hide" id="region_div">
-                            <label for="region">Область</label>
-                            <select id="region" class="form-control">
-                            </select>
-                        </div>-->
+                <table class="table table-striped">
+                    <tr>
+                        <td><b>Имя</b></td>
+                        <td><span id="name"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Страна</b></td>
+                        <td><span id="country">Страна не указана</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Город</b></td>
+                        <td><span id="city">Город не указан</span></td>
 
-                        <div class="form-group">
-                            <label for="birthdate">Дата рождения</label>
-                            <input type="date" id="birthdate" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="sex">Пол</label>
-                            <select id="sex" class="form-control" required>
-                                <option value="">Не указан</option>
-                                <option value="m">Мужской</option>
-                                <option value="f">Женский</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Номер телефона</label>
-                            <input type="text" id="phone" class="form-control" required>
+                    </tr>
+                    <tr>
+                        <td><b>Дата рождения</b></td>
+                        <td><span id="age"></span></td>
 
-                        </div>
-                        <div class="form-group">
-                            <label for="text">Текст объявления</label>
-                            <textarea class="form-control" id="text" rows="3" required></textarea>
-                        </div>
-                        <div id="alert_placeholder_form" class="custom_alert">
-                        </div>
-                    </fieldset>
-                </form>
+                    </tr>
+                    <tr>
+                        <td><b>Пол</b></td>
+                        <td><span id="sex"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Номер телефона</b></td>
+                        <td><span id="phone"></span></td>
+
+                    </tr>
+                    <tr>
+                        <td><b>Текст объявления</b></td>
+                        <td><span id="text"></span></td>
+
+                    </tr>
+                </table>
             </div> <!-- /container -->
         </div>
     </div>
 </div>
 <hr>
 {include file='./inset/bottom.tpl'}
-<script src="//i.onthe.io/u.js?{$IMAGES_APP}_24135782"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 <!-- The File Upload validation plugin -->
 <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
+<script src="{$HTTP_STATIC_PATH}/js/profile_base.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/user_profile.js"></script>
-<script src="http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=1000&callback=countries_process"></script>

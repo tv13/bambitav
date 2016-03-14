@@ -145,3 +145,6 @@
 .bambi_high {
     margin:5px;
 }
+.carousel.slide.no-control .carousel-control.arrow {
+    top: 0px;
+}

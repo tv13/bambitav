@@ -112,9 +112,7 @@ var Vk = {
     clear_div_city_other:
         function(elem_id_part)
         {
-            $('#city_other' + elem_id_part + '_div').addClass('hide');
-            $('#city_other' + elem_id_part).removeAttr('city_id');
-            $('#city_other' + elem_id_part).val('');
+            $('#city_other' + elem_id_part + '_div').addClass('hide').removeAttr('city_id').val('');
         },
             
     get_elem_id_part:
@@ -150,6 +148,12 @@ var Vk = {
         {
             Vk.add_script('http://api.vk.com/method/database.getCitiesById?v=' + Vk.vk_version
                         + '&city_ids=' + city_ids.toString() + '&callback=city_other_show_names');
+        },
+
+    get_countries_by_id: function(country_ids)
+        {
+            Vk.add_script('http://api.vk.com/method/database.getCountriesById?v=' + Vk.vk_version
+                        + '&country_ids=' + country_ids.toString() + '&callback=country_show_name');
         },
         
     show_cities_by_name:
