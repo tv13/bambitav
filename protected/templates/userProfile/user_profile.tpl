@@ -44,7 +44,7 @@
 
             <div class="col-sm-12 col-md-6 clearfix jumbotron">
                 <h2>Heading</h2>
-                <table class="table table-striped">
+                <table class="table table-striped" id="profile_content" data-profile_id="{$id}">
                     <tr>
                         <td><b>Имя</b></td>
                         <td><span id="name"></span></td>

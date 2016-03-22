@@ -10,7 +10,8 @@ var ProfileBase = {
         $.get('profile.php',
             {
                 action: 'load_user_images',
-                size  : ProfileBase.get_image_carousel_size()
+                size  : ProfileBase.get_image_carousel_size(),
+                id: $('#profile_content').data('profile_id')
             }, handle_response).error(ajax_error_handler).handler = ProfileBase.load_user_images_ajax_handler;
     },
     load_user_images_ajax_handler: function(response) {
@@ -78,12 +79,15 @@ var ProfileBase = {
     load_profile_data: function() {
         $.get('profile.php',
             {
-                'action': 'load_profile_info'
+                action: 'load_profile_info',
+                id: $('#profile_content').data('profile_id')
             }, handle_response).error(ajax_error_handler).handler = ProfileBase.load_profile_ajax_handler;
     },
     load_profile_ajax_handler: function(response)
     {
-        if (response.status == 1) {
+        if (response.status == 1 && response.data && response.data.name == '') {
+            window.location.href = '../';
+        } else if (response.status == 1) {
 
             var data = response.data;
 

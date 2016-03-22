@@ -50,7 +50,7 @@ var Questionnaires = {
         var current_num = (navy_pages.page_num-1) * navy_pages.per_page;
         var i = 0;
         while (i < records.length) {
-            records[i].sex_img = 'venus-mars'
+            records[i].sex_img = 'venus-mars';
             if (records[i].sex == 'm')
             {
                 records[i].sex_img = 'mars';
@@ -84,7 +84,7 @@ var Questionnaires = {
     build: function(record) {
 
         return '<div class="col-md-6 portfolio-item thumbnail text-center">'
-            +       '<a href="#">'
+            +       '<a href="profile.php?id=' + record.id + ' ">'
             +           '<img class="img-responsive"'
             +               'src="' + (record.url ? record.url : 'http://placehold.it/700x400') + '" alt="">'
             +       '</a>'
