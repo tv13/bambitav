@@ -49,9 +49,9 @@ define('HTTP_STATIC_PATH', HTTP_ABS_PATH.'/static');
 ////////////////////////////////////////////////////////////////////////////
 
 $Config['db_name'] = 'tm';
-$Config['db_host'] = 'node26063-env-8112542.unicloud.pl';
+$Config['db_host'] = 'node27464-env-8112542.unicloud.pl';
 $Config['db_user'] = 'root';
-$Config['db_pass'] = 'AMPoyv98957';
+$Config['db_pass'] = 'AEahaCFeFq';
 
 $Config['db_persistent'] = false;
 $Config['db_debug_mode'] = false;
