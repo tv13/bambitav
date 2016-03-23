@@ -87,7 +87,7 @@ class UsersList extends PagedLister
     function get_list()
     {
         $this-> db-> exec_query("
-            SELECT users.name, " . self::SQL_CALC_AGE . " AS age, users.sex, pic.key_code " . self::SQL_JOIN
+            SELECT users.id, users.name, " . self::SQL_CALC_AGE . " AS age, users.sex, pic.key_code " . self::SQL_JOIN
             . $this-> get_where_part().$this-> get_limit_part());
         return $this-> db-> get_all_data();
     }
