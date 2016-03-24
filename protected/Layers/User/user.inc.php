@@ -84,10 +84,6 @@ class User extends EntityWithDB
     
     private function _create()
     {
-        if ($this->_is_email_exist())
-        {
-            throw new ExceptionProcessing(8);
-        }
         $this->_add();
         return (int)@$this->Fields['id']->get();
     }
@@ -220,6 +216,7 @@ class User extends EntityWithDB
         $this->_validate_email($this->_get_data_field('email'));
         $this->_validate_password($this->_get_data_field('password'));
         $this->_check_password_and_confirm();
+        $this->_check_user_email_not_exist();
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -250,6 +247,15 @@ class User extends EntityWithDB
             throw new ExceptionProcessing(13);
         }
         return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _check_user_email_not_exist()
+    {
+        if ($this->_is_email_exist())
+        {
+            throw new ExceptionProcessing(8);
+        }
     }
     /////////////////////////////////////////////////////////////////////////////
     
