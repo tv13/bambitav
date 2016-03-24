@@ -30,7 +30,7 @@ ob_start();
 define('DEV_MODE', false);
 
 date_default_timezone_set('Europe/Kiev');
-define('DOMAIN_ROOT', 'env-8112542.unicloud.pl/new/');
+define('DOMAIN_ROOT', 'env-8112542.unicloud.pl/bambitav/');
 define('PROJECT_NAME', 'bambitav');
 define('SESSION_NAME', PROJECT_NAME . '_rand');
 define('AUTH_EXPIRATION_MINUTES', 30);

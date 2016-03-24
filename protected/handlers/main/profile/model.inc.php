@@ -1,12 +1,10 @@
 <?php
 
-require_once LAYERS_DIR . '/Profile/profile.inc.php';
 require_once LAYERS_DIR . '/User/user.inc.php';
 require_once LAYERS_DIR . '/User/image.inc.php';
 
 class MainProfileModel extends MainModel
 {
-    private $_profileLayer;
     private $_User;
     private $_Image;
     private $_id;
@@ -15,20 +13,9 @@ class MainProfileModel extends MainModel
     public function __construct()
     {
         parent::__construct();
-        $this->_profileLayer = new Profile();
-        $this->_DBHandler = produce_db();
         $this->_User = new User();
         $this->_Image = new Image();
         $this->_id = null;
-    }
-    /////////////////////////////////////////////////////////////////////////////
-    
-    public function get_content_data()
-    {
-        $this->is_ajax = true;
-        $this->_DBHandler->exec_query("SELECT name, birthdate, city, sex, phone_number, description FROM  tm_users
-        WHERE id=" . (string)@$_GET['size']);
-        $this->Result = true;//$this->_DBHandler->get_all_data();    
     }
     /////////////////////////////////////////////////////////////////////////////
 
@@ -48,17 +35,14 @@ class MainProfileModel extends MainModel
     public function action_load_profile_info()
     {
         $this->is_ajax = true;
-        $this->Result = $this->_User->load_profile_info((string)@$_GET['id'] ? (string)@$_GET['id'] : $this->getProfileId());
+        $this->Result = $this->_User->load_profile_info($this->getProfileId());
     }
     /////////////////////////////////////////////////////////////////////////////
 
     public function action_default()
     {
-        if (isset($_GET['id'])) {
-            $this->setProfileId((string)@$_GET['id']);
-        }
-
-        if (!$this->getProfileId() && !$this->CustomerAuth->is_logged())
+        if (!($this->_getId() && $this->_User->need_show_on_main($this->_getId())
+                || $this->isMyAccount()))
         {
             $this->redirect_to_main();
         }
@@ -89,17 +73,17 @@ class MainProfileModel extends MainModel
     public function action_load_user_images()
     {
         $this->is_ajax = true;
-        $this->Result = $this->_Image->get_images_by_user_id((string)@$_GET['id'] ? (string)@$_GET['id'] : $this->getProfileId(), (string)@$_GET['size']);
+        $this->Result = $this->_Image->get_images_by_user_id(
+                                            $this->getProfileId(),
+                                            (string)@$_GET['size']
+                        );
     }
     /////////////////////////////////////////////////////////////////////////////
 
     public function action_image_remove()
     {
         $this->is_ajax = true;
-        if (empty($_POST['id']))
-        {
-            throw new ExceptionProcessing(2);
-        }
+        $this->_check_id_exist();
         $this->_Image->delete_image((string)@$_POST['id']);
         throw new ExceptionProcessing(1, 1);
     }
@@ -108,14 +92,18 @@ class MainProfileModel extends MainModel
     public function action_set_main()
     {
         $this->is_ajax = true;
+        $this->_check_id_exist();
+        $this->_Image->set_main($this->get_customer_id(), (string)@$_POST['id']);
+        throw new ExceptionProcessing(1, 1);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    private function _check_id_exist()
+    {
         if (empty($_POST['id']))
         {
             throw new ExceptionProcessing(2);
         }
-        
-        $this->_Image->set_main($this->get_customer_id(), (string)@$_POST['id']);
-        
-        throw new ExceptionProcessing(1, 1);
     }
     /////////////////////////////////////////////////////////////////////////////
 
@@ -131,7 +119,11 @@ class MainProfileModel extends MainModel
     public function run()
     {
         parent::run();
-        if (!$this->is_customer_logged() && $this->get_action_name() != 'default' && is_null($this->getProfileId()))
+        if (isset($_GET['id']))
+        {
+            $this->_setId((string)@$_GET['id']);
+        }
+        if (!$this->is_customer_logged() && $this->get_action_name() != 'default' && !$this->_getId())
         {
             throw new ExceptionProcessing(24);
         }
@@ -141,18 +133,25 @@ class MainProfileModel extends MainModel
 
     public function isMyAccount()
     {
-        return $this->get_customer_id() == (string)@$_GET['id'];
+        return $this->is_customer_logged() && $this->getProfileId() == $this->get_customer_id();
     }
-
     /////////////////////////////////////////////////////////////////////////////
-    public function getProfileId()
-    {
-        return $this->_id ? $this->_id : $this->get_customer_id();
-    }
-
-    /////////////////////////////////////////////////////////////////////////////
-    public function setProfileId($id)
+    
+    private function _setId($id)
     {
         $this->_id = $id;
     }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _getId()
+    {
+        return $this->_id;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    public function getProfileId()
+    {
+        return $this->_getId() ? $this->_getId() : $this->get_customer_id();
+    }
+    /////////////////////////////////////////////////////////////////////////////
 };

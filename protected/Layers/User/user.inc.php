@@ -159,6 +159,19 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
+    public function need_show_on_main($user_id)
+    {
+        return $this->_is_user_exist_by_id($user_id)
+                && @$this->Fields['status']->get() > -2;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _is_user_exist_by_id($user_id)
+    {
+        return '' != $this->_get_email_by_user_id($user_id);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
     private function _get_email_by_user_id($user_id)
     {
         $this->_set_user_by_id($user_id);

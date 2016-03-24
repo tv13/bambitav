@@ -15,7 +15,7 @@ var ProfileBase = {
             }, handle_response).error(ajax_error_handler).handler = ProfileBase.load_user_images_ajax_handler;
     },
     load_user_images_ajax_handler: function(response) {
-        if (response.data.length)
+        if (response.status == 1 && response.data && response.data.length)
         {
             ProfileBase.add_images_to_carousel(response.data);
         }
@@ -85,9 +85,7 @@ var ProfileBase = {
     },
     load_profile_ajax_handler: function(response)
     {
-        if (response.status == 1 && response.data && response.data.name == '') {
-            window.location.href = '../';
-        } else if (response.status == 1) {
+        if (response.status == 1 && response.data) {
 
             var data = response.data;
 
