@@ -77,21 +77,23 @@
                         <td><span id="text"></span></td>
 
                     </tr>
-                    <!-- send email to user -->
-                    <form id="form_contact">
-                        <fieldset enable>
-                            <div class="form-group">
-                                <label for="contact_email">Ваш Email</label>
-                                <input type="text" id="contact_email" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact_text">Текст сообщение</label>
-                                <textarea class="form-control" id="contact_text" rows="3" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Отправить сообщение</button>
-                        </fieldset>
-                    </form>
                 </table>
+                    
+                <!-- send email to user -->
+                <form id="form_contact">
+                    <fieldset enable>
+                        <div class="form-group">
+                            <label for="contact_email">Ваш Email</label>
+                            <input type="text" id="contact_email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_text">Текст сообщение</label>
+                            <textarea class="form-control" id="contact_text" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group" id="recaptcha_contact"></div>
+                        <button type="submit" class="btn btn-primary">Отправить сообщение</button>
+                    </fieldset>
+                </form>
             </div> <!-- /container -->
         </div>
     </div>

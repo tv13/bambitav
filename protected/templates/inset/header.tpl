@@ -28,7 +28,8 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="{$HTTP_STATIC_PATH}/js/alert_custom.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/common.js" type="text/javascript"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="{$HTTP_STATIC_PATH}/js/recaptcha.js" type="text/javascript"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=ReCaptchaCallback&render=explicit&hl=ru" async defer></script>
 </head>
 
 <!-- Navigation -->
@@ -124,9 +125,7 @@
                         <input name="passwordConfirm" class="form-control" id="registerPasswordConfirm" type="password"
                                required/>
                     </div>
-                    <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LddWxYTAAAAAHhtSr_UIRK-YsTziAEkiG_8aoDd"></div>
-                    </div>
+                    <div class="form-group" id="recaptcha_registration"></div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" id="register" disabled>Зарегистрироваться</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

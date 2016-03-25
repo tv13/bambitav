@@ -451,14 +451,7 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function send_contact_email()
-    {
-        $this->_validate_contact_data();
-        $this->_send_email_for_contact();
-    }
-    /////////////////////////////////////////////////////////////////////////////
-    
-    private function _validate_contact_data()
+    public function validate_data_for_send_email()
     {
         $this->_validate_email($this->_get_data_field('email_from'));
         if (empty($this->_get_data_field('text')))
@@ -468,7 +461,7 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    private function _send_email_for_contact()
+    public function send_contact_email()
     {
         $to      = $this->_get_email_by_user_id($this->_get_data_field('user_id_to'));
         $subject = 'Сообщение от пользователя';

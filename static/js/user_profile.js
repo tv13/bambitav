@@ -23,10 +23,11 @@ var UserProfile = {
     contact_send_email: function() {
         $.post('profile.php',
         {
-            email_from  : $('#contact_email').val(),
-            user_id_to  : $('#profile_content').data('profile_id'),
-            text        : $('#contact_text').val(),
-            action      : 'send_email'
+            email_from              : $('#contact_email').val(),
+            user_id_to              : $('#profile_content').data('profile_id'),
+            text                    : $('#contact_text').val(),
+            'g-recaptcha-response'  : $('#form_contact [name="g-recaptcha-response"]').val(),
+            action                  : 'send_email'
         }, handle_response).error(ajax_error_handler).handler = UserProfile.contact_send_email_ajax_handler;
         return false;
     },

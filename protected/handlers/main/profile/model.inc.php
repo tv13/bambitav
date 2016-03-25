@@ -2,12 +2,14 @@
 
 require_once LAYERS_DIR . '/User/user.inc.php';
 require_once LAYERS_DIR . '/User/image.inc.php';
+require_once LIB_DIR . '/ReCaptcha/autoload.php';
 
 class MainProfileModel extends MainModel
 {
     private $_User;
     private $_Image;
     private $_id;
+    private $_ReCaptcha;
     /////////////////////////////////////////////////////////////////////////////
 
     public function __construct()
@@ -16,6 +18,7 @@ class MainProfileModel extends MainModel
         $this->_User = new User();
         $this->_Image = new Image();
         $this->_id = null;
+        $this->_ReCaptcha = new \ReCaptcha\ReCaptcha(RECAPTCHA_GOOGLE_SECRET);
     }
     /////////////////////////////////////////////////////////////////////////////
 
@@ -143,7 +146,20 @@ class MainProfileModel extends MainModel
     public function action_send_email()
     {
         $this->is_ajax = true;
+        if (!isset($_POST['g-recaptcha-response']))
+        {
+            throw new ExceptionProcessing(2);
+        }
+        
         $this->_User->set_data($_POST);
+        $this->_User->validate_data_for_send_email();
+        
+        $recaptchaResponse = $this->_ReCaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+        if (!$recaptchaResponse->isSuccess())
+        {
+            throw new ExceptionProcessing(12);
+        }
+        
         $this->_User->send_contact_email();
         $this->Result = true;
     }
