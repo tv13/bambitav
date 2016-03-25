@@ -472,10 +472,10 @@ class User extends EntityWithDB
     {
         $to      = $this->_get_email_by_user_id($this->_get_data_field('user_id_to'));
         $subject = 'Сообщение от пользователя';
-        $message = "От пользователя пришло сообщение:\n\""
+        $message = 'От пользователя пришло сообщение:<br />"'
                     . $this->_get_data_field('text')
-                    . "\"\nЧтобы продолжить переписку, просто ответьте на это письмо. Ответ будет отправлен на адрес приславшего сообщение пользователя (".$this->_get_email_by_user_id($this->_get_data_field('user_id_to')).")";
-        $headers  = "From: webmaster@example.com\r\n" .
+                    . '"<br />Чтобы продолжить переписку, просто ответьте на это письмо. Ответ будет отправлен на адрес приславшего сообщение пользователя ('.$this->_get_email_by_user_id($this->_get_data_field('user_id_to')).')';
+        $headers  = "From: bambitav\r\n" .
                     "Reply-To: " . $this->_get_data_field('email_from') . "\r\n" .
                     "Content-type: text/html";
                     //'X-Mailer: PHP/' . phpversion();
