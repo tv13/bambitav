@@ -450,4 +450,34 @@ class User extends EntityWithDB
         $this->update();
     }
     /////////////////////////////////////////////////////////////////////////////
+    
+    public function send_contact_email()
+    {
+        $this->_validate_contact_data();
+        $this->_send_email_for_contact();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_contact_data()
+    {
+        $this->_validate_email($this->_get_data_field('email_from'));
+        if (empty($this->_get_data_field('text')))
+        {
+            throw new ExceptionProcessing(32);
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _send_email_for_contact()
+    {
+        $to      = $this->_get_email_by_user_id($this->_get_data_field('user_id_to'));
+        $subject = 'Сообщение от пользователя';
+        $message = "От пользователя пришло сообщение:\n" . $this->_get_data_field('text');
+        $headers  = "From: " . $this->_get_data_field('email_from') . "\r\n" .
+                    // 'Reply-To: webmaster@example.com' . "\r\n" .
+                    "Content-type: text/html";
+                    //'X-Mailer: PHP/' . phpversion();
+        return mail($to, $subject, $message, $headers);
+    }
+    /////////////////////////////////////////////////////////////////////////////
 }

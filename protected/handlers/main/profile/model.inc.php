@@ -116,21 +116,6 @@ class MainProfileModel extends MainModel
     }
     /////////////////////////////////////////////////////////////////////////////
 
-    public function run()
-    {
-        parent::run();
-        if (isset($_GET['id']))
-        {
-            $this->_setId((string)@$_GET['id']);
-        }
-        if (!$this->is_customer_logged() && $this->get_action_name() != 'default' && !$this->_getId())
-        {
-            throw new ExceptionProcessing(24);
-        }
-        $this->determine_action();
-    }
-    /////////////////////////////////////////////////////////////////////////////
-
     public function isMyAccount()
     {
         return $this->is_customer_logged() && $this->getProfileId() == $this->get_customer_id();
@@ -152,6 +137,32 @@ class MainProfileModel extends MainModel
     public function getProfileId()
     {
         return $this->_getId() ? $this->_getId() : $this->get_customer_id();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    public function action_send_email()
+    {
+        $this->is_ajax = true;
+        $this->_User->set_data($_POST);
+        $this->_User->send_contact_email();
+        $this->Result = true;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    public function run()
+    {
+        parent::run();
+        if (isset($_GET['id']))
+        {
+            $this->_setId((string)@$_GET['id']);
+        }
+        if (!$this->is_customer_logged()
+                && !in_array($this->get_action_name(), array('default', 'send_email'))
+                && !$this->_getId())
+        {
+            throw new ExceptionProcessing(24);
+        }
+        $this->determine_action();
     }
     /////////////////////////////////////////////////////////////////////////////
 };
