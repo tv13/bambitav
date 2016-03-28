@@ -222,7 +222,8 @@ class User extends EntityWithDB
     
     private function _validate_email($email)
     {
-        if (!preg_match("/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/", $email))
+        //if (!preg_match("/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/", $email))
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
         {
             throw new ExceptionProcessing(6);
         }

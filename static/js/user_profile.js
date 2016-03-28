@@ -35,6 +35,8 @@ var UserProfile = {
         if (response.status == 1 && response.data)
         {
             alert('Ваше сообщение успешно отправлено!');
+            $('#contact_text').val('');
+            grecaptcha.reset(recaptcha_contact);
         }
         else if (!response.status)
         {
