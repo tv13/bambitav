@@ -99,6 +99,8 @@ var ProfileBase = {
 
             $('#phone').html(data.phone);
 
+            $('#purpose').html(data.purpose);
+
             $('#text').html(data.text);
 
             if (data.country > 0)

@@ -73,6 +73,10 @@
 
                     </tr>
                     <tr>
+                        <td><b>Цель знакомства</b></td>
+                        <td><span id="purpose"></span></td>
+                    </tr>
+                    <tr>
                         <td><b>Текст объявления</b></td>
                         <td><span id="text"></span></td>
 

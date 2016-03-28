@@ -21,6 +21,7 @@ var UserProfile = {
         });
     },
     contact_send_email: function() {
+        $('#form_contact button').attr('disabled','disabled');
         $.post('profile.php',
         {
             email_from              : $('#contact_email').val(),
@@ -32,6 +33,8 @@ var UserProfile = {
         return false;
     },
     contact_send_email_ajax_handler: function(response) {
+        $('#form_contact button').removeAttr('disabled');
+        
         if (response.status == 1 && response.data)
         {
             alert('Ваше сообщение успешно отправлено!');
