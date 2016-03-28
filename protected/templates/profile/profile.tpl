@@ -90,8 +90,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Номер телефона</label>
-                            <input type="text" id="phone" class="form-control" required>
-
+                            <input type="text" id="phone" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="text">Текст объявления</label>
@@ -100,7 +99,7 @@
                         <div id="alert_placeholder_form" class="custom_alert">
                         </div>
                         <button type="submit" class="btn btn-primary" id="send_data" disabled>Сохранить</button>
-                        <button type="button" class="btn btn-success" data-toggle="modal"
+                        <button type="button" class="btn btn-success hide" data-toggle="modal"
                                 data-target="#publishQuestionnaire">Разместить анкету
                         </button>
                     </fieldset>

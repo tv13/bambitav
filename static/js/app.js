@@ -98,6 +98,7 @@ $(document).ready(function () {
                     $('#profile_btn').show();
                     $('#log_out').show();
                     $('#sign_in').hide();
+                    document.location.href = HTTP_ABS_PATH + 'profile.php';
 
                 } else {
                     setUnchangedRegister();
