@@ -15,3 +15,10 @@ var ReCaptchaCallback = function() {
         });
     }
 };
+
+function preloader_close() {
+    var $preloader = $('#page-preloader'),
+        $spinner   = $preloader.find('.spinner');
+    $spinner.fadeOut();
+    $preloader.fadeOut('slow');
+}

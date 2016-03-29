@@ -1,6 +1,7 @@
 <?php
 
 require_once LAYERS_DIR . '/Entity/entity_with_db.inc.php';
+require_once LAYERS_DIR . '/User/purpose_dating.inc.php';
 //require_once LIB_DIR . '/Mailer/sendmail.php';
 
 class User extends EntityWithDB
@@ -29,6 +30,7 @@ class User extends EntityWithDB
         $result['country']      = new FieldInt();
         //$result['region']       = new FieldInt();
         $result['city']         = new FieldInt();
+        $result['purpose']      = new FieldInt();
         $result['text']         = new FieldString();
         $result['size']         = new FieldInt();
         $result['height']       = new FieldInt();
@@ -309,6 +311,7 @@ class User extends EntityWithDB
         $this->Fields['birthdate']->set(date('Y-m-d', $birthtime));
         $this->Fields['sex']->set($this->_get_data_field('sex'));
         $this->Fields['phone']->set($this->_get_data_field('phone'));
+        $this->Fields['purpose']->set($this->_get_data_field('purpose'));
         $this->Fields['text']->set($this->_get_data_field('text'));
         $this->Fields['status']->set(-1);
         $this->DBHandler->update();
@@ -319,14 +322,16 @@ class User extends EntityWithDB
     {
         $this->_set_user_by_id($user_id);
         return array(
-            'name'      => $this->Fields['name']->get(),
-            'country'   => $this->Fields['country']->get(),
+            'name'          => $this->Fields['name']->get(),
+            'country'       => $this->Fields['country']->get(),
             //'region'    => $this->Fields['region']->get(),
-            'city'      => $this->Fields['city']->get(),
-            'birthdate' => $this->Fields['birthdate']->get(),
-            'sex'       => $this->Fields['sex']->get(),
-            'phone'     => $this->Fields['phone']->get(),
-            'text'      => $this->Fields['text']->get()
+            'city'          => $this->Fields['city']->get(),
+            'birthdate'     => $this->Fields['birthdate']->get(),
+            'sex'           => $this->Fields['sex']->get(),
+            'phone'         => $this->Fields['phone']->get(),
+            'purpose_id'    => $this->Fields['purpose']->get(),
+            'purpose_text'  => PurposeDating::get_purpose_by_id($this->Fields['purpose']->get()),
+            'text'          => $this->Fields['text']->get()
         );
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -468,7 +473,7 @@ class User extends EntityWithDB
         $subject = 'Сообщение от пользователя';
         $message = 'От пользователя пришло сообщение:<br />"'
                     . $this->_get_data_field('text')
-                    . '"<br />Чтобы продолжить переписку, просто ответьте на это письмо. Ответ будет отправлен на адрес приславшего сообщение пользователя ('.$this->_get_email_by_user_id($this->_get_data_field('user_id_to')).')';
+                    . '"<br />Чтобы продолжить переписку, просто ответьте на это письмо. Ответ будет отправлен на адрес приславшего сообщение пользователя ('.$this->_get_data_field('email_from').')';
         $headers  = "From: bambitav\r\n" .
                     "Reply-To: " . $this->_get_data_field('email_from') . "\r\n" .
                     "Content-type: text/html";

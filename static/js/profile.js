@@ -1,10 +1,5 @@
 
-$(window).on('load', function () {
-    var $preloader = $('#page-preloader'),
-        $spinner   = $preloader.find('.spinner');
-    $spinner.fadeOut();
-    $preloader.fadeOut('slow');
-});
+$(window).on('load', preloader_close);
 
 var form = $('#formProfile');
 var submit = $('#send_data');
@@ -315,6 +310,10 @@ function load_profile_ajax_handler(response)
         }
         $('#sex').val(data.sex);
         $('#phone').val(data.phone);
+        if ($("#purpose option[value='"+data.purpose_id+"']").length)
+        {
+            $('#purpose').val(data.purpose_id);
+        }
         $('#text').val(data.text);
         if (data.country > 0)
         {
@@ -337,6 +336,7 @@ function profile_submit()
             'birthdate': $('#birthdate').val(),
             'sex': $('#sex').val(),
             'phone': $('#phone').val(),
+            'purpose': $('#purpose').val(),
             'text': $('#text').val(),
             'action': 'update_profile_info'
         },

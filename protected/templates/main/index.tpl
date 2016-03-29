@@ -25,7 +25,10 @@
 </head>
 
 <body>
-  {include file='./inset/header.tpl'}
+    
+    <div id="page-preloader"><span class="spinner"></span></div>
+
+    {include file='./inset/header.tpl'}
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">

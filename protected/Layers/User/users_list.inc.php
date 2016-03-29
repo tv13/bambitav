@@ -34,12 +34,17 @@ class UsersList extends PagedLister
         $this->_Conditions[] = 'status = -1';
         if (!empty($this->_get_data_field('page')))
         {
-            $this->_Conditions[] = '(pic.main = 1 OR ISNULL(pic.main))';
+            $this->_Conditions[] = '(pic.main = 1'
+                    . (empty($this->_get_data_field('with_photo'))
+                        ? ' OR ISNULL(pic.main)'
+                        : '')
+                    . ')';
         }
         $this->_add_condition('country');
         //$this->_add_condition('region');
         $this->_add_condition('city');
         $this->_add_condition('sex');
+        $this->_add_condition('purpose');
         if (!empty($this->_get_data_field('age_min')))
         {
             $this->_Conditions[] = self::SQL_CALC_AGE . ' >= ' . $this->_get_data_field('age_min');

@@ -99,7 +99,7 @@ var ProfileBase = {
 
             $('#phone').html(data.phone);
 
-            $('#purpose').html(data.purpose);
+            $('#purpose').html(data.purpose_text);
 
             $('#text').html(data.text);
 

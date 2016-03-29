@@ -8,6 +8,7 @@ $(window).on('load', function () {
 $(document).ready(function(){
     UserProfile.init();
     $('form#form_contact').submit(UserProfile.contact_send_email);
+    $('#filter_btn').addClass('hide');
 });
 
 var UserProfile = {

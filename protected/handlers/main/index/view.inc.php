@@ -1,5 +1,7 @@
 <?php
 
+require_once LAYERS_DIR . '/User/purpose_dating.inc.php';
+
 class MainIndexView extends ListView
 {
     public function __construct()
@@ -11,5 +13,6 @@ class MainIndexView extends ListView
     {
         parent::fill();
         $this->set_template('main/index.tpl');
+        $this->assign('purposes_dating', PurposeDating::get_all_purposes());
     }
 };

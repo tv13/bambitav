@@ -93,6 +93,15 @@
                             <input type="text" id="phone" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label for="purpose">Цель знакомства</label>
+                            <select id="purpose" class="form-control" required>
+                                <option value="">Выберите...</option>
+                                {foreach $purposes_dating as $purpose}
+                                    <option value="{$purpose@key}">{$purpose}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="text">Текст объявления</label>
                             <textarea class="form-control" id="text" rows="3" required></textarea>
                         </div>

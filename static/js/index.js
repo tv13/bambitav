@@ -20,6 +20,7 @@ function load_questionnaires_by_params(params) {
 
         },
         success: function(data) {
+            preloader_close();
             $('form#filter_form').find('button[type=submit]').removeAttr('disabled');
             
             if (data.status == 0)
@@ -193,7 +194,9 @@ var Filter = {
             var param_name;
             $('#filter_form .filter').each(function(){
                 param_name = $(this).attr('id').replace('_filter', '');
-                request_data[param_name] = $(this).val();
+                request_data[param_name] = $(this).attr('type') != 'checkbox'
+                                            ? $(this).val()
+                                            : $(this).prop('checked') ? 1 : 0;
             });
             return request_data;
         }

@@ -21,7 +21,7 @@ var Vk = {
             if (items.length) {
                 user_db_value = $(select_id).attr('user_val');
                 $(select_id).removeAttr('user_val');
-                $(select_id).append('<option value="-1">Выберите...</option>');
+                $(select_id).append('<option value="0">Выберите...</option>');
                 $.each(items, function(i, val) {
                     if (!db_data || db_data && db_data[val.id])
                     {

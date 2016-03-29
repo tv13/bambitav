@@ -227,6 +227,21 @@
                             <option value="f">Женский</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="purpose_filter">Цель знакомства</label>
+                        <select id="purpose_filter" class="filter form-control">
+                            <option value="0">Не указана</option>
+                            {foreach $purposes_dating as $purpose}
+                                <option value="{$purpose@key}">{$purpose}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="form-group checkbox">
+                        <label>
+                            <input id="with_photo_filter" type="checkbox" class="filter" />
+                            Только с фото
+                        </label>
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Применить</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

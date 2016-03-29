@@ -1,5 +1,7 @@
 <?php
 
+require_once LAYERS_DIR . '/User/purpose_dating.inc.php';
+
 class MainProfileView extends ListView
 {
     public function __construct()
@@ -13,6 +15,7 @@ class MainProfileView extends ListView
         if ($this->Model->isMyAccount())
         {
             $this->set_template('profile/profile.tpl');
+            $this->assign('purposes_dating', PurposeDating::get_all_purposes());
         }
         else
         {
