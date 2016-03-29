@@ -74,7 +74,7 @@
                     </button>
                 </li>
                 <li>
-                    <button type="button" id="filter_btn" class="btn btn-primary bambi_high" data-toggle="modal"
+                    <button type="button" id="filter_btn" class="btn btn-primary bambi_high hide" data-toggle="modal"
                             data-target="#filterModal" data-whatever="@mdo">Фильтр
                     </button>
                 </li>

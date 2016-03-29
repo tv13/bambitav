@@ -3,8 +3,17 @@ $(document).ready(function(){
     var show_more = load_questionnaires();
     show_more();
     $("#showMore").click(show_more);
+    $('#filter_btn').removeClass('hide');
     $('#country_filter').change(function() {
-        Vk.get_cities_by_id(Users_vk_data.users_vk_db_data.data[$('#country_filter').val()]);
+        if ($('#country_filter').val() > 0)
+        {
+            Vk.get_cities_by_id(Users_vk_data.users_vk_db_data.data[$('#country_filter').val()]);
+        }
+        else
+        {
+            $('#city_filter_div').addClass('hide');
+            $('#city_filter').empty();
+        }
     });
     //$('#region_filter').change(function() { Vk.load_cities(true); });
     $('form#filter_form').submit(Filter.apply_filter);
