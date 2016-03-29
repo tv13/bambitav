@@ -297,6 +297,20 @@ class User extends EntityWithDB
         {
             throw new ExceptionProcessing(30);
         }
+        
+        $now_start_day = mktime(0, 0, 0, date('m') , date('d'), date('Y'));
+        
+        if (strtotime($this->_get_data_field('birthdate'))
+                > strtotime('-'.FILTER_AGE_MIN.' years', $now_start_day))
+        {
+            throw new ExceptionProcessing(31);
+        }
+        
+        if (strtotime($this->_get_data_field('birthdate'))
+                <= strtotime('-'.FILTER_AGE_MAX.' years', $now_start_day))
+        {
+            throw new ExceptionProcessing(32);
+        }
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -462,7 +476,7 @@ class User extends EntityWithDB
         $this->_validate_email($this->_get_data_field('email_from'));
         if (empty($this->_get_data_field('text')))
         {
-            throw new ExceptionProcessing(32);
+            throw new ExceptionProcessing(34);
         }
     }
     /////////////////////////////////////////////////////////////////////////////

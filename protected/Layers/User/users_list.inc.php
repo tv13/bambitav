@@ -62,7 +62,7 @@ class UsersList extends PagedLister
     {
         if (!empty($this->_get_data_field($field)))
         {
-            $this->_Conditions[] = $field . ' = "' . $this->_get_data_field($field) . '"';
+            $this->_Conditions[] = $field . " = '" . $this->_get_data_field($field) . "'";
         }
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,9 @@ class UsersList extends PagedLister
     {
         $this-> db-> exec_query("
             SELECT users.id, users.name, " . self::SQL_CALC_AGE . " AS age, users.sex, pic.key_code " . self::SQL_JOIN
-            . $this-> get_where_part().$this-> get_limit_part());
+            . $this->get_where_part()
+            . 'ORDER BY users.dt_create DESC'
+            . $this->get_limit_part());
         return $this-> db-> get_all_data();
     }
     ////////////////////////////////////////////////////////////////////////////

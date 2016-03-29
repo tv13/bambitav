@@ -147,7 +147,7 @@ class Image extends EntityWithDB
     {
         if (!$this->_is_exist_image_id($image_id, $user_id))
         {
-            throw new ExceptionProcessing(31);
+            throw new ExceptionProcessing(33);
         }
         return true;
     }

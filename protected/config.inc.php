@@ -74,7 +74,7 @@ define('IMAGES_SECRET', 'AJHBOyn1LAEDIPax53bO91M6d3oPwSZX');
 ////////////////////////////////////////////////////////////////////////////
 
 // filter
-define('FILTER_AGE_MIN', 6);
-define('FILTER_AGE_MAX', 70);
+define('FILTER_AGE_MIN', 18);
+define('FILTER_AGE_MAX', 100);
 
 ?>

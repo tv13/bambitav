@@ -23,7 +23,7 @@ function load_questionnaires_by_params(params) {
             preloader_close();
             $('form#filter_form').find('button[type=submit]').removeAttr('disabled');
             
-            if (data.status == 0)
+            if (data.status != 1)
             {
                 alert(data.statusMessage);
                 return false;
@@ -39,6 +39,7 @@ function load_questionnaires_by_params(params) {
             if (navy_pages.next.text != undefined)
             {
                 $("#textShowMore").text(navy_pages.next.text);
+                $("#showMore").removeClass("hide");
             }
             else
             {
@@ -83,7 +84,7 @@ function load_questionnaires_by_params(params) {
                                 +                       records[i].name
                                 +                   '</span>'
                                 +                   '<span class="profile-right">'
-                                +                       (records[i].age >= 6 && records[i].age < 100 ? records[i].age + ', ' : '')
+                                +                       (records[i].age >= 14 && records[i].age < 100 ? records[i].age + ', ' : '')
                                 +                       '<i class="fa fa-' + sex_img + ' profile_ico"></i>'
                                 +                   '</span>'
                                 +               '</a>'
