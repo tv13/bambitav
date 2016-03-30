@@ -3,7 +3,6 @@ $(document).ready(function(){
     var show_more = load_questionnaires();
     show_more();
     $("#showMore").click(show_more);
-    $('#filter_btn').removeClass('hide');
     $('#country_filter').change(function() {
         if ($('#country_filter').val() > 0)
         {
@@ -159,8 +158,8 @@ var Users_vk_data = {
         function(response)
         {
             Vk.set_option_for_select(Users_vk_data.vk_response.response.items, '#country_filter', response.data);
-
             Users_vk_data.users_vk_db_data = response;
+            Filter.set_filter_from_cookie();
         }
 }
 
@@ -171,29 +170,39 @@ function city_other_show_names(result)
     $.each(result.response, function(i, item) {
         $('#city_filter').append('<option value="' + item.id + '">' + item.title + '</option>');
     });
+    if ($('#city_filter').attr('filter'))
+    {
+        $('#city_filter').val($('#city_filter').attr('filter'));
+        $('#city_filter').removeAttr('filter');
+    }
+    $('#filter_btn').removeClass('hide');
 }
 
 /*function regions_process(result)
 {
     Vk.set_option_for_select(result.response.items, '#region_filter', true, Users_vk_data.users_vk_db_data.data[$('#country_filter').val()]);
-}*/
+}
 
 function cities_process(result)
 {
     var region_val = !$('#region_filter_div').hasClass('hide') ? $('#region_filter').val() : 0;
     Vk.set_option_for_select(result.response.items, '#city_filter', false, Users_vk_data.users_vk_db_data.data[$('#country_filter').val()][region_val]);
-}
+}*/
 
 var Filter = {
+    cookie_name: PROJECT_NAME + '_filter',
+    
     apply_filter:
         function()
         {
             $('form#filter_form').find('button[type=submit]').attr('disabled','disabled');
-            var show_more = load_questionnaires(Filter.get_filter_request_data());
+            var filter_request_data = Filter.get_filter_request_data();
+            var show_more = load_questionnaires(filter_request_data);
             show_more();
             $("#showMore")
                     .unbind('click')
                     .bind('click', show_more);
+            Filter.setCookie(Filter.cookie_name, JSON.stringify(filter_request_data));
             return false;
         },
 
@@ -209,5 +218,62 @@ var Filter = {
                                             : $(this).prop('checked') ? 1 : 0;
             });
             return request_data;
+        },
+        
+    set_filter_from_cookie:
+        function()
+        {
+            var cookie_filter = Filter.getCookie(Filter.cookie_name);
+            var $form_field;
+            if (cookie_filter)
+            {
+                $.each(JSON.parse(cookie_filter), function(name, value)
+                {
+                    $form_field = $('#filter_form #'+name+'_filter');
+                    if ($form_field.attr('type') != 'checkbox')
+                    {
+                        $form_field.val(value);
+                        if (name == 'country')
+                        {
+                            $form_field.change();
+                        }
+                        else if (name == 'city')
+                        {
+                            $form_field.attr('filter', value);
+                        }
+                    }
+                    else
+                    {
+                        $form_field.prop('checked', value);
+                    }
+                });
+            }
+        },
+        
+    setCookie:
+        function(cname, cvalue, expires_days)
+        {
+            if (expires_days == undefined)
+            {
+                expires_days = 3 * 30;  // 3 monthes
+            }
+            var d = new Date();
+            d.setTime(d.getTime() + (expires_days*24*60*60*1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        },
+        
+    getCookie:
+        function(cname)
+        {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i=0; i<ca.length; i++)
+            {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+            }
+            return "";
         }
 }

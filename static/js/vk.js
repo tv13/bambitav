@@ -112,7 +112,8 @@ var Vk = {
     clear_div_city_other:
         function(elem_id_part)
         {
-            $('#city_other' + elem_id_part + '_div').addClass('hide').removeAttr('city_id').val('');
+            $('#city_other' + elem_id_part + '_div').addClass('hide')
+                .find('input').removeAttr('city_id').val('');
         },
             
     get_elem_id_part:

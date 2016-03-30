@@ -70,6 +70,9 @@
     <!-- jQuery -->
 
     <!-- Bootstrap Core JavaScript -->
+    <script>
+        var PROJECT_NAME = "{$PROJECT_NAME}";
+    </script>
     <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/index.js"></script>
 </body>
