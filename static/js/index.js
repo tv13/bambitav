@@ -83,7 +83,7 @@ function load_questionnaires_by_params(params) {
                 strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center">'
                                 +       '<a href="profile.php?id=' + records[i].id + '">'
                                 +           '<img class="img-responsive"'
-                                +               'src="' + (records[i].url ? records[i].url : 'http://placehold.it/700x400') + '" alt="">'
+                                +               'src="' + (records[i].url ? records[i].url : 'static/img/no-photo_700x400.jpg') + '" alt="">'
                                 +       '</a>'
                                 +       '<div class="caption">'
                                 +           '<h3>'
@@ -159,6 +159,7 @@ var Users_vk_data = {
         {
             Vk.set_option_for_select(Users_vk_data.vk_response.response.items, '#country_filter', response.data);
             Users_vk_data.users_vk_db_data = response;
+            $('#filter_btn').removeClass('hide');
             Filter.set_filter_from_cookie();
         }
 }
@@ -175,7 +176,6 @@ function city_other_show_names(result)
         $('#city_filter').val($('#city_filter').attr('filter'));
         $('#city_filter').removeAttr('filter');
     }
-    $('#filter_btn').removeClass('hide');
 }
 
 /*function regions_process(result)
