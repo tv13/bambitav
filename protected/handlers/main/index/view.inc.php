@@ -14,6 +14,5 @@ class MainIndexView extends ListView
         parent::fill();
         $this->set_template('main/index.tpl');
         $this->assign('purposes_dating', PurposeDating::get_all_purposes());
-        $this->assign('PROJECT_NAME', PROJECT_NAME);
     }
 };

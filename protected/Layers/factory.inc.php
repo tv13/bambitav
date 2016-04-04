@@ -28,6 +28,7 @@ function produce_tpl()
      $tpl-> assign('HTTP_ABS_PATH', HTTP_ABS_PATH);
      $tpl-> assign('HTTP_STATIC_PATH', HTTP_STATIC_PATH);
      $tpl-> assign('ABS_STATIC_PATH', ABS_STATIC_PATH);
+     $tpl-> assign('PROJECT_NAME', PROJECT_NAME);
      $tpl-> assign('VERSION', VERSION);
      $tpl-> assign('TIME', time());
      return $tpl;

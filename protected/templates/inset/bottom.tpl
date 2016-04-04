@@ -11,6 +11,6 @@
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="{$HTTP_STATIC_PATH}/js/jquery-ui.min.js"></script>
 <script>
-    var HTTP_ABS_PATH = "{$HTTP_ABS_PATH}";
+    var PROJECT_NAME = "{$PROJECT_NAME}";
 </script>
 <script src="{$HTTP_STATIC_PATH}/js/app.js" type="text/javascript"></script>

@@ -287,7 +287,18 @@ class User extends EntityWithDB
     
     private function _validate_update_data()
     {
+        $this->_validate_name();
         $this->_validate_birthdate();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_name()
+    {
+        if (!preg_match("/^.{3,50}$/", $this->_get_data_field('name')))
+        {
+            throw new ExceptionProcessing(14);
+        }
+        return true;
     }
     /////////////////////////////////////////////////////////////////////////////
     

@@ -1,8 +1,19 @@
 $(document).ready(function(){
     
-    var show_more = load_questionnaires();
-    show_more();
-    $("#showMore").click(show_more);
+    if (!Filter.getCookie(Filter.cookie_name))
+    {
+        var show_more = load_questionnaires();
+        show_more();
+        $("#showMore").click(show_more);
+    }
+    else
+    {
+        Filter.set_filter_from_cookie();
+        if (!$('#country_filter').attr('filter'))
+        {
+            Filter.apply_filter();
+        }
+    }
     $('#country_filter').change(function() {
         if ($('#country_filter').val() > 0)
         {
@@ -83,7 +94,7 @@ function load_questionnaires_by_params(params) {
                 strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center">'
                                 +       '<a href="profile.php?id=' + records[i].id + '">'
                                 +           '<img class="img-responsive"'
-                                +               'src="' + (records[i].url ? records[i].url : 'http://placehold.it/700x400') + '" alt="">'
+                                +               'src="' + (records[i].url ? records[i].url : 'static/img/no-photo_700x400.jpg') + '" alt="">'
                                 +       '</a>'
                                 +       '<div class="caption">'
                                 +           '<h3>'
@@ -159,7 +170,13 @@ var Users_vk_data = {
         {
             Vk.set_option_for_select(Users_vk_data.vk_response.response.items, '#country_filter', response.data);
             Users_vk_data.users_vk_db_data = response;
+            $('#filter_btn').removeClass('hide');
             Filter.set_filter_from_cookie();
+            if (!$('#city_filter').attr('filter') && $('#country_filter').attr('filter'))
+            {
+                Filter.apply_filter();
+            }
+            $('#country_filter').removeAttr('filter');
         }
 }
 
@@ -174,8 +191,8 @@ function city_other_show_names(result)
     {
         $('#city_filter').val($('#city_filter').attr('filter'));
         $('#city_filter').removeAttr('filter');
+        Filter.apply_filter();
     }
-    $('#filter_btn').removeClass('hide');
 }
 
 /*function regions_process(result)
@@ -193,17 +210,20 @@ var Filter = {
     cookie_name: PROJECT_NAME + '_filter',
     
     apply_filter:
-        function()
+        function(is_not_load_page)
         {
-            $('form#filter_form').find('button[type=submit]').attr('disabled','disabled');
             var filter_request_data = Filter.get_filter_request_data();
             var show_more = load_questionnaires(filter_request_data);
             show_more();
             $("#showMore")
                     .unbind('click')
                     .bind('click', show_more);
-            Filter.setCookie(Filter.cookie_name, JSON.stringify(filter_request_data));
-            return false;
+            if (is_not_load_page)
+            {
+                Filter.setCookie(Filter.cookie_name, JSON.stringify(filter_request_data));
+                $('form#filter_form').find('button[type=submit]').attr('disabled','disabled');
+                return false;
+            }
         },
 
     get_filter_request_data:
@@ -233,8 +253,9 @@ var Filter = {
                     if ($form_field.attr('type') != 'checkbox')
                     {
                         $form_field.val(value);
-                        if (name == 'country')
+                        if (name == 'country' && value > 0)
                         {
+                            $form_field.attr('filter', value);
                             $form_field.change();
                         }
                         else if (name == 'city')
