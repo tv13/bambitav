@@ -90,7 +90,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Номер телефона</label>
-                            <input type="text" id="phone" class="form-control">
+                            <input type="text" id="phone" class="form-control input-medium bfh-phone" data-format="+3 8(0dd) ddd-dddd">
                         </div>
                         <div class="form-group">
                             <label for="purpose">Цель знакомства</label>
@@ -226,5 +226,8 @@
 <!-- The File Upload validation plugin -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-validate.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
+<script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-phone.js"></script>
+<script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-datepicker.js"></script>
+<script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-datepicker.en_US.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
 <script src="http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=1000&callback=countries_process"></script>

@@ -16,6 +16,7 @@ $(document).ready(function(){
 
     form.on('keyup', setChangedF);
     form.on('change', setChangedF);
+    $('.bfh-datepicker').datepicker();
 
     var img_size = get_image_carousel_size();
 

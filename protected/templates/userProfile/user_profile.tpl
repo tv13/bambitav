@@ -69,7 +69,7 @@
                     </tr>
                     <tr>
                         <td><b>Номер телефона</b></td>
-                        <td><span id="phone"></span></td>
+                        <td><span id="phone" class="bfh-phone" data-format="+3 (0dd) ddd-dddd" data-number="38055555555"></span></td>
 
                     </tr>
                     <tr>
@@ -82,7 +82,9 @@
 
                     </tr>
                 </table>
-                    
+
+            </div>
+                <div class="col-sm-12 col-md-6 clearfix">
                 <!-- send email to user -->
                 <form id="form_contact">
                     <fieldset enable>
@@ -98,7 +100,11 @@
                         <button type="submit" class="btn btn-primary">Отправить сообщение</button>
                     </fieldset>
                 </form>
-            </div> <!-- /container -->
+                </div>
+            <div class="col-sm-12 col-md-6 clearfix">
+                <div id="alert_placeholder_contact_form" class="custom_alert">
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -108,5 +114,6 @@
 <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 <!-- The File Upload validation plugin -->
 <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
+<script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-phone.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/profile_base.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/user_profile.js"></script>

@@ -138,6 +138,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.fa-venus {
+    color: #FF0000;
+}
 .profile_ico {
     font-size:30px;
     font-weight: bold;

@@ -34,17 +34,18 @@ var UserProfile = {
         return false;
     },
     contact_send_email_ajax_handler: function(response) {
+
         $('#form_contact button').removeAttr('disabled');
         
         if (response.status == 1 && response.data)
         {
-            alert('Ваше сообщение успешно отправлено!');
+            bootstrap_alert.success('Ваше сообщение успешно отправлено!', '_contact_form');
             $('#contact_text').val('');
             grecaptcha.reset(recaptcha_contact);
         }
         else if (!response.status)
         {
-            alert(response.statusMessage);
+            bootstrap_alert.warning(response.statusMessage, '_contact_form');
         }
     }
 };
