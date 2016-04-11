@@ -251,3 +251,15 @@
         </div>
     </div>
 </div>
+
+<div id="pp" tabindex="-1" role="dialog">
+    <div class="pp-header">
+        <h3> Вам уже есть 18?</h3>
+    </div>
+    <div class="pp-footer">
+        <input type="button" class="btn btn-danger" value="Нет" id="remove_cookie" />
+        <input type="button"  class="btn btn-success" value="Да" id="accept_cookie" />
+    </div>
+</div>
+
+<div id="pp-bg"></div>
