@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    if (!Filter.getCookie(Filter.cookie_name))
+    if (!Cookie.getCookie(Cookie.cookie_filter))
     {
         var show_more = load_questionnaires();
         show_more();
@@ -207,7 +207,6 @@ function cities_process(result)
 }*/
 
 var Filter = {
-    cookie_name: PROJECT_NAME + '_filter',
     
     apply_filter:
         function(is_not_load_page)
@@ -220,7 +219,7 @@ var Filter = {
                     .bind('click', show_more);
             if (is_not_load_page)
             {
-                Filter.setCookie(Filter.cookie_name, JSON.stringify(filter_request_data));
+                Cookie.setCookie(Cookie.cookie_filter, JSON.stringify(filter_request_data));
                 $('form#filter_form').find('button[type=submit]').attr('disabled','disabled');
                 return false;
             }
@@ -243,11 +242,11 @@ var Filter = {
     set_filter_from_cookie:
         function()
         {
-            var cookie_filter = Filter.getCookie(Filter.cookie_name);
+            var cookie_filter_val = Cookie.getCookie(Cookie.cookie_filter);
             var $form_field;
-            if (cookie_filter)
+            if (cookie_filter_val)
             {
-                $.each(JSON.parse(cookie_filter), function(name, value)
+                $.each(JSON.parse(cookie_filter_val), function(name, value)
                 {
                     $form_field = $('#filter_form #'+name+'_filter');
                     if ($form_field.attr('type') != 'checkbox')
@@ -269,32 +268,5 @@ var Filter = {
                     }
                 });
             }
-        },
-        
-    setCookie:
-        function(cname, cvalue, expires_days)
-        {
-            if (expires_days == undefined)
-            {
-                expires_days = 3 * 30;  // 3 monthes
-            }
-            var d = new Date();
-            d.setTime(d.getTime() + (expires_days*24*60*60*1000));
-            var expires = "expires="+d.toUTCString();
-            document.cookie = cname + "=" + cvalue + "; " + expires;
-        },
-        
-    getCookie:
-        function(cname)
-        {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for (var i=0; i<ca.length; i++)
-            {
-                var c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1);
-                if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-            }
-            return "";
         }
 }

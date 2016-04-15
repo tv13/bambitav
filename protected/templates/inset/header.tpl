@@ -257,8 +257,8 @@
         <h3> Вам уже есть 18?</h3>
     </div>
     <div class="pp-footer">
-        <input type="button" class="btn btn-danger" value="Нет" id="remove_cookie" />
-        <input type="button"  class="btn btn-success" value="Да" id="accept_cookie" />
+        <input type="button" class="btn btn-danger" value="Нет" id="18_years_false" />
+        <input type="button"  class="btn btn-success" value="Да" id="18_years_true" />
     </div>
 </div>
 
