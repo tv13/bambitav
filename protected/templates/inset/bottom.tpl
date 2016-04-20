@@ -14,6 +14,6 @@
 <script>
     var PROJECT_NAME = "{$PROJECT_NAME}";
 </script>
-<script src="{$HTTP_STATIC_PATH}/js/cookie.js" type="text/javascript"></script>
 <script src="{$HTTP_STATIC_PATH}/js/visit_18.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/app.js" type="text/javascript"></script>
+<script src="{$HTTP_STATIC_PATH}/js/cookie.js" type="text/javascript"></script>

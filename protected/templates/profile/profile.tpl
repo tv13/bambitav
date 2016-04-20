@@ -90,7 +90,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Номер телефона</label>
-                            <input type="text" id="phone" class="form-control input-medium bfh-phone" data-format="+3 8(0dd) ddd-dddd">
+                            <input type="text" id="phone" class="form-control input-medium" data-format="+3 8(0dd) ddd-dddd">
                         </div>
                         <div class="form-group">
                             <label for="purpose">Цель знакомства</label>

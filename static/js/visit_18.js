@@ -22,7 +22,7 @@ $(document).ready(function(){
         $('#18_years_false').click(function(e){
             e.preventDefault();
             Cookie.setCookie(Cookie.cookie_18_years, '', -1);
-            window.location = document.referrer;
+            window.location = 'about:blank'; //document.referrer;
         });
 
         $('#18_years_true').click(function(e){

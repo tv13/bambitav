@@ -289,6 +289,7 @@ class User extends EntityWithDB
     {
         $this->_validate_name();
         $this->_validate_birthdate();
+        $this->_validate_phone();
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -322,6 +323,16 @@ class User extends EntityWithDB
         {
             throw new ExceptionProcessing(32);
         }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _validate_phone()
+    {
+        if (!preg_match("/^(\+)?(\d){10,16}$/", $this->_get_data_field('phone')))
+        {
+            throw new ExceptionProcessing(15);
+        }
+        return true;
     }
     /////////////////////////////////////////////////////////////////////////////
     
