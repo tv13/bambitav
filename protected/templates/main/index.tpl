@@ -21,8 +21,7 @@
 
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, world!</h1>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Подробнее &raquo;</a></p>
+        <h1>Bambita</h1>
       </div>
     </div>
     <div class="container">
