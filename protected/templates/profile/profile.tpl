@@ -5,9 +5,7 @@
 {include file='./inset/header.tpl'}
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<!-- Generic page styles -->
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/style.css">
-<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/jquery.fileupload.css">
 
 <div class="jumbotron">
@@ -17,12 +15,9 @@
                 <h2>Heading</h2>
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
                      data-interval="false">
-                    <!-- Indicators -->
                     <ol id="car_ol" class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                     </ol>
-
-                    <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox" id="car_inner">
                         <div class="item active no_photo">
                             <div class="carousel-caption">
@@ -31,7 +26,6 @@
                         </div>
                     </div>
 
-                    <!-- Controls -->
                     <a class="left carousel-control arrow hide" href="#carousel-example-generic" role="button"
                        data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -70,11 +64,6 @@
                             <label for="city_other">Другой город</label>
                             <input type="text" id="city_other" class="form-control">
                         </div>
-                        <!--<div class="form-group hide" id="region_div">
-                            <label for="region">Область</label>
-                            <select id="region" class="form-control">
-                            </select>
-                        </div>-->
 
                         <div class="form-group">
                             <label for="birthdate">Дата рождения</label>
@@ -113,7 +102,7 @@
                         </button>
                     </fieldset>
                 </form>
-            </div> <!-- /container -->
+            </div>
 
 
             <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -128,7 +117,6 @@
                         <span class="btn btn-success fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
                             <span>Добавить изображения...</span>
-                            <!-- The file input field used as target for the file upload widget -->
                             <input id="fileupload" type="file" name="files[]" multiple>
                         </span>
                             <button type="submit" class="btn btn-primary" id="start">
@@ -137,7 +125,6 @@
                             </button>
                             <br>
                             <br>
-                            <!-- The global progress bar -->
                             <p id="pr_status"></p>
                             <div class="progress">
                                 <div id="progress" class="progress-bar progress-bar-striped active" role="progressbar"
@@ -148,7 +135,6 @@
                             <div class="container">
                                 <div id="alert_placeholder_image" class="custom_alert">
                                 </div>
-                                <!-- The container for the uploaded files -->
                                 <table role="presentation" class="table table-striped table_photo_upload">
                                     <tbody class="files" id="files"></tbody>
                                 </table>
@@ -161,7 +147,6 @@
                 </div>
             </div>
 
-            <!-- publish questionnaire -->
             <div class="modal fade" id="publishQuestionnaire" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel">
                 <div class="modal-dialog" role="document">
@@ -176,7 +161,6 @@
                                 Ваш баланс составляет <span id="balanceValue">{$balance_value}</span> <span
                                         id="balanceCurrency"></span>
                             </h4>
-                            <!--<form role="form" id="publish_form">-->
                             <div class="form-group">
                                 <label for="publishDays">
                                     Укажите количество дней, на которое Вы хотите разместить анкету
@@ -198,7 +182,6 @@
                                 </button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
-                            <!--</form>-->
                         </div>
                     </div>
                 </div>
@@ -209,21 +192,13 @@
 <hr>
 {include file='./inset/bottom.tpl'}
 <script src="//i.onthe.io/u.js?{$IMAGES_APP}_24135782"></script>
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/vendor/jquery.ui.widget.js"></script>
-<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
 <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-<!-- The Canvas to Blob plugin is included for image resizing functionality -->
 <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.iframe-transport.js"></script>
-<!-- The basic File Upload plugin -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload.js"></script>
-<!-- The File Upload processing plugin -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-process.js"></script>
-<!-- The File Upload image preview & resize plugin -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-image.js"></script>
-<!-- The File Upload validation plugin -->
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-validate.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-phone.js"></script>

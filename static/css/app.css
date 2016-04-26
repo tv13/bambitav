@@ -190,3 +190,23 @@
 }
 .btn:hover { background-color: #339970; }
 .btn:active { top: 1px; }
+.show-more {
+    position: absolute;
+    margin: auto;
+    max-width: 1050px;
+    width: 100%;
+}
+.center {
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0);
+}
+.records {
+    top: 50%;
+    transform: translate(0%, 31%);
+    position: absolute;
+    font-weight: bold;
+}

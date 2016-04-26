@@ -10,13 +10,6 @@
     <meta name="author" content="">
 
     <title>2 Col Portfolio - Start Bootstrap Template</title>
-
-    <!-- Bootstrap Core CSS -->
-
-    <!-- Custom CSS -->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -35,9 +28,6 @@
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-
-
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
@@ -78,19 +68,9 @@
                             data-target="#filterModal" data-whatever="@mdo">Фильтр
                     </button>
                 </li>
-
-
             </ul>
-
-
         </div>
-
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
 </nav>
 
 
@@ -100,7 +80,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Registration</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Регистрация</h4>
             </div>
             <div class="modal-body">
                 <form role="form" id="register_form">
@@ -128,7 +108,7 @@
                     <div class="form-group" id="recaptcha_registration"></div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" id="register" disabled>Зарегистрироваться</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                     </div>
                 </form>
             </div>
@@ -143,7 +123,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Login</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Войти</h4>
             </div>
             <div class="modal-body">
                     <div id="alert_placeholder">
@@ -168,7 +148,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" id="login" disabled>Войти</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                     </div>
                 </form>
             </div>
@@ -184,7 +164,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Filter</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Фильтр</h4>
             </div>
             <div class="modal-body">
                 <form role="form" id="filter_form">
@@ -195,11 +175,6 @@
                             <select id="country_filter" class="filter form-control" required>
                             </select>
                         </div>
-                        <!--<div class="form-group hide" id="region_filter_div">
-                            <label for="region_filter">Область</label>
-                            <select id="region_filter" class="filter form-control">
-                            </select>
-                        </div>-->
                         <div class="form-group hide" id="city_filter_div">
                             <label for="city_filter">Город</label>
                             <select id="city_filter" class="filter form-control">
@@ -244,7 +219,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Применить</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                     </div>
                 </form>
             </div>

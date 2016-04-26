@@ -5,7 +5,6 @@
 {include file='./inset/header.tpl'}
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<!-- Generic page styles -->
 
 <div class="jumbotron">
     <div class="container">
@@ -14,12 +13,10 @@
                 <h2>Heading</h2>
                 <div id="carousel-example-generic" class="carousel slide no-control" data-ride="carousel"
                      data-interval="false">
-                    <!-- Indicators -->
                     <ol id="car_ol" class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                     </ol>
 
-                    <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox" id="car_inner">
                         <div class="item active no_photo">
                             <div class="carousel-caption">
@@ -28,7 +25,6 @@
                         </div>
                     </div>
 
-                    <!-- Controls -->
                     <a class="left carousel-control arrow hide" href="#carousel-example-generic" role="button"
                        data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -79,13 +75,11 @@
                     <tr>
                         <td><b>Текст объявления</b></td>
                         <td><span id="text"></span></td>
-
                     </tr>
                 </table>
 
             </div>
                 <div class="col-sm-12 col-md-6 clearfix">
-                <!-- send email to user -->
                 <form id="form_contact">
                     <fieldset enable>
                         <div class="form-group">
@@ -110,9 +104,7 @@
 </div>
 <hr>
 {include file='./inset/bottom.tpl'}
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-<!-- The File Upload validation plugin -->
 <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-phone.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/profile_base.js"></script>
