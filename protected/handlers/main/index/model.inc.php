@@ -35,6 +35,33 @@ class MainIndexModel extends MainModel
     
     public function action_default()
     {
+        $this->_set_cookie_for_get_param('country');
+        $this->_set_cookie_for_get_param('city');
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _set_cookie_for_get_param($param_name)
+    {
+        if (isset($_GET[$param_name]) && $this->_is_natural_number(@$_GET[$param_name]))
+        {
+            $this->_set_cookie_by_name_time($param_name, 60); //sec
+        }
+        else
+        {
+            $this->_set_cookie_by_name_time($param_name, -1); //delete
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _is_natural_number($value)
+    {
+        return is_numeric($value) && (int)$value == $value && (int)$value > 0;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    private function _set_cookie_by_name_time($name, $time)
+    {
+        setcookie(PROJECT_NAME.'_'.$name, $_GET[$name], time() + $time);
     }
     /////////////////////////////////////////////////////////////////////////////
     

@@ -87,7 +87,7 @@ class MainProfileModel extends MainModel
     {
         $this->is_ajax = true;
         $this->_check_id_exist();
-        $this->_Image->delete_image((string)@$_POST['id']);
+        $this->_Image->delete_image((string)@$_POST['id'], $this->get_customer_id());
         throw new ExceptionProcessing(1, 1);
     }
     /////////////////////////////////////////////////////////////////////////////

@@ -47,16 +47,16 @@
                 <form id="formProfile">
                     <fieldset enable>
                         <div class="form-group">
-                            <label for="name">Имя</label>
+                            <label for="name">Имя*</label>
                             <input type="text" id="name" class="form-control" required>
                         </div>
                         <div class="form-group hide" id="country_div">
-                            <label for="country">Страна</label>
+                            <label for="country">Страна*</label>
                             <select id="country" class="form-control" required>
                             </select>
                         </div>
                         <div class="form-group hide" id="city_main_div">
-                            <label for="city_main">Город</label>
+                            <label for="city_main">Город*</label>
                             <select id="city_main" class="form-control" required>
                             </select>
                         </div>
@@ -66,11 +66,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="birthdate">Дата рождения</label>
+                            <label for="birthdate">Дата рождения*</label>
                             <input type="date" id="birthdate" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="sex">Пол</label>
+                            <label for="sex">Пол*</label>
                             <select id="sex" class="form-control" required>
                                 <option value="">Не указан</option>
                                 <option value="m">Мужской</option>
@@ -82,7 +82,7 @@
                             <input type="text" id="phone" class="form-control input-medium" data-format="+3 8(0dd) ddd-dddd">
                         </div>
                         <div class="form-group">
-                            <label for="purpose">Цель знакомства</label>
+                            <label for="purpose">Цель знакомства*</label>
                             <select id="purpose" class="form-control" required>
                                 <option value="">Выберите...</option>
                                 {foreach $purposes_dating as $purpose}
@@ -91,7 +91,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="text">Текст объявления</label>
+                            <label for="text">Текст объявления*</label>
                             <textarea class="form-control" id="text" rows="3" required></textarea>
                         </div>
                         <div id="alert_placeholder_form" class="custom_alert">

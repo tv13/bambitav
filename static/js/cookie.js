@@ -2,6 +2,7 @@
 var Cookie = {
     cookie_filter   : PROJECT_NAME + '_filter',
     cookie_18_years : PROJECT_NAME + '_visit',
+    cookie_pref     : PROJECT_NAME + '_',
             
     setCookie:
         function(cname, cvalue, expires_days)

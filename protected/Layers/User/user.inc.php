@@ -328,7 +328,7 @@ class User extends EntityWithDB
     
     private function _validate_phone()
     {
-        if (!preg_match("/^(\+)?(\d){10,16}$/", $this->_get_data_field('phone')))
+        if (!preg_match("/^(\+)?(\d){10,16}$|^$/", $this->_get_data_field('phone')))
         {
             throw new ExceptionProcessing(15);
         }

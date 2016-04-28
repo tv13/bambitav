@@ -114,10 +114,11 @@ class Image extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function delete_image($image_id)
+    public function delete_image($image_id, $customer_id)
     {
         $user_id = $this->_get_user_id_by_image_id($image_id);
         $this->_check_exist_image_id(null, $user_id);
+        $this->_check_user_is_owner_image($customer_id, $user_id);
         $main = $this->_get_main_by_image_id($image_id);
         $this->DBHandler->delete_by_primary();
         if ($main)
@@ -163,6 +164,17 @@ class Image extends EntityWithDB
     {
         $this->_load_image_by_id($image_id);
         return $this->Fields['user_id']->get();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
+    /* Проверяем: это изображение юзера, который хочет его удалить (владельца), или кого-то другого */
+    private function _check_user_is_owner_image($customer_id, $user_id)
+    {
+        if ($user_id != $customer_id)
+        {
+            throw new ExceptionProcessing(35);
+        }
+        return true;
     }
     /////////////////////////////////////////////////////////////////////////////
     

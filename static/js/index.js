@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 function load_questionnaires_by_params(params) {
     $.ajax({
-        url : "",
+        url : ".",
         type: "GET",
         data: params,
         beforeSend: function () {
@@ -157,7 +157,7 @@ var Users_vk_data = {
     process_users_vk_data:
         function(response_vk) 
         {
-            $.get('',
+            $.get('.',
             {
                 action: 'get_users_vk_data'
             }, handle_response).error(ajax_error_handler).handler = Users_vk_data.get_users_vk_data_ajax_handler;
@@ -175,6 +175,7 @@ var Users_vk_data = {
             if (!$('#city_filter').attr('filter') && $('#country_filter').attr('filter'))
             {
                 Filter.apply_filter();
+                Cookie.setCookie(Cookie.cookie_filter, JSON.stringify(Filter.get_filter_request_data()));
             }
             $('#country_filter').removeAttr('filter');
         }
@@ -184,14 +185,20 @@ function city_other_show_names(result)
 {
     $('#city_filter_div').removeClass('hide');
     $('#city_filter').empty();
+    $('#city_filter').append('<option value="0">Выберите...</option>');
     $.each(result.response, function(i, item) {
         $('#city_filter').append('<option value="' + item.id + '">' + item.title + '</option>');
     });
     if ($('#city_filter').attr('filter'))
     {
-        $('#city_filter').val($('#city_filter').attr('filter'));
+        var city_filter_val = $('#city_filter').attr('filter');
+        if ($('#city_filter option[value="'+city_filter_val+'"]').length > 0)
+        {
+            $('#city_filter').val(city_filter_val);
+        }
         $('#city_filter').removeAttr('filter');
         Filter.apply_filter();
+        Cookie.setCookie(Cookie.cookie_filter, JSON.stringify(Filter.get_filter_request_data()));
     }
 }
 
@@ -252,7 +259,9 @@ var Filter = {
                     if ($form_field.attr('type') != 'checkbox')
                     {
                         $form_field.val(value);
-                        if (name == 'country' && value > 0)
+                        if (name == 'country'
+                            && !Cookie.getCookie(Cookie.cookie_pref + 'country')
+                            && value > 0)
                         {
                             $form_field.attr('filter', value);
                             $form_field.change();
@@ -267,6 +276,28 @@ var Filter = {
                         $form_field.prop('checked', value);
                     }
                 });
+            }
+            Filter.set_form_field_value('country');
+            Filter.set_form_field_value('city');
+        },
+        
+    set_form_field_value:
+        function(name)
+        {
+            if (Cookie.getCookie(Cookie.cookie_pref + name))
+            {
+                var GET_value = Cookie.getCookie(Cookie.cookie_pref + name);
+                $('#'+name+'_filter').attr('filter', GET_value);
+                if (name == 'country')
+                {
+                    $('#'+name+'_filter')
+                        .val(GET_value)
+                        .change();
+                }
+            }
+            else if (name == 'city' && Cookie.getCookie(Cookie.cookie_pref + 'country'))
+            {
+                $('#city_filter').removeAttr('filter');
             }
         }
 }
