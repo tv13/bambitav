@@ -19,12 +19,13 @@
 
     {include file='./inset/header.tpl'}
 
+    <div class="wrapper">
     <div class="jumbotron">
       <div class="container">
         <h1>Bambita</h1>
       </div>
     </div>
-    <div class="container">
+    <div class="container container-bambi">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Page Heading
@@ -41,9 +42,11 @@
        </div>
         <hr>
 
-  {include file='./inset/bottom.tpl'}
-
     </div>
+        <div class="footer-push"></div>
+    </div>
+
+    {include file='./inset/bottom.tpl'}
     <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/index.js"></script>
 </body>

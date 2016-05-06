@@ -210,3 +210,20 @@
     position: absolute;
     font-weight: bold;
 }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 0 -30px 0;
+    padding: 0;
+}
+.footer-push, .footer {
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}
