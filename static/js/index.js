@@ -91,26 +91,38 @@ function load_questionnaires_by_params(params) {
                 {
                     strElemsAppend += '<div class="row">';
                 }
-                strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center">'
-                                +       '<a href="profile.php?id=' + records[i].id + '">'
+
+                var ab="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'"
+;
+                strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center header-col">'
+                                +       '<a href="profile.php?id=' + records[i].id + '" >'
                                 +           '<img class="img-responsive"'
                                 +               'src="' + (records[i].url ? records[i].url : 'static/img/no-photo_700x400.jpg') + '" alt="">'
                                 +       '</a>'
                                 +       '<div class="caption">'
-                                +           '<h3>'
-                                +               '<a href="#">'
-                                +                   '<span class="profile-left">'
-                                +                       records[i].name
-                                +                   '</span>'
-                                +                   '<span class="profile-right">'
-                                +                       (records[i].age >= 14 && records[i].age < 100 ? records[i].age + ', ' : '')
-                                +                       '<i class="fa fa-' + sex_img + ' profile_ico"></i>'
-                                +                   '</span>'
-                                +               '</a>'
-                                +           '</h3>'
+                                +   '<div id="collapse' + records[i].id + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="record' + records[i].id + '">'
+                                +       '<div class="panel-body">'
+                    + ab
+                                +   '</div>'
+                                + '</div>'
+                                +           '<div class="panel-heading" role="tab" id="record-' + records[i].id + '">'
+
+                                +                   '<a role="button" data-toggle="collapse"'
+                                +     'data-parent="#itemContainer" href="#collapse' + records[i].id + '"'
+                                +       'aria-expanded="true" aria-controls="collapseOne" class="hoverExpand">'
+
+                                +                       '<span class="profile-left">'
+                                +                           records[i].name
+                                +                       '</span>'
+                                +                       '<span class="profile-right">'
+                                +                           (records[i].age >= 14 && records[i].age < 100 ? records[i].age + ', ' : '')
+                                +                           '<i class="fa fa-' + sex_img + ' profile_ico"></i>'
+                                +                       '</span>'
+                                +                   '</a>'
+                                +           '</div>'
                                 +       '</div>'
-                                + '</div>';
-                            
+                                +   '</div>';
+
                 if (current_num % 2)
                 {
                     strElemsAppend += '</div>';
@@ -126,6 +138,7 @@ function load_questionnaires_by_params(params) {
             $("#itemContainer").append(strElemsAppend);
         }
     });
+
 }
 
 function load_questionnaires(filter_data)

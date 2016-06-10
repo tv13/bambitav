@@ -119,21 +119,23 @@
     width: 100%;
     bottom: 0.2rem;
     position: absolute;
-    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
-    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
-    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
+    background-image: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
+    background-image: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
+    background-image: -o-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
 }
 .profile-left {
     float:left;
+    font-size: 30px;
 }
 .profile-right {
     float:right;
+    font-size: 30px;
 }
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
+    font-size: 30px;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -226,4 +228,17 @@ html, body {
     height: 30px;
     margin: 0;
     padding: 0;
+}
+.panel-group {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    color: #223840;
+}
+
+.header-cool {
+    position: relative;
+}
+.panel-heading a{
+    color: #223840;
 }

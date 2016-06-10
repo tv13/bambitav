@@ -33,7 +33,7 @@
                 </h1>
             </div>
         </div>
-        <div id="itemContainer">
+        <div id="itemContainer" class="panel-group" role="tablist" aria-multiselectable="true">
         </div>
 
        <div class="show-more">
