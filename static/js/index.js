@@ -95,32 +95,39 @@ function load_questionnaires_by_params(params) {
                 var ab="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'"
 ;
                 strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center header-col">'
-                                +       '<a href="profile.php?id=' + records[i].id + '" >'
-                                +           '<img class="img-responsive"'
-                                +               'src="' + (records[i].url ? records[i].url : 'static/img/no-photo_700x400.jpg') + '" alt="">'
-                                +       '</a>'
-                                +       '<div class="caption">'
-                                +   '<div id="collapse' + records[i].id + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="record' + records[i].id + '">'
-                                +       '<div class="panel-body">'
-                    + ab
-                                +   '</div>'
-                                + '</div>'
+                                +    '<div class="caption top">'
                                 +           '<div class="panel-heading" role="tab" id="record-' + records[i].id + '">'
 
                                 +                   '<a role="button" data-toggle="collapse"'
                                 +     'data-parent="#itemContainer" href="#collapse' + records[i].id + '"'
                                 +       'aria-expanded="true" aria-controls="collapseOne" class="hoverExpand">'
 
-                                +                       '<span class="profile-left">'
-                                +                           records[i].name
-                                +                       '</span>'
-                                +                       '<span class="profile-right">'
-                                +                           (records[i].age >= 14 && records[i].age < 100 ? records[i].age + ', ' : '')
-                                +                           '<i class="fa fa-' + sex_img + ' profile_ico"></i>'
-                                +                       '</span>'
-                                +                   '</a>'
+                                +                          'Объявление'
+                    +                           '<br><i class="glyphicon glyphicon-triangle-bottom glyphicon glyphicon-o"></i>'
+
+                    +                   '</a>'
+                                +           '</div>'
+                                +           '<div id="collapse' + records[i].id + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="record' + records[i].id + '">'
+                                +               '<div class="panel-body">'
+                                +                   ab
+                                +               '</div>'
                                 +           '</div>'
                                 +       '</div>'
+                                +       '<a href="profile.php?id=' + records[i].id + '" >'
+                                +           '<img class="img-responsive"'
+                                +               'src="' + (records[i].url ? records[i].url : 'static/img/no-photo_700x400.jpg') + '" alt="">'
+                                +       '</a>'
+                + '<div class="caption">'
+                +           '<h3>'
+                +                   '<span class="profile-left">'
+                +                       records[i].name
+                +                   '</span>'
+                +                   '<span class="profile-right">'
+                +                       (records[i].age >= 14 && records[i].age < 100 ? records[i].age + ', ' : '')
+                +                       '<i class="fa fa-' + sex_img + ' profile_ico"></i>'
+                +                   '</span>'
+                +           '</h3>'
+                +       '</div>'
                                 +   '</div>';
 
                 if (current_num % 2)
