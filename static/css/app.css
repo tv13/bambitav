@@ -129,18 +129,18 @@
     margin-bottom:240px;
     top: 0.2rem;
     position: absolute;
-    background-image: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
-    background-image: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
-    background-image: -o-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
+    background-image: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 0%);
+    background-image: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 0%);
+    background-image: -o-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 0%);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 0%);
     border-radius: 10px 10px 0 0 ;
 }
 .panel-body {
     width: 100%;
-    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
-    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
-    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
+    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 0%);
+    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 0%);
+    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 0%);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 0%);
 }
 .thumbnail .caption.top {
     padding: 0px;
@@ -267,4 +267,14 @@ html, body {
 }
 .panel-heading a{
     color: #223840;
+}
+.panel-body {
+    max-height: 115px;
+    overflow: hidden;
+    position: relative;
+}
+.text-overflow {
+    position: absolute;
+    top: 60px;
+    left: 0;
 }

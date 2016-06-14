@@ -109,7 +109,9 @@ function load_questionnaires_by_params(params) {
                                 +           '</div>'
                                 +           '<div id="collapse' + records[i].id + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="record' + records[i].id + '">'
                                 +               '<div class="panel-body">'
+                                +                   ab + '<br>'
                                 +                   ab
+                                +                   '<img src="static/img/grad.png" alt="Read More" class="text-overflow">'
                                 +               '</div>'
                                 +           '</div>'
                                 +       '</div>'
