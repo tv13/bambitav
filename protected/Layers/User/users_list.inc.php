@@ -91,12 +91,22 @@ class UsersList extends PagedLister
 
     function get_list()
     {
+        $count_char_for_trim = 600;
         $this-> db-> exec_query("
-            SELECT users.id, users.name, " . self::SQL_CALC_AGE . " AS age, users.sex, pic.key_code " . self::SQL_JOIN
+            SELECT users.id, users.name, " . self::SQL_CALC_AGE . " AS age, users.sex, users.text, pic.key_code " . self::SQL_JOIN
             . $this->get_where_part()
             . 'ORDER BY users.dt_create DESC'
             . $this->get_limit_part());
-        return $this-> db-> get_all_data();
+        $all_records = array();
+        foreach ($this-> db-> get_all_data() as $record)
+        {
+            if (strlen($record['text']) > $count_char_for_trim)
+            {
+                $record['text'] = substr($record['text'], 0, $count_char_for_trim);
+            }
+            $all_records[] = $record;
+        }
+        return $all_records;
     }
     ////////////////////////////////////////////////////////////////////////////
 
