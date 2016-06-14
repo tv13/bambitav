@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    if (!Cookie.getCookie(Cookie.cookie_filter))
+    if (!Cookie.getCookie(Cookie.cookie_filter) && !Query_GET.is_filter_params())
     {
         var show_more = load_questionnaires();
         show_more();
@@ -92,8 +92,6 @@ function load_questionnaires_by_params(params) {
                     strElemsAppend += '<div class="row">';
                 }
 
-                var ab="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'"
-;
                 strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center header-col">'
                                 +    '<div class="caption top">'
                                 +           '<div class="panel-heading" role="tab" id="record-' + records[i].id + '">'
@@ -101,17 +99,13 @@ function load_questionnaires_by_params(params) {
                                 +                   '<a role="button" data-toggle="collapse"'
                                 +     'data-parent="#itemContainer" href="#collapse' + records[i].id + '"'
                                 +       'aria-expanded="true" aria-controls="collapseOne" class="hoverExpand">'
-
                                 +                          'Объявление'
-                    +                           '<br><i class="glyphicon glyphicon-triangle-bottom glyphicon glyphicon-o"></i>'
-
-                    +                   '</a>'
+                                +                           '<br><i class="glyphicon glyphicon-triangle-bottom glyphicon glyphicon-o"></i>'
+                                +                   '</a>'
                                 +           '</div>'
                                 +           '<div id="collapse' + records[i].id + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="record' + records[i].id + '">'
                                 +               '<div class="panel-body">'
-                                +                   ab + '<br>'
-                                +                   ab
-                                +                   '<img src="static/img/grad.png" alt="Read More" class="text-overflow">'
+                                +                   records[i].text
                                 +               '</div>'
                                 +           '</div>'
                                 +       '</div>'
@@ -321,5 +315,37 @@ var Filter = {
             {
                 $('#city_filter').removeAttr('filter');
             }
+        }
+}
+
+var Query_GET = {
+    get_params:
+        function()
+        {
+            var params = {};
+            if (location.search) {
+                var parts = location.search.substring(1).split('&');
+
+                for (var i = 0; i < parts.length; i++) {
+                    var nv = parts[i].split('=');
+                    if (!nv[0]) continue;
+                    params[nv[0]] = nv[1] || true;
+                }
+            }
+            return params;
+        },
+
+    is_filter_params:
+        function()
+        {
+            var list_params_for_check = ['country', 'city', 'age_min', 'age_max', 'sex', 'purpose', 'with_photo'];
+            var has_filter_params_setted = false;
+            $.each(this.get_params(), function(value) {
+                if ($.inArray(value, list_params_for_check) != -1) {
+                    has_filter_params_setted = true;
+                    return false;
+                }
+            });
+            return has_filter_params_setted;
         }
 }
