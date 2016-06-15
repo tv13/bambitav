@@ -4,7 +4,6 @@
 
 {include file='./inset/header.tpl'}
 
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/style.css">
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/jquery.fileupload.css">
 
@@ -13,7 +12,6 @@
         <div class="container container-bambi">
             <div class="row clearfix">
                 <div class="col-sm-12 col-md-6 image_content">
-                    <h2>Heading</h2>
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
                          data-interval="false">
                         <ol id="car_ol" class="carousel-indicators">
@@ -43,8 +41,7 @@
                     </button>
                 </div>
 
-                <div class="col-sm-12 col-md-6 clearfix jumbotron">
-                    <h2>Heading</h2>
+                <div class="col-sm-12 col-md-6 clearfix">
                     <form id="formProfile">
                         <fieldset enable>
                             <div class="form-group">
