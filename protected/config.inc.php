@@ -30,7 +30,7 @@ ob_start();
 define('DEV_MODE', false);
 
 date_default_timezone_set('Europe/Kiev');
-define('DOMAIN_ROOT', 'env-8112542.unicloud.pl/bambitav/');
+define('DOMAIN_ROOT', 'env-8112542-clone8377.unicloud.pl/bambitav/');
 define('PROJECT_NAME', 'bambitav');
 define('SESSION_NAME', PROJECT_NAME . '_rand');
 define('AUTH_EXPIRATION_MINUTES', 30);
@@ -49,7 +49,7 @@ define('HTTP_STATIC_PATH', HTTP_ABS_PATH.'/static');
 ////////////////////////////////////////////////////////////////////////////
 
 $Config['db_name'] = 'tm';
-$Config['db_host'] = 'node27464-env-8112542.unicloud.pl';
+$Config['db_host'] = 'mysql30063-env-8112542-clone8377.unicloud.pl';
 $Config['db_user'] = 'root';
 $Config['db_pass'] = 'AEahaCFeFq';
 
@@ -58,7 +58,7 @@ $Config['db_debug_mode'] = false;
 
 ////////////////////////////////////////////////////////////////////////////
 
-define('RECAPTCHA_GOOGLE_SECRET', '6LddWxYTAAAAAAqgb6nvriEJxkCYTLcYwxrOuQUn');
+define('RECAPTCHA_GOOGLE_SECRET', '6LcuuBsTAAAAAFtBWpbxWPypvlygPkkDAz_8OOEn');
 
 ////////////////////////////////////////////////////////////////////////////
 
