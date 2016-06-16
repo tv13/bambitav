@@ -77,8 +77,9 @@ class User extends EntityWithDB
     public function registration()
     {
         $user_id = $this->_create();
-        if ($this->_send_validate_email($user_id))
+        if (!$this->_send_validate_email($user_id))
         {
+            $this->delete();
             throw new ExceptionProcessing(9);
         }
     }

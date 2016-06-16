@@ -41,6 +41,7 @@ class MemberAreaRegistrationModel extends MainModel
         $this->Customer->set_name($this->_User->get_name_by_user_id($user_id));
         $this->CustomerAuth->update_sessioned($this->Customer);
         $this->CustomerAuth->login();
+        setcookie(PROJECT_NAME.'_confirm_email', 1, time() + 60);
         throw new ExceptionProcessing(11, 1);
     }
     

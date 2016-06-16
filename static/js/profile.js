@@ -17,6 +17,7 @@ $(document).ready(function(){
     form.on('keyup', setChangedF);
     form.on('change', setChangedF);
     $('.bfh-datepicker').datepicker();
+    showModalConfirmEmail();
 
     var img_size = get_image_carousel_size();
 
@@ -495,5 +496,14 @@ function show_photo_modal()
     $('#files').empty();
     if ($('#start').data().files != undefined) {
         $('#start').data().files = undefined;
+    }
+}
+
+function showModalConfirmEmail()
+{
+    if (Cookie.getCookie(Cookie.cookie_confirm_email))
+    {
+        $('#needConfirmEmailModal').modal('show');
+        Cookie.setCookie(Cookie.cookie_confirm_email, 1, -1); /* delete cookie confirm_email */
     }
 }

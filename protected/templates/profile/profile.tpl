@@ -7,6 +7,27 @@
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/style.css">
 <link rel="stylesheet" href="{$HTTP_STATIC_PATH}/uploader/css/jquery.fileupload.css">
 
+<div class="modal fade" id="needConfirmEmailModal" tabindex="-1" role="dialog" aria-labelledby="confirmEmail">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="confirmEmail">Требуется подтверждение аккаунта</h3>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p>
+                        На Ваш email было отправлено письмо.
+                        Для подтверждения вашего аккаунта перейдите по ссылке, указанной в письме.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <div class="wrapper">
     <div class="jumbotron">
         <div class="container container-bambi">
