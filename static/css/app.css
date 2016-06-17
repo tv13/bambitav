@@ -240,6 +240,11 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+		        background: url(../img/city-1209105.jpg) no-repeat center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 }
 .wrapper {
     min-height: 100%;
