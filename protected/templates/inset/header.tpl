@@ -183,15 +183,15 @@
                     <div class="form-group">
                         <div class="col-md-6">
                             <label for="age_min_filter">
-                                Min age
+                                Возраст от
                             </label>
-                            <input id="age_min_filter" class="filter form-control" type="text" />
+                            <input id="age_min_filter" min="18" max="100" type="number" class="filter form-control"/>
                         </div>
                         <div class="col-md-6">
                             <label for="age_max_filter">
-                                Max age
+                                до
                             </label>
-                            <input id="age_max_filter" class="filter form-control" type="text" />
+                            <input id="age_max_filter" min="18" max="100" type="number" class="filter form-control" />
                         </div>
                     </div>
                     <div class="form-group">
