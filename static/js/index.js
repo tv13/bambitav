@@ -76,6 +76,7 @@ function load_questionnaires_by_params(params) {
             var i = 0;
             var strElemsAppend = "";
             var sex_img;
+            var float;
             while (i < records.length) {
                 // records[i].sex_img = 'venus-mars';
                 if (records[i].sex == 'm')
@@ -92,7 +93,9 @@ function load_questionnaires_by_params(params) {
                     strElemsAppend += '<div class="row">';
                 }
 
-                strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center header-col">'
+                float = i % 2 ? 'right' : 'left';
+
+                strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center header-col ' + float + '">'
                                 +    '<div class="caption top">'
                                 +           '<div class="panel-heading" role="tab" id="record-' + records[i].id + '">'
 

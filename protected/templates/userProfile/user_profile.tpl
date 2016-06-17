@@ -37,6 +37,20 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+                    <form id="form_contact">
+                        <fieldset enable>
+                            <div class="form-group">
+                                <label for="contact_email">Ваш Email</label>
+                                <input type="text" id="contact_email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact_text">Текст сообщение</label>
+                                <textarea class="form-control" id="contact_text" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group" id="recaptcha_contact"></div>
+                            <button type="submit" class="btn btn-primary">Отправить сообщение</button>
+                        </fieldset>
+                    </form>
                 </div>
 
                 <div class="col-sm-12 col-md-6 clearfix jumbotron">
@@ -81,20 +95,6 @@
 
                 </div>
                 <div class="col-sm-12 col-md-6 clearfix">
-                    <form id="form_contact">
-                        <fieldset enable>
-                            <div class="form-group">
-                                <label for="contact_email">Ваш Email</label>
-                                <input type="text" id="contact_email" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact_text">Текст сообщение</label>
-                                <textarea class="form-control" id="contact_text" rows="3" required></textarea>
-                            </div>
-                            <div class="form-group" id="recaptcha_contact"></div>
-                            <button type="submit" class="btn btn-primary">Отправить сообщение</button>
-                        </fieldset>
-                    </form>
                 </div>
                 <div class="col-sm-12 col-md-6 clearfix">
                     <div id="alert_placeholder_contact_form" class="custom_alert">

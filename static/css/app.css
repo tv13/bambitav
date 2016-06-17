@@ -126,7 +126,7 @@
 }
 .caption.top{
     width: 100%;
-    margin-bottom:240px;
+    margin-bottom:265px;
     top: 0.2rem;
     position: absolute;
     background-image: none;
@@ -270,6 +270,7 @@ html, body {
     background-image: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
     background-image: -o-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
+    padding: 0 !important;
 }
 .panel-body {
     max-height: 115px;
@@ -280,4 +281,7 @@ html, body {
     position: absolute;
     top: 60px;
     left: 0;
+}
+.thumbnail.right {
+    float:right;
 }
