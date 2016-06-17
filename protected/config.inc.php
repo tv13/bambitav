@@ -30,7 +30,7 @@ ob_start();
 define('DEV_MODE', false);
 
 date_default_timezone_set('Europe/Kiev');
-define('DOMAIN_ROOT', 'env-8112542-clone8377.unicloud.pl/bambitav/');
+define('DOMAIN_ROOT', 'env-8112542-clone8377.unicloud.pl');
 define('PROJECT_NAME', 'bambitav');
 define('SESSION_NAME', PROJECT_NAME . '_rand');
 define('AUTH_EXPIRATION_MINUTES', 30);
@@ -43,7 +43,7 @@ define('LAYERS_DIR', ABS_PATH.'/Layers');
 define('HANDLERS_DIR', ABS_PATH.'/handlers');
 define('LIB_DIR', ABS_PATH.'/Lib');
 
-define('HTTP_ABS_PATH', 'http://'.DOMAIN_ROOT.'');
+define('HTTP_ABS_PATH', 'http://'.DOMAIN_ROOT.'/');
 define('HTTP_STATIC_PATH', HTTP_ABS_PATH.'/static');
 
 ////////////////////////////////////////////////////////////////////////////
