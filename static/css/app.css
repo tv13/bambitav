@@ -119,42 +119,18 @@
     width: 100%;
     bottom: 0.2rem;
     position: absolute;
-    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
-    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
-    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .6) 70%);
-}
-.caption.top{
-    width: 100%;
-    margin-bottom:265px;
-    top: 0.2rem;
-    position: absolute;
-    background-image: none;
-    border-radius: 10px 10px 0 0 ;
-}
-.panel-body {
-    width: 100%;
-    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
-    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
-    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
-}
-.thumbnail .caption.top {
-    padding: 0px;
-}
-.panel-heading a:focus,.panel-heading a:hover {
-    color: #23527c;
-    text-decoration: none;
+    background-image: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
+    background-image: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
+    background-image: -o-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .8) 70%);
 }
 .profile-left {
     float:left;
     font-size: 30px;
-    color: #337ab7;
 }
 .profile-right {
     float:right;
     font-size: 30px;
-    color: #337ab7;
 }
 .fa {
     display: inline-block;
@@ -218,7 +194,7 @@
 .btn:active { top: 1px; }
 .show-more {
     position: absolute;
-    margin: 20px;
+    margin: auto;
     max-width: 1050px;
     width: 100%;
 }
@@ -239,8 +215,14 @@
 html, body {
     height: 100%;
     margin: 0;
-    padding: 0;
+    padding: 0;	
+	        background: url(../img/city-1209105.jpg) no-repeat center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 }
+
 .wrapper {
     min-height: 100%;
     height: auto !important;
@@ -249,8 +231,8 @@ html, body {
     padding: 0;
 }
 .footer-push, .footer {
-    height: 50px;
-    margin: 20px;
+    height: 30px;
+    margin: 0;
     padding: 0;
 }
 .panel-group {
@@ -264,24 +246,4 @@ html, body {
 }
 .panel-heading a{
     color: #223840;
-}
-.panel-heading {
-    background-image: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
-    background-image: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
-    background-image: -o-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
-    padding: 0 !important;
-}
-.panel-body {
-    max-height: 115px;
-    overflow: hidden;
-    position: relative;
-}
-.text-overflow {
-    position: absolute;
-    top: 60px;
-    left: 0;
-}
-.thumbnail.right {
-    float:right;
 }
