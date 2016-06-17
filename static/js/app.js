@@ -47,6 +47,8 @@ $(document).ready(function () {
     $('#log_out').click(logout_click_handler);
 
     $('#profile_btn').click(profile_click_handler);
+    
+    showModalResultCheckEmail();
 
     function login_click_handler() {
         $.ajax({
@@ -137,5 +139,24 @@ $(document).ready(function () {
     function profile_click_handler() {
         window.location.href = "./profile.php";
 
+    }
+
+    function showModalResultCheckEmail()
+    {
+        var result_check = Cookie.getCookie(Cookie.cookie_res_check_email);
+        var $modal_form = $('#resultCheckEmailModal');
+        if (result_check)
+        {
+            $modal_form.modal('show');
+            if (result_check > 0)
+            {
+                $modal_form.find('.check_email_success').removeClass('hide');
+            }
+            else
+            {
+                $modal_form.find('.check_email_fail').removeClass('hide');
+            }
+            Cookie.setCookie(Cookie.cookie_res_check_email, 1, -1); /* delete cookie res_check_email */
+        }
     }
 });

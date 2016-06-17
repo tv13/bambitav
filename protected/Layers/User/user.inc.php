@@ -113,8 +113,8 @@ class User extends EntityWithDB
         $to      = $this->_get_email_by_user_id($user_id);
         $subject = 'Регистрация';
         $message = $this->_get_email_verify_body($user_id);
-        $headers  = "From: webmaster@example.com\r\n" .
-                    // 'Reply-To: webmaster@example.com' . "\r\n" .
+        $headers  = "From: Bambitax\r\n" .
+                    "Reply-To: Bambitax@mail.ru\r\n" .
                     "Content-type: text/html";
                     //'X-Mailer: PHP/' . phpversion();
         return mail($to, $subject, $message, $headers);
@@ -192,11 +192,16 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    public function check_email_code($code)
+    public function get_user_id_by_check_email_code($code)
     {
         $decode = base64_decode($code);
         $user_id = substr($decode, 0, strpos($decode, '#'));
-        return $decode == $user_id . '#' . $this->_get_email_by_user_id($user_id);
+        if (!$this->_is_user_exist_by_id($user_id))
+        {
+            return 0;
+        }
+        return ($decode == $user_id . '#' . $this->_get_email_by_user_id($user_id))
+                ? $user_id : 0;
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -350,7 +355,7 @@ class User extends EntityWithDB
         $this->Fields['phone']->set($this->_get_data_field('phone'));
         $this->Fields['purpose']->set($this->_get_data_field('purpose'));
         $this->Fields['text']->set($this->_get_data_field('text'));
-        $this->Fields['status']->set(-1);
+        //$this->Fields['status']->set(-1);
         $this->DBHandler->update();
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -511,7 +516,7 @@ class User extends EntityWithDB
         $message = 'От пользователя пришло сообщение:<br />"'
                     . $this->_get_data_field('text')
                     . '"<br />Чтобы продолжить переписку, просто ответьте на это письмо. Ответ будет отправлен на адрес приславшего сообщение пользователя ('.$this->_get_data_field('email_from').')';
-        $headers  = "From: bambitav\r\n" .
+        $headers  = "From: Bambitax\r\n" .
                     "Reply-To: " . $this->_get_data_field('email_from') . "\r\n" .
                     "Content-type: text/html";
                     //'X-Mailer: PHP/' . phpversion();

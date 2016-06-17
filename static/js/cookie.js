@@ -1,9 +1,10 @@
 
 var Cookie = {
-    cookie_filter       : PROJECT_NAME + '_filter',
-    cookie_18_years     : PROJECT_NAME + '_visit',
-    cookie_confirm_email: PROJECT_NAME + '_confirm_email',
-    cookie_pref         : PROJECT_NAME + '_',
+    cookie_filter           : PROJECT_NAME + '_filter',
+    cookie_18_years         : PROJECT_NAME + '_visit',
+    cookie_confirm_email    : PROJECT_NAME + '_confirm_email',
+    cookie_res_check_email  : PROJECT_NAME + '_res_check_email',
+    cookie_pref             : PROJECT_NAME + '_',
             
     setCookie:
         function(cname, cvalue, expires_days)

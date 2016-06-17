@@ -21,7 +21,7 @@ if (file_exists(dirname(__FILE__).'/config.local.inc.php'))
      }
 }
 
-ini_set('display_errors', true);
+ini_set('display_errors', false);
 ini_set('html_errors', true);
 error_reporting(E_ALL);
 

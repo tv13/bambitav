@@ -237,4 +237,29 @@
     </div>
 </div>
 
+<div class="modal fade" id="resultCheckEmailModal" tabindex="-1" role="dialog" aria-labelledby="successConfirmEmail">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="successConfirmEmail">
+                    Активация аккаунта
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p class="check_email_success hide">
+                        Поздравляем! Вы успешно активировали свой аккаунт!
+                    </p>
+                    <p class="check_email_fail hide">
+                        Не удалось активировать Ваш аккаунт. Повторите попытку позже.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <div id="pp-bg"></div>

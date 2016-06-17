@@ -42,6 +42,13 @@ function redirect_to_main()
 }
 ////////////////////////////////////////////////////////////////////////////
 
+function redirect_to_page($page_name)
+{
+     $this-> redirect_url  = HTTP_ABS_PATH . "$page_name.php";
+     $this-> need_redirect = true;
+}
+////////////////////////////////////////////////////////////////////////////
+
 function redirect_to_login()
 {
      $this-> redirect_url  = HTTP_ABS_PATH . '/login.php';

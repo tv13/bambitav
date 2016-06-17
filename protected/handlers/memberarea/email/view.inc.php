@@ -10,7 +10,6 @@ class MemberAreaEmailView extends ViewAjax
     public function fill()
     {
         parent::fill();
-        $this->set_template('registration/email.tpl');
-        $this->assign('is_ok', $this->Model->is_code_ok());
+        $this->set_template('main/index.tpl');
     }
 }
