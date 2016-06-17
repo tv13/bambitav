@@ -24,7 +24,7 @@ class MemberAreaEmailModel extends MainModel
         $this->Customer->set_name($User->get_name_by_user_id($user_id));
         $this->CustomerAuth->update_sessioned($this->Customer);
         $this->CustomerAuth->login();
-        $User->set_status(0);
+        $User->set_status(-1);
         $this->redirect_to_page('profile');
     }
 }
