@@ -83,13 +83,6 @@
                         </tr>
                     </table>
 
-                </div>
-                <div class="col-sm-12 col-md-6 clearfix">
-                </div>
-                <div class="col-sm-12 col-md-6 clearfix">
-                    <div id="alert_placeholder_contact_form" class="custom_alert">
-                    </div>
-                </div>
             </div>
 								            <div class="row clearfix">
                 <div class="col-sm-12 col-md-6">
@@ -104,6 +97,9 @@
                                 <textarea class="form-control" id="contact_text" rows="3" required></textarea>
                             </div>
                             <div class="form-group" id="recaptcha_contact"></div>
+							           
+                    <div id="alert_placeholder_contact_form" class="custom_alert">
+                    </div>
                             <button type="submit" class="btn btn-primary">Отправить сообщение</button>
                         </fieldset>
                     </form>
