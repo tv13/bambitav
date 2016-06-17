@@ -29,8 +29,8 @@
 </div>
 
 <div class="wrapper">
-    <div class="jumbotron">
-        <div class="container container-bambi">
+    <div class="jumbotron" style="margin-top:-11px; padding-top:40px;">
+        <div class="container">
             <div class="row clearfix">
                 <div class="col-sm-12 col-md-6 image_content">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"

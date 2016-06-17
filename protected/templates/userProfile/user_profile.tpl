@@ -4,10 +4,9 @@
 
 {include file='./inset/header.tpl'}
 
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 <div class="wrapper">
-    <div class="jumbotron">
+    <div class="jumbotron" style="margin-top:40px;">
         <div class="container">
             <div class="row clearfix">
                 <div class="col-sm-12 col-md-6 image_content">
