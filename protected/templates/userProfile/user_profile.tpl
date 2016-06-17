@@ -11,7 +11,6 @@
         <div class="container">
             <div class="row clearfix">
                 <div class="col-sm-12 col-md-6 image_content">
-                    <h2>Heading</h2>
                     <div id="carousel-example-generic" class="carousel slide no-control" data-ride="carousel"
                          data-interval="false">
                         <ol id="car_ol" class="carousel-indicators">
@@ -44,7 +43,6 @@
                 </div>
 
                 <div class="col-sm-12 col-md-6 clearfix jumbotron">
-                    <h2>Heading</h2>
                     <table class="table table-striped" id="profile_content" data-profile_id="{$id}">
                         <tr>
                             <td><b>Имя</b></td>
