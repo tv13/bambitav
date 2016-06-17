@@ -105,7 +105,6 @@
                         </div>
         </div>
     </div>
-    <hr>
     <div class="footer-push"></div>
 </div>
 {include file='./inset/bottom.tpl'}

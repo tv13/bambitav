@@ -3,7 +3,7 @@
     <div id="page-preloader"><span class="spinner"></span></div>
 
     <div class="wrapper">
-    <div class="jumbotron">
+    <div class="jumbotron" style="padding-bottom:0px;">
 
     </div>
     <div class="container container-bambi">
@@ -14,7 +14,6 @@
            <div class="records">Всего: <span id="totalCount"></span> записей</div>
            <button type="button" class="btn btn-primary center" id="showMore">Show More (<span id="textShowMore"></span> записи)</button>
        </div>
-        <hr>
 
     </div>
         <div class="footer-push"></div>
