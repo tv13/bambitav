@@ -273,8 +273,8 @@ html, body {
     background-image: -webkit-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
     background-image: -moz-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
     background-image: -o-linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(255, 255, 255, .9) 0%);
-    background-image: linear-gradient(to top, rgba(87, 83, 113, 117.0001) 0, rgba(138, 105, 193, 54.9) 0%);
-    /*background-image: linear-gradient(to bottom, #ffffff 0px, rgba(120, 120, 120, .5) 100%);*/
+    background-image: linear-gradient(to top, rgba(87, 83, 113, 117.0001) 0, rgba(143, 124, 119, 0.85) 0%);
+        /*background-image: linear-gradient(to bottom, #ffffff 0px, rgba(120, 120, 120, .5) 100%);*/
     padding: 0 !important;
 }
 .panel-body {

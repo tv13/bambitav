@@ -4,7 +4,7 @@
 
 var ProfileBase = {
     get_image_carousel_size: function() {
-        return $('#car_inner').width() + 'x' + $('#car_inner').height();
+        return 1024 + 'x' + 768;
     },
     load_user_images: function() {
         $.get('profile.php',
