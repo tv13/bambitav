@@ -29,7 +29,7 @@
     height: calc(100% - 30px);
 }
 #car_inner div.no_photo {
-    background-image: url(../img/no-photo.jpg);
+    background-image: url(../img/no-photo_700x400.jpg);
     height: 390px;
 }
 

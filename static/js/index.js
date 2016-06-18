@@ -111,7 +111,7 @@ function load_questionnaires_by_params(params) {
                                 +       '</div>'
                                 +       '<a href="profile.php?id=' + records[i].id + '" >'
                                 +           '<img class="img-responsive"'
-                                +               'src="' + (records[i].url ? records[i].url : 'static/img/no-photo.jpg') + '" alt="">'
+                                +               'src="' + (records[i].url ? records[i].url : 'static/img/no-photo_700x400.jpg') + '" alt="">'
                                 +       '</a>'
                 + '<div class="caption">'
                 +           '<h3>'
