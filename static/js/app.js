@@ -104,6 +104,7 @@ $(document).ready(function () {
 
                 } else {
                     setUnchangedRegister();
+                    grecaptcha.reset(recaptcha_reg);
                     if (data.statusMessage != undefined) {
                         bootstrap_alert.warning(data.statusMessage, '_r');
                     }

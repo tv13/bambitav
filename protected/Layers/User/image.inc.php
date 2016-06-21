@@ -38,7 +38,8 @@ class Image extends EntityWithDB
     {
         $this->DBHandler->db->exec_query("SELECT * FROM `" . $this->DBHandler->get_table_name()
                 . "` WHERE `user_id` = '$user_id'
-                        ORDER BY `id`");
+                        ORDER BY `main` DESC,
+                                 `id` DESC");
         
         $images = array();
         foreach ($this->DBHandler->db->get_all_data() as $image) {
