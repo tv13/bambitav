@@ -31,7 +31,9 @@
 #car_inner div.no_photo {
     background-image: url(../img/no-photo_700x400.jpg);
 	background-repeat:no-repeat;
-    height: 390px;
+	background-size: contain;
+    height: 50%;
+	width: 100%;
 }
 
 .table_photo_upload {
