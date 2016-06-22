@@ -131,7 +131,7 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                             aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="exampleModalLabel">Upload photo</h4>
+                                <h4 class="modal-title" id="exampleModalLabel">Загрузить фото</h4>
                             </div>
                             <div class="modal-body">
                         <span class="btn btn-success fileinput-button">
@@ -141,7 +141,7 @@
                         </span>
                                 <button type="submit" class="btn btn-primary" id="start">
                                     <i class="glyphicon glyphicon-upload"></i>
-                                    <span>Start upload</span>
+                                    <span>Начать загрузку</span>
                                 </button>
                                 <br>
                                 <br>

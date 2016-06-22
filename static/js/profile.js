@@ -200,7 +200,7 @@ function add_image_to_preview_table(data)
 
 function get_image_carousel_size()
 {
-    return 1024 + 'x' + 768;
+    return 1024 + 'x';
 }
 
 function load_user_images()
