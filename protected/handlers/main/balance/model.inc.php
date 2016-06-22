@@ -48,6 +48,17 @@ class MainBalanceModel extends MainModel
     }
     /////////////////////////////////////////////////////////////////////////////
 
+    public function action_raise_profile()
+    {
+        if (time() < strtotime("+1 day", strtotime($this->_User->get_dt_publish($this->get_customer_id()))))
+        {
+            throw new ExceptionProcessing(36);
+        }
+        $this->_User->set_dt_publish($this->get_customer_id());
+        throw new ExceptionProcessing(1, 1);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
     public function run()
     {
         parent::run();

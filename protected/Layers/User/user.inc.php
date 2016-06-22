@@ -280,6 +280,7 @@ class User extends EntityWithDB
         $this->Fields['password']->set($this->_get_data_field('password'));
         $this->Fields['status']->set(-2);
         $this->Fields['dt_create']->now();
+        $this->Fields['dt_publish']->now();
         $this->DBHandler->insert();
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -373,7 +374,8 @@ class User extends EntityWithDB
             'phone'         => $this->Fields['phone']->get(),
             'purpose_id'    => $this->Fields['purpose']->get(),
             'purpose_text'  => PurposeDating::get_purpose_by_id($this->Fields['purpose']->get()),
-            'text'          => $this->Fields['text']->get()
+            'text'          => $this->Fields['text']->get(),
+            'dt_publish'    => $this->Fields['dt_publish']->get()
         );
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -451,27 +453,27 @@ class User extends EntityWithDB
     }
     /////////////////////////////////////////////////////////////////////////////
     
-    /*public function set_dt_publish($user_id, $need_set_now = true)
+    public function set_dt_publish($user_id/*, $need_set_now = true*/)
     {
-        if ($need_set_now)
+        /*if ($need_set_now)
         {
             $dt_publish = strftime('%Y-%m-%d %H:%M:%S');
         }
         else
         {
             $dt_publish = 0;
-        }
+        }*/
         $this->_set_user_by_id($user_id);
-        $this->Fields['dt_publish']->set($dt_publish);
+        $this->Fields['dt_publish']->now();
         $this->update();
-    }*/
+    }
     /////////////////////////////////////////////////////////////////////////////
     
-    /*public function get_dt_publish($user_id)
+    public function get_dt_publish($user_id)
     {
         $this->_set_user_by_id($user_id);
         return @$this->Fields['dt_publish']->get();
-    }*/
+    }
     /////////////////////////////////////////////////////////////////////////////
     
     public function get_status_by_user_id($user_id)

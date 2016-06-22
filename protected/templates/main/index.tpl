@@ -11,7 +11,7 @@
         </div>
 
        <div class="show-more">
-           <div class="records">Всего: <span id="totalCount"></span> записей</div>
+           {*<div class="records">Всего: <span id="totalCount"></span> записей</div>*}
            <button type="button" class="btn btn-primary center" id="showMore">Show More (<span id="textShowMore"></span> записи)</button>
        </div>
 
