@@ -82,7 +82,7 @@
 
             </div>
 								            <div class="row clearfix">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-6 clearfix jumbotron">
                     <form id="form_contact">
                         <fieldset enable>
                             <div class="form-group">
@@ -107,6 +107,7 @@
     <div class="footer-push"></div>
 </div>
 {include file='./inset/bottom.tpl'}
+<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-phone.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/profile_base.js"></script>
