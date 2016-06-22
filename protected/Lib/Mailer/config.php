@@ -6,6 +6,7 @@ $__smtp = array(
 	"port" => 465,
 	"username" => "bambitax.info@gmail.com",
 	"password" => "target21",
+        "fromname" => "Bambitax",
 	"addreply" => "bambitax@gmail.com",
 	"replyto" => "bambitax@gmail.com"
 );

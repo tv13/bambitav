@@ -520,7 +520,7 @@ class User extends EntityWithDB
                     "Reply-To: " . $this->_get_data_field('email_from') . "\r\n" .
                     "Content-type: text/html";
                     //'X-Mailer: PHP/' . phpversion();*/
-        return send_mail($to, $subject, $message);
+        return send_mail($to, $subject, $message, $this->_get_data_field('email_from'));
     }
     /////////////////////////////////////////////////////////////////////////////
 }
