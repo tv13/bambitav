@@ -10,11 +10,15 @@
         <div id="itemContainer" class="panel-group" role="tablist" aria-multiselectable="true">
         </div>
 
-       <div class="show-more">
-           {*<div class="records">Всего: <span id="totalCount"></span> записей</div>*}
-           <button type="button" class="btn btn-primary center" id="showMore">Show More (<span id="textShowMore"></span> записи)</button>
-       </div>
-
+	<div class="row">
+		<div class="col-md-12">	
+			<div class="show-more">
+				{*<div class="records">Всего: <span id="totalCount"></span> записей</div>*}
+				<button type="button" class="btn btn-primary center" id="showMore">Показать больше (<span id="textShowMore"></span> записи)</button>
+			</div>
+		</div>	
+	</div>
+</div>
     </div>
         <div class="footer-push"></div>
     </div>
