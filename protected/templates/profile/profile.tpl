@@ -61,6 +61,8 @@
                     <button type="button" id="upload_button" class="btn btn-primary center-block"
                             data-toggle="modal" data-target="#photoModal" data-whatever="@mdo">Загрузить фото
                     </button>
+
+                    <span id="clock"></span>
                 </div>
 
                 <div class="col-sm-12 col-md-6 clearfix">
@@ -224,5 +226,7 @@
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-phone.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-datepicker.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-datepicker.en_US.js"></script>
+<script src="{$HTTP_STATIC_PATH}/js/jquery-dateFormat.min.js"></script>
+<script src="{$HTTP_STATIC_PATH}/js/jquery.countdown.min.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
 <script src="http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=1000&callback=countries_process"></script>

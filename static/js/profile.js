@@ -323,7 +323,17 @@ function load_profile_ajax_handler(response)
         }
         //$('#region').attr('user_val', data.region);
         $('#city_main').attr('user_val', data.city);
+
+        $('#clock').countdown(getCoundownTime(data.dt_publish), function(event) {
+               $(this).html(event.strftime('%H:%M:%S'));
+             });
     }
+}
+// YYYY/MM/DD hh:mm:ss
+function getCoundownTime(lastUpdateDate)
+{
+    var finalDate = Math.floor(new Date(lastUpdateDate).getTime() / 1000) + 1*24*60*60;
+    return $.format.date(new Date(finalDate*1000), 'yyyy/MM/dd HH:mm:ss');
 }
 
 function profile_submit()
