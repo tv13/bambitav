@@ -220,7 +220,6 @@
 .btn:active { top: 1px; }
 .show-more {
     position: absolute;
-    margin: 20px;
     max-width: 1050px;
     width: 100%;
 }
