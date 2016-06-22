@@ -2,7 +2,7 @@
 
 require_once LAYERS_DIR . '/Entity/entity_with_db.inc.php';
 require_once LAYERS_DIR . '/User/purpose_dating.inc.php';
-//require_once LIB_DIR . '/Mailer/sendmail.php';
+require_once LIB_DIR . '/Mailer/sendmail.php';
 
 class User extends EntityWithDB
 {
@@ -113,11 +113,11 @@ class User extends EntityWithDB
         $to      = $this->_get_email_by_user_id($user_id);
         $subject = 'Регистрация';
         $message = $this->_get_email_verify_body($user_id);
-        $headers  = "From: Bambitax\r\n" .
+        /*$headers  = "From: Bambitax\r\n" .
                     "Reply-To: Bambitax@mail.ru\r\n" .
                     "Content-type: text/html";
-                    //'X-Mailer: PHP/' . phpversion();
-        return mail($to, $subject, $message, $headers);
+                    //'X-Mailer: PHP/' . phpversion();*/
+        return send_mail($to, $subject, $message);
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -516,11 +516,11 @@ class User extends EntityWithDB
         $message = 'От пользователя пришло сообщение:<br />"'
                     . $this->_get_data_field('text')
                     . '"<br />Чтобы продолжить переписку, просто ответьте на это письмо. Ответ будет отправлен на адрес приславшего сообщение пользователя ('.$this->_get_data_field('email_from').')';
-        $headers  = "From: Bambitax\r\n" .
+        /*$headers = "From: Bambitax\r\n" .
                     "Reply-To: " . $this->_get_data_field('email_from') . "\r\n" .
                     "Content-type: text/html";
-                    //'X-Mailer: PHP/' . phpversion();
-        return mail($to, $subject, $message, $headers);
+                    //'X-Mailer: PHP/' . phpversion();*/
+        return send_mail($to, $subject, $message);
     }
     /////////////////////////////////////////////////////////////////////////////
 }
