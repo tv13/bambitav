@@ -215,7 +215,6 @@
 <script src="//i.onthe.io/u.js?{$IMAGES_APP}_24135782"></script>
 <script src="{$HTTP_STATIC_PATH}/uploader/js/vendor/jquery.ui.widget.js"></script>
 <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.iframe-transport.js"></script>
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload.js"></script>
 <script src="{$HTTP_STATIC_PATH}/uploader/js/jquery.fileupload-process.js"></script>
