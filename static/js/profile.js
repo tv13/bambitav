@@ -527,6 +527,7 @@ function countdownTimerStart(time)
 function rise_questionnaire()
 {
     preloader_show();
+    $('#btnRise').addClass('hide');
     $.post('balance.php',
         {
             'action': 'rise_questionnaire'
@@ -547,6 +548,5 @@ function rise_questionnaire_ajax_handler(response)
     preloader_hide();
     $modalRise.modal('show');
     $('#clock').removeClass('hide');
-    $('#btnRise').addClass('hide');
     countdownTimerStart(-response.statusMessage);
 }

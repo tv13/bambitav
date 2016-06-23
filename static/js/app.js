@@ -90,7 +90,7 @@ $(document).ready(function () {
             data: $('#register_form').serialize(),
 
             beforeSend: function () {
-
+                preloader_show();
             },
             success: function (data) {
                 if (data.status == 1) {
@@ -109,6 +109,7 @@ $(document).ready(function () {
                         bootstrap_alert.warning(data.statusMessage, '_r');
                     }
                 }
+                preloader_hide();
             }
         });
 

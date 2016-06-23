@@ -95,7 +95,7 @@ class UsersList extends PagedLister
         $this-> db-> exec_query("
             SELECT users.id, users.name, " . self::SQL_CALC_AGE . " AS age, users.sex, users.text, pic.key_code " . self::SQL_JOIN
             . $this->get_where_part()
-            . 'ORDER BY users.dt_create DESC'
+            . 'ORDER BY users.dt_publish DESC'
             . $this->get_limit_part());
         $all_records = array();
         foreach ($this-> db-> get_all_data() as $record)
