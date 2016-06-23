@@ -29,6 +29,26 @@
     </div>
 </div>
 
+<div class="modal fade" id="riseQuestionnaireModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <p><br />
+                        <span class="riseOk hide">
+                            Ваша анкета успешно поднята!
+                        </span>
+                        <span class="riseFail hide">
+                            Не удалось поднять анкету
+                        </span>
+                    </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <div class="wrapper">
     <div class="jumbotron" style="margin-top:-11px; padding-top:40px;">
         <div class="container">
@@ -63,6 +83,7 @@
                     </button>
 
                     <span id="clock"></span>
+                    <button id="btnRise" type="button" class="btn btn-primary hide">Поднять анкету</button>
                 </div>
 
                 <div class="col-sm-12 col-md-6 clearfix">
@@ -226,7 +247,6 @@
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-phone.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-datepicker.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap-formhelpers-datepicker.en_US.js"></script>
-<script src="{$HTTP_STATIC_PATH}/js/jquery-dateFormat.min.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/jquery.countdown.min.js"></script>
 <script src="{$HTTP_STATIC_PATH}/js/profile.js"></script>
 <script src="http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=1000&callback=countries_process"></script>

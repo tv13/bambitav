@@ -77,4 +77,9 @@ define('IMAGES_SECRET', 'AJHBOyn1LAEDIPax53bO91M6d3oPwSZX');
 define('FILTER_AGE_MIN', 18);
 define('FILTER_AGE_MAX', 100);
 
+////////////////////////////////////////////////////////////////////////////
+
+// frequency of rise questionnaire (in hours)
+define('FREQUENCY_RISE', 24);
+
 ?>

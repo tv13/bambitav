@@ -39,7 +39,7 @@ function load_questionnaires_by_params(params) {
 
         },
         success: function(data) {
-            preloader_close();
+            preloader_hide();
             $('form#filter_form').find('button[type=submit]').removeAttr('disabled');
             
             if (data.status != 1)

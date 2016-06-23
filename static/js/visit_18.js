@@ -16,7 +16,7 @@ $(document).ready(function(){
     }
 
     function pp_show(pp){
-        pp.animate({top: "150px"}, 750, preloader_close);
+        pp.animate({top: "150px"}, 750, preloader_hide);
         bg.fadeIn(750); //.click(function(){pp_hide(pp, bg)});
 
         $('#18_years_false').click(function(e){

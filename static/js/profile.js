@@ -1,5 +1,5 @@
 
-$(window).on('load', preloader_close);
+$(window).on('load', preloader_hide);
 
 var form = $('#formProfile');
 var submit = $('#send_data');
@@ -324,16 +324,17 @@ function load_profile_ajax_handler(response)
         //$('#region').attr('user_val', data.region);
         $('#city_main').attr('user_val', data.city);
 
-        $('#clock').countdown(getCoundownTime(data.dt_publish), function(event) {
-               $(this).html(event.strftime('%H:%M:%S'));
-             });
+        countdownTimerStart(data.left_time_rise);
+        $('#clock')
+            .on('update.countdown', function(event) {
+                $(this).html(event.strftime('%H:%M:%S'));
+            })
+            .on('finish.countdown', function() {
+                $(this).addClass('hide');
+                $('#btnRise').removeClass('hide');
+            });
+        $('#btnRise').bind('click', rise_questionnaire);
     }
-}
-// YYYY/MM/DD hh:mm:ss
-function getCoundownTime(lastUpdateDate)
-{
-    var finalDate = Math.floor(new Date(lastUpdateDate).getTime() / 1000) + 1*24*60*60;
-    return $.format.date(new Date(finalDate*1000), 'yyyy/MM/dd HH:mm:ss');
 }
 
 function profile_submit()
@@ -516,4 +517,36 @@ function showModalConfirmEmail()
         $('#needConfirmEmailModal').modal('show');
         Cookie.setCookie(Cookie.cookie_confirm_email, 1, -1); /* delete cookie confirm_email */
     }
+}
+
+function countdownTimerStart(time)
+{
+    $('#clock').countdown(new Date().getTime() + time * 1000);
+}
+
+function rise_questionnaire()
+{
+    preloader_show();
+    $.post('balance.php',
+        {
+            'action': 'rise_questionnaire'
+        }, handle_response).error(ajax_error_handler).handler = rise_questionnaire_ajax_handler;
+}
+
+function rise_questionnaire_ajax_handler(response)
+{
+    $modalRise = $('#riseQuestionnaireModal');
+    if (response.status == 1) {
+        $modalRise.find('.riseFail').addClass('hide');
+        $modalRise.find('.riseOk').removeClass('hide');
+    }
+    else {
+        $modalRise.find('.riseOk').addClass('hide');
+        $modalRise.find('.riseFail').removeClass('hide');
+    }
+    preloader_hide();
+    $modalRise.modal('show');
+    $('#clock').removeClass('hide');
+    $('#btnRise').addClass('hide');
+    countdownTimerStart(-response.statusMessage);
 }

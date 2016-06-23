@@ -19,7 +19,14 @@ var ReCaptchaCallback = function() {
     }
 };
 
-function preloader_close() {
+function preloader_show() {
+    var $preloader = $('#page-preloader'),
+        $spinner   = $preloader.find('.spinner');
+    $spinner.fadeIn();
+    $preloader.fadeIn('slow');
+}
+
+function preloader_hide() {
     var $preloader = $('#page-preloader'),
         $spinner   = $preloader.find('.spinner');
     $spinner.fadeOut();

@@ -375,7 +375,7 @@ class User extends EntityWithDB
             'purpose_id'    => $this->Fields['purpose']->get(),
             'purpose_text'  => PurposeDating::get_purpose_by_id($this->Fields['purpose']->get()),
             'text'          => $this->Fields['text']->get(),
-            'dt_publish'    => $this->Fields['dt_publish']->get()
+            'left_time_rise'=> strtotime('+'.FREQUENCY_RISE.' hours', strtotime($this->Fields['dt_publish']->get())) - time()
         );
     }
     /////////////////////////////////////////////////////////////////////////////

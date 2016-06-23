@@ -48,14 +48,20 @@ class MainBalanceModel extends MainModel
     }
     /////////////////////////////////////////////////////////////////////////////
 
-    public function action_raise_profile()
+    public function action_rise_questionnaire()
     {
-        if (time() < strtotime("+1 day", strtotime($this->_User->get_dt_publish($this->get_customer_id()))))
+        if ($this->_get_left_time_to_raising() < 0)
         {
-            throw new ExceptionProcessing(36);
+            throw new ExceptionProcessing(0, 0, $this->_get_left_time_to_raising());
         }
         $this->_User->set_dt_publish($this->get_customer_id());
-        throw new ExceptionProcessing(1, 1);
+        throw new ExceptionProcessing(0, 1, $this->_get_left_time_to_raising());
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    private function _get_left_time_to_raising()
+    {
+        return time() - strtotime('+'.FREQUENCY_RISE.' hours', strtotime($this->_User->get_dt_publish($this->get_customer_id())));
     }
     /////////////////////////////////////////////////////////////////////////////
 

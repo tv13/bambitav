@@ -8,12 +8,16 @@ class ExceptionProcessing extends Exception
     const TPL_PATH = 'inset/exception.tpl';
     /////////////////////////////////////////////////////////////////////////////
     
-    public function __construct($message_code, $status = 0)
+    public function __construct($message_code, $status = 0, $message = null)
     {
-        $this->_tpl = produce_tpl();
-        $this->_Data_exception = $this->_parse_tpl($this->_get_template_data());
-        
-        parent::__construct(PROJECT_NAME . $this->_get_message($message_code), ($status ? 1 : 0));
+        if (!$message)
+        {
+            $this->_tpl = produce_tpl();
+            $this->_Data_exception = $this->_parse_tpl($this->_get_template_data());
+        }
+        parent::__construct(
+                PROJECT_NAME . (!$message ? $this->_get_message($message_code) : $message),
+                ($status ? 1 : 0));
     }
     /////////////////////////////////////////////////////////////////////////////
     
