@@ -29,7 +29,7 @@ ob_start();
 
 define('DEV_MODE', false);
 
-date_default_timezone_set('Europe/Kiev');
+date_default_timezone_set('UTC');
 define('DOMAIN_ROOT', 'bambitax.com');
 define('PROJECT_NAME', 'bambitav');
 define('SESSION_NAME', PROJECT_NAME . '_rand');

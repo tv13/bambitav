@@ -280,7 +280,7 @@ class User extends EntityWithDB
         $this->Fields['password']->set($this->_get_data_field('password'));
         $this->Fields['status']->set(-2);
         $this->Fields['dt_create']->now();
-        $this->Fields['dt_publish']->set(strftime('%Y-%m-%d %H:%M:%S'));
+        $this->Fields['dt_publish']->now();
         $this->DBHandler->insert();
     }
     /////////////////////////////////////////////////////////////////////////////

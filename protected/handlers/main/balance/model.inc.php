@@ -50,6 +50,10 @@ class MainBalanceModel extends MainModel
 
     public function action_rise_questionnaire()
     {
+        if (!$this->is_customer_logged())
+        {
+            throw new ExceptionProcessing(24);
+        }
         if ($this->_get_left_time_to_raising() < 0)
         {
             throw new ExceptionProcessing(0, 0, $this->_get_left_time_to_raising());
