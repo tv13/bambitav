@@ -180,8 +180,10 @@
     top: 0px;
 }
 #pp {
-    top:0px;
-    position: inherit;
+    position: fixed;
+    top:-550px; left:50%;
+    margin-left:-285px;
+    width: 570px;
     background:#f0f0f0;
     z-index:999999;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
