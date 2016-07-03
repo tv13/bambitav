@@ -213,7 +213,7 @@
                     </div>
                     <div class="form-group checkbox">
                         <label>
-                            <input id="with_photo_filter" type="checkbox" class="filter" checked/>
+                            <input id="with_photo_filter" type="checkbox" class="filter" />
                             Только с фото
                         </label>
                     </div>
