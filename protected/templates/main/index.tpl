@@ -10,22 +10,6 @@
         <div id="itemContainer" class="panel-group" role="tablist" aria-multiselectable="true">
         </div>
 
-
-        <div class="row">
-            <div class="col-md-12">
-
-            <div id="pp" tabindex="-1" role="dialog">
-            <div class="pp-header">
-                <h3> Вам уже есть 18?</h3>
-            </div>
-            <div class="pp-footer">
-                <input type="button" class="btn btn-danger" value="Нет" id="18_years_false" />
-                <input type="button"  class="btn btn-success" value="Да" id="18_years_true" />
-            </div>
-        </div>
-            </div>
-        </div>
-
 	<div class="row">
 		<div class="col-md-12">	
 			<div class="show-more">
