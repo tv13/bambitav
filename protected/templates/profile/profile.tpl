@@ -54,6 +54,12 @@
         <div class="container">
             <div class="row clearfix">
                 <div class="col-sm-12 col-md-6 image_content">
+                    <div class="row" style="margin: 10px;">
+
+                    <span id="clock"></span>
+                    <button id="btnRise" type="button" class="btn btn-success center-block hide">Поднять анкету</button>
+                    </div>
+
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
                          data-interval="false">
                         <ol id="car_ol" class="carousel-indicators">
@@ -82,8 +88,7 @@
                             data-toggle="modal" data-target="#photoModal" data-whatever="@mdo">Загрузить фото
                     </button>
 
-                    <span id="clock"></span>
-                    <button id="btnRise" type="button" class="btn btn-primary hide">Поднять анкету</button>
+
                 </div>
 
                 <div class="col-sm-12 col-md-6 clearfix">
