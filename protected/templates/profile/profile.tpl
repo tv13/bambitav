@@ -56,7 +56,11 @@
                 <div class="col-sm-12 col-md-6 image_content">
                     <div class="row" style="margin: 10px;">
 
-                    <span id="clock"></span>
+                        <h3>
+                        <label for="clock">До поднятия анкеты: </label>
+                        <span id="clock"></span>
+                        </h3>
+
                     <button id="btnRise" type="button" class="btn btn-success center-block hide">Поднять анкету</button>
                     </div>
 
