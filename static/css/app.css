@@ -239,7 +239,6 @@ html, body {
         background-size: cover;
 }
 .wrapper {
-    min-height: 100%;
     height: auto !important;
     height: 100%;
     margin: 0 0 -30px 0;
