@@ -302,7 +302,7 @@ class User extends EntityWithDB
     
     private function _validate_name()
     {
-        if (!preg_match("/^.{3,50}$/", $this->_get_data_field('name')))
+        if (!preg_match("/^.{4,20}$/", $this->_get_data_field('name')))
         {
             throw new ExceptionProcessing(14);
         }
