@@ -228,12 +228,16 @@
 </div>
 
 <div id="pp" tabindex="-1" role="dialog">
-    <div class="pp-header">
-        <h3> Вам уже есть 18?</h3>
-    </div>
-    <div class="pp-footer">
-        <input type="button" class="btn btn-danger" value="Нет" id="18_years_false" />
-        <input type="button"  class="btn btn-success" value="Да" id="18_years_true" />
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="pp-header modal-header">
+                <h3> Вам уже есть 18?</h3>
+            </div>
+            <div class="pp-footer modal-footer">
+                <input type="button" class="btn btn-danger" value="Нет" id="18_years_false" />
+                <input type="button"  class="btn btn-success" value="Да" id="18_years_true" />
+            </div>
+        </div>
     </div>
 </div>
 

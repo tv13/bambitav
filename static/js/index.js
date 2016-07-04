@@ -94,7 +94,7 @@ function load_questionnaires_by_params(params) {
 
                 strElemsAppend += '<div class="col-md-6 portfolio-item thumbnail text-center header-col">'
                                 +    '<div class="caption top">'
-                                +           '<div class="panel-heading" role="tab" id="record-' + records[i].id + '">'
+                                +           '<div class="panel-heading link" role="tab" id="record-' + records[i].id + '">'
 
                                 +                   '<a role="button" data-toggle="collapse"'
                                 +     'data-parent="#itemContainer" href="#collapse' + records[i].id + '"'
@@ -109,21 +109,25 @@ function load_questionnaires_by_params(params) {
                                 +               '</div>'
                                 +           '</div>'
                                 +       '</div>'
-                                +       '<a href="profile.php?id=' + records[i].id + '" >'
-                                +           '<img class="img-responsive"'
-                                +               'src="' + (records[i].url ? records[i].url : 'static/img/no-photo_700x400.jpg') + '" alt="">'
-                                +       '</a>'
-                + '<div class="caption">'
-                +           '<h3>'
-                +                   '<span class="profile-left">'
-                +                       records[i].name
-                +                   '</span>'
-                +                   '<span class="profile-right">'
-                +                       (records[i].age >= 14 && records[i].age < 100 ? records[i].age + ', ' : '')
-                +                       '<i class="fa fa-' + sex_img + ' profile_ico"></i>'
-                +                   '</span>'
-                +           '</h3>'
-                +       '</div>'
+                                +       '<div class="link">'
+                                +           '<a href="profile.php?id=' + records[i].id + '">'
+                                +               '<img class="img-responsive"'
+                                +                   'src="' + (records[i].url ? records[i].url : 'static/img/no-photo_700x400.jpg') + '" alt="">'
+                                +               '<div class="caption">'
+
+                                +                   '<h3>'
+                                +                       '<span class="profile-left">'
+                                +                           records[i].name
+                                +                       '</span>'
+                                +                       '<span class="profile-right">'
+                                +                           (records[i].age >= 14 && records[i].age < 100 ? records[i].age + ', ' : '')
+                                +                           '<i class="fa fa-' + sex_img + ' profile_ico"></i>'
+                                +                       '</span>'
+                                +                   '</h3>'
+                                +               '</div>'
+                                +           '</a>'
+
+                                +       '</div>'
                                 +   '</div>';
 
                 if (current_num % 2)
