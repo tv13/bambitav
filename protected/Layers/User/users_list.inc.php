@@ -32,6 +32,7 @@ class UsersList extends PagedLister
     {
         $this->_Conditions = array();
         $this->_Conditions[] = 'status = -1';
+        $this->_Conditions[] = 'name != \'\'';
         if (!empty($this->_get_data_field('page')))
         {
             $this->_Conditions[] = '(pic.main = 1'
