@@ -95,7 +95,7 @@ var ProfileBase = {
                 $('#age').html(data.birthdate);
             }
 
-            $('#sex').html('<i class="fa fa-' + (response.sex == 'm' ? 'mars':'venus') + ' profile_ico"></i>');
+            $('#sex').html('<i class="fa fa-' + (data.sex == 'm' ? 'mars':'venus') + ' profile_ico"></i>');
 
             $('#phone').html(data.phone);
 
