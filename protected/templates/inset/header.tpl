@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/jquery-ui.min.css"/>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<script src="{$HTTP_STATIC_PATH}/js/googleanalitics.js.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/alert_custom.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/common.js" type="text/javascript"></script>
     <script src="{$HTTP_STATIC_PATH}/js/recaptcha.js" type="text/javascript"></script>
