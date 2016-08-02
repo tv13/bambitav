@@ -19,6 +19,22 @@
     <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="{$HTTP_STATIC_PATH}/css/jquery-ui.min.css"/>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-81805854-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	
+	
+	
+	
     <script src="{$HTTP_STATIC_PATH}/js/alert_custom.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/common.js" type="text/javascript"></script>
     <script src="{$HTTP_STATIC_PATH}/js/recaptcha.js" type="text/javascript"></script>
