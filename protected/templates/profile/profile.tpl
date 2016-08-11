@@ -241,8 +241,8 @@
             </div>
         </div>
     </div>
-    <div class="footer-push"></div>
 </div>
+{include file='./inset/footer.tpl'}
 {include file='./inset/bottom.tpl'}
 <script src="//i.onthe.io/u.js?{$IMAGES_APP}_24135782"></script>
 <script src="{$HTTP_STATIC_PATH}/uploader/js/vendor/jquery.ui.widget.js"></script>

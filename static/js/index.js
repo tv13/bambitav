@@ -62,7 +62,7 @@ function load_questionnaires_by_params(params) {
             }
             else
             {
-                $("#showMore").addClass("hide");
+                //$("#showMore").addClass("hide");
             }
             // total count records
             if (params.page == 1)

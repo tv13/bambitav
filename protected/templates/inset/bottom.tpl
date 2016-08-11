@@ -1,11 +1,3 @@
-        <!-- Footer 
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                </div>
-            </div>
-        </footer>
-		-->
 <script src="{$HTTP_STATIC_PATH}/js/jquery.js" type="text/javascript"></script>
 <script src="{$HTTP_STATIC_PATH}/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="{$HTTP_STATIC_PATH}/js/jquery-ui.min.js"></script>

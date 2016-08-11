@@ -19,11 +19,10 @@
 					</div>
 				</div>
 			</div>
+		</div>
     </div>
-	{include file='./inset/footer.tpl'}
-    </div>
-	</div>
 
+    {include file='./inset/footer.tpl'}
     {include file='./inset/bottom.tpl'}
     <script src="{$HTTP_STATIC_PATH}/js/vk.js"></script>
     <script src="{$HTTP_STATIC_PATH}/js/index.js"></script>
