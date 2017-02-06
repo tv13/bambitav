@@ -37,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" style="font-family: cursive;font-size: 250%;" href="./">Секс знакомства</a>
+            <a class="navbar-brand" style="font-family: cursive;font-size: 250%;" href="./">Bambitax</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
